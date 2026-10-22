@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkinKit Tutorial | Hybrid Body Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <style>html, body { margin: 0; background: #fcfcfc; }</style>
+</head>
+<body>
+  <!-- Everything lives inside #sk-root, and every class starts with "sk-",
+       so the page can be dropped into another site without clashing. -->
+  <div id="sk-root">
+    <header class="sk-header">
+      <a class="sk-brand" href="#about">SkinKit <span>Hybrid Body Lab</span></a>
+      <nav class="sk-parts" aria-label="Sections">
+        <a class="sk-part" href="#about" data-part="about"><span class="sk-part-num">1</span>What is SkinKit</a>
+        <a class="sk-part" href="#tutorial" data-part="tutorial"><span class="sk-part-num">2</span>Make &amp; use</a>
+        <a class="sk-part" href="#faq" data-part="faq">FAQ</a>
+      </nav>
+    </header>
+
+    <!-- PART 1: WHAT IS SKINKIT -->
+    <main class="sk-view" id="sk-about">
+      <section class="sk-hero">
+        <p class="sk-eyebrow">On-skin interface toolkit</p>
+        <h1 class="sk-headline" id="sk-headline"></h1>
+        <p class="sk-intro" id="sk-intro"></p>
+        <dl class="sk-facts" id="sk-facts"></dl>
+        <div class="sk-actions">
+          <a class="sk-btn sk-btn--primary" href="#tutorial">Start building</a>
+          <a class="sk-btn sk-btn--ghost" href="#try">Try a circuit</a>
+        </div>
+      </section>
+
+      <figure class="sk-strip">
+        <svg id="sk-strip" viewBox="0 0 1200 280" role="img" aria-label="A strip of diamond-shaped skin cloth with a power, sensor, modifier and LED module snapped along it; a signal travels from the power module to the LED."></svg>
+        <figcaption>Diamond skin cloth pieces, with modules snapped on from power to LED.</figcaption>
+      </figure>
+
+      <section class="sk-section">
+        <h2>How it works</h2>
+        <ol class="sk-how" id="sk-how"></ol>
+      </section>
+
+      <section class="sk-section" id="try">
+        <h2>Try a circuit</h2>
+        <p class="sk-lead">Pick one module of each kind and see what your device would do. This is a simulation of how the real modules behave.</p>
+        <div class="sk-sim">
+          <div class="sk-chain" id="sk-chain"></div>
+          <div class="sk-stage">
+            <div class="sk-control" id="sk-control"></div>
+            <div class="sk-output" id="sk-output" aria-live="polite"></div>
+          </div>
+          <p class="sk-sentence" id="sk-sentence"></p>
+        </div>
+      </section>
+
+      <section class="sk-section">
+        <h2>Watch the overview</h2>
+        <div class="sk-media sk-media--wide" id="sk-overview-media"></div>
+      </section>
+
+      <section class="sk-section">
+        <h2>What people have made</h2>
+        <p class="sk-lead">Projects from the lab's workshops, where 25 designers and engineers built a device of their own choice.</p>
+        <div class="sk-apps" id="sk-apps"></div>
+      </section>
+
+      <section class="sk-section">
+        <h2>All the modules</h2>
+        <p class="sk-lead">Each color is a different kind of job. Tap a color to filter.</p>
+        <div class="sk-chips" id="sk-filters"></div>
+        <div class="sk-modules" id="sk-modules"></div>
+      </section>
+
+      <section class="sk-section sk-next">
+        <h2>Ready to build one?</h2>
+        <a class="sk-btn sk-btn--primary" href="#tutorial">Go to Make &amp; use</a>
+      </section>
+    </main>
+
+    <!-- PART 2: MAKE & USE -->
+    <main class="sk-view" id="sk-tutorial" hidden>
+      <section class="sk-chooser" id="sk-chooser">
+        <p class="sk-eyebrow">Part 2</p>
+        <h1 class="sk-headline">How do you want to start?</h1>
+        <div class="sk-paths" id="sk-paths"></div>
+        <p class="sk-note" id="sk-availability"></p>
+      </section>
+
+      <section class="sk-stepper" id="sk-stepper" hidden>
+        <div class="sk-progress"><div class="sk-progress-bar" id="sk-progress-bar"></div></div>
+        <div class="sk-step-layout">
+          <aside class="sk-toc" aria-label="Steps in this path">
+            <p class="sk-toc-path" id="sk-toc-path"></p>
+            <a class="sk-toc-switch" href="#tutorial">Change path</a>
+            <div id="sk-toc"></div>
+          </aside>
+          <article class="sk-step">
+            <p class="sk-step-meta" id="sk-step-meta"></p>
+            <div class="sk-media sk-media--wide" id="sk-step-media"></div>
+            <h2 class="sk-step-title" id="sk-step-title"></h2>
+            <p class="sk-step-text" id="sk-step-text"></p>
+            <ul class="sk-materials" id="sk-step-materials" hidden></ul>
+            <p class="sk-tip" id="sk-step-tip"></p>
+            <label class="sk-done" for="sk-step-done"><input type="checkbox" id="sk-step-done"> I did this step</label>
+            <div class="sk-step-nav">
+              <button class="sk-btn sk-btn--ghost" id="sk-prev" type="button">Back</button>
+              <span class="sk-hint">or use the ← → keys</span>
+              <button class="sk-btn sk-btn--primary" id="sk-next" type="button">Next</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="sk-section sk-two-col">
+        <div>
+          <h2>Words to know</h2>
+          <dl class="sk-glossary" id="sk-glossary"></dl>
+        </div>
+        <div>
+          <h2>Skin safety</h2>
+          <ul class="sk-list" id="sk-safety"></ul>
+        </div>
+      </section>
+
+      <section class="sk-section" id="faq">
+        <h2>FAQ</h2>
+        <div class="sk-faq" id="sk-faq"></div>
+      </section>
+    </main>
+
+    <footer class="sk-footer">
+      <p class="sk-footer-label">Cite this work</p>
+      <p id="sk-citation"></p>
+    </footer>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
