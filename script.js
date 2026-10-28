@@ -396,7 +396,7 @@
     const rest = list.filter((m) => !shown.has(m.name));
     mats.hidden = !list.length;
     if (list.length && spots.length) {
-      mats.innerHTML = `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} anything in the photo to see what it is and what it is for.</p>` +
+      mats.innerHTML = `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} a dot on the photo to see what each thing is and what it is for.</p>` +
         (rest.length ? `<p class="sk-mat-rest"><strong>Also have ready:</strong> ${rest.map((m) => esc(m.name) + (m.note ? ` <span>(${esc(m.note)})</span>` : "")).join(" · ")}</p>` : "");
     } else {
       mats.innerHTML = `<ul>${list.map((m) => `<li>${esc(m.name)}${m.note ? ` <span>${esc(m.note)}</span>` : ""}</li>`).join("")}</ul>`;
@@ -410,7 +410,7 @@
     $("sk-progress-bar").style.width = ((i + 1) / steps.length) * 100 + "%";
   }
 
-  // ---------- Clickable areas on a step photo: click one to open a card, close it with × ----------
+  // ---------- Dots on a step photo: click one (or the thing under it) to open a card, close it with × ----------
   const canHover = !!(window.matchMedia && window.matchMedia("(hover: hover)").matches);
   function spotInfo(h, path) {
     const m = h.item ? (K.materials[path] || []).concat(K.materials.make, K.materials.use).find((x) => x.name === h.item) : null;
@@ -462,6 +462,8 @@
       b.style.cssText = `left:${h.x}%;top:${h.y}%;width:${h.w}%;height:${h.h}%`;
       b.setAttribute("aria-label", info.name);
       b.setAttribute("aria-expanded", "false");
+      // dot: where the marker sits, in % of the area (default: its center)
+      b.innerHTML = `<span class="sk-dot" style="left:${h.dot ? h.dot[0] : 50}%;top:${h.dot ? h.dot[1] : 50}%"></span>`;
       b.addEventListener("click", () => open(b, info, h));
       box.appendChild(b);
     });
