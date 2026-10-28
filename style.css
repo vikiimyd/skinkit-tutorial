@@ -188,8 +188,10 @@
 .sk-step-meta { font-size: 13.5px; color: var(--sk-meta); }
 .sk-step-title { padding-top: 6px; }
 .sk-step-text { font-size: 16px; max-width: 68ch; }
-.sk-materials { list-style: decimal; padding-left: 40px; margin: 0; display: grid; gap: 6px; }
+.sk-materials { list-style: none; padding-left: 0; margin: 0; display: grid; gap: 10px; }
 .sk-materials span { color: var(--sk-muted); }
+.sk-materials li { display: flex; gap: 14px; align-items: center; }
+.sk-materials img, .sk-mat-ph { width: 96px; aspect-ratio: 3 / 2; object-fit: cover; flex: none; background: var(--sk-placeholder); }
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
 .sk-done { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; }
