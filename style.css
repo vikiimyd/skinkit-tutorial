@@ -221,7 +221,9 @@
 .sk-pop--below img { grid-row: span 2; }
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
-.sk-done { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; }
+.sk-step-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.sk-done { display: inline-flex; gap: 6px; align-items: center; font-size: 13.5px; color: var(--sk-text); white-space: nowrap; cursor: pointer; flex: none; }
+.sk-done input { accent-color: var(--sk-heading); }
 .sk-step-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; padding-top: 20px; border-top: 1px solid var(--sk-rule); }
 .sk-hint { font-size: 13px; color: var(--sk-meta); }
 

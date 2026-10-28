@@ -115,9 +115,7 @@ window.SKINKIT = {
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
       { name: "Wire modules", note: "Diamond pieces of skin cloth with three metal lines and magnets." },
       { name: "Double-sided tape", note: "Regular tape to fix your layout, and medical-grade tape (e.g. Vapon clear tape) for your skin.", image: "images/mat-tape.jpg" },
-      { name: "Scissors and tweezers", note: "Tweezers help separate the tiny magnets." },
-      { name: "Mirror", note: "To check the placement on your body." },
-      { name: "Decorations (optional)", note: "Washi tape, stickers, gems, markers." }
+      { name: "Scissors and tweezers", note: "Tweezers help separate the tiny magnets." }
     ]
   },
 
@@ -141,7 +139,9 @@ window.SKINKIT = {
           { item: "Plastic scraper", x: 47, y: 4, w: 15, h: 19 },
           { item: "Temporary tattoo paper", x: 15, y: 28, w: 29, h: 69 },
           { label: "Adhesive sheets", text: "Come in the tattoo paper package. One goes on the shiny side of each tattoo paper.", image: "images/mat-adhesive.jpg", x: 47, y: 29, w: 28, h: 66 },
-          { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
+          { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 },
+          { item: "Mini magnets", x: 87.5, y: 5.3, w: 9.8, h: 13.8 },
+          { item: "Conductive fabric tape", x: 81, y: 75.8, w: 17.3, h: 12.9 }
         ]
       } },
     { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: null },
@@ -170,7 +170,7 @@ window.SKINKIT = {
     { chapter: "u3", shot: "3-02", title: "Lay out the wire modules", text: "Fit the diamond wire modules together into the shape you want. Use the cross-shaped piece to turn a corner or split the circuit in two, and blank pieces for decoration.", tip: "", media: null },
     { chapter: "u3", shot: "3-03", title: "Pick a connection", text: "On curved spots, connect two pieces that have flaps and set the module on the flaps, so it stays connected when you bend. On flat spots, use flat pieces for a slimmer look. To extend the circuit without a module, fold a flap onto a flat piece.", tip: "", media: null },
     { chapter: "u3", shot: "3-04", title: "Preview it on your body", text: "Hold the device on your body and look in the mirror. Rearrange pieces or swap modules until you like it.", tip: "", media: null },
-    { chapter: "u3", shot: "3-05", title: "Make it permanent and decorate", text: "When the layout is final, secure the joints between wire modules with double-sided tape. Then decorate it however you like.", tip: "Keep decorations off the magnets and metal lines so the circuit still works.", media: null },
+    { chapter: "u3", shot: "3-05", title: "Make it permanent and decorate", text: "When the layout is final, secure the joints between wire modules with double-sided tape. Then, if you like, decorate it with washi tape, stickers, gems or markers.", tip: "Keep decorations off the magnets and metal lines so the circuit still works.", media: null },
     { chapter: "u3", shot: "3-06", title: "Put it on", text: "Apply medical-grade double-sided tape to the back and press the device onto clean, dry skin. Switch on the power and try it out.", tip: "", media: null },
     { chapter: "u3", shot: "3-07", title: "Take it off", text: "TODO: how to remove it gently and store the modules for reuse.", tip: "The circuit modules are reusable: unsnap them for your next project.", media: null }
   ],
