@@ -399,12 +399,13 @@
 
     // Materials: a checklist visitors can tick off; ticks are saved in their own browser
     const mats = $("sk-step-materials");
-    const list = s.materials ? K.materials[path] || [] : [];
+    const matKey = s.materials === true ? path : s.materials;
+    const list = matKey ? K.materials[matKey] || [] : [];
     const spots = (s.media && s.media.hotspots) || [];
     mats.hidden = !list.length;
     mats.innerHTML = (spots.length ? `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} a dot on the photo to see what each thing is for.</p>` : "") +
       `<ul class="sk-checklist">${list.map((m) => {
-        const key = path + ":" + m.name;
+        const key = matKey + ":" + m.name;
         return `<li><label><input type="checkbox" data-key="${esc(key)}"${got.has(key) ? " checked" : ""}><span><strong>${esc(m.name)}</strong>${m.note ? ` ${esc(m.note)}` : ""}${m.link ? " " + matLink(m.link) : ""}</span></label></li>`;
       }).join("")}</ul>`;
 
@@ -419,7 +420,7 @@
   // ---------- Dots on a step photo: click one (or the thing under it) to open a card, close it with × ----------
   const canHover = !!(window.matchMedia && window.matchMedia("(hover: hover)").matches);
   function spotInfo(h, path) {
-    const m = h.item ? (K.materials[path] || []).concat(K.materials.make, K.materials.use).find((x) => x.name === h.item) : null;
+    const m = h.item ? (K.materials[path] || []).concat(K.materials.make, K.materials.modules || [], K.materials.use).find((x) => x.name === h.item) : null;
     return { name: h.label || (m && m.name) || "", note: h.text || (m && m.note) || "", image: h.image || (m && m.image) || "" };
   }
   function matLink(l) {
