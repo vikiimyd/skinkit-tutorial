@@ -99,12 +99,13 @@ window.SKINKIT = {
     availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses. TODO: confirm wording with the lab."
   },
 
-  // image (optional): a close-up shown when someone hovers that item in the step photo.
+  // image (optional): a close-up shown when someone clicks that item in the step photo.
+  // link (optional): { text, href }. Leave href empty to show "link coming soon" until the file is online.
   materials: {
     make: [
       { name: "Temporary tattoo paper", note: "Silhouette temporary tattoo paper, with the adhesive sheet from its package.", image: "images/mat-tattoo-paper.jpg" },
       { name: "Water-soluble stabilizer", note: "Sulky water-soluble textile stabilizer, the middle layer.", image: "images/mat-stabilizer.jpg" },
-      { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides." },
+      { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides. We share the cut file, so you can download it and cut the same shapes.", link: { text: "Download the cut file", href: "" } },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Plastic scraper", note: "Presses the layers flat and pushes out bubbles." },

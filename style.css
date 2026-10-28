@@ -195,6 +195,8 @@
 .sk-checklist strong { font-weight: 400; color: var(--sk-heading); }
 .sk-checklist input:checked + span { color: var(--sk-meta); text-decoration: line-through; }
 .sk-checklist input:checked + span strong { color: var(--sk-meta); }
+#sk-root .sk-mat-link { color: var(--sk-link); text-decoration: underline; text-decoration-color: var(--sk-link-line); text-underline-offset: 3px; white-space: nowrap; }
+#sk-root .sk-mat-link.is-soon { color: var(--sk-muted); text-decoration-style: dashed; }
 #sk-root .sk-hot { position: absolute; padding: 0; border: 0; background: transparent; cursor: pointer; }
 #sk-root .sk-hot:focus-visible { outline: none; }
 /* The marker: a small white dot on each thing in the photo */
