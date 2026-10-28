@@ -93,6 +93,61 @@
     }
   }
 
+  // ---------- Step clip progress: a thin line with a dot per key action; the current action shows under it ----------
+  function renderScrub(el, v, marks) {
+    el.textContent = "";
+    el.hidden = !v;
+    if (!v) return;
+    marks = (marks || []).slice().sort((a, b) => a.t - b.t);
+    el.innerHTML = `<div class="sk-scrub-track"><div class="sk-scrub-fill"></div></div>` +
+      (marks.length ? `<p class="sk-scrub-label" aria-live="polite"></p>` : "");
+    const track = el.querySelector(".sk-scrub-track");
+    const fill = el.querySelector(".sk-scrub-fill");
+    const label = el.querySelector(".sk-scrub-label");
+    const dots = marks.map((m) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "sk-scrub-mark";
+      b.title = m.text;
+      b.setAttribute("aria-label", "Jump to: " + m.text);
+      b.addEventListener("click", (e) => {
+        e.stopPropagation();
+        v.currentTime = m.t;
+        v.play();
+      });
+      track.appendChild(b);
+      return b;
+    });
+    let placed = false;
+    let on = -2;
+    function tick() {
+      const d = v.duration || 0;
+      if (d && !placed) {
+        dots.forEach((b, i) => (b.style.left = (marks[i].t / d) * 100 + "%"));
+        placed = true;
+      }
+      fill.style.width = d ? (v.currentTime / d) * 100 + "%" : "0";
+      let k = -1;
+      marks.forEach((m, i) => { if (v.currentTime + 0.05 >= m.t) k = i; });
+      if (k !== on) {
+        on = k;
+        dots.forEach((b, i) => b.classList.toggle("is-on", i === k));
+        if (label) label.textContent = k >= 0 ? `${k + 1}/${marks.length}  ${marks[k].text}` : "";
+      }
+    }
+    track.addEventListener("click", (e) => {
+      const r = track.getBoundingClientRect();
+      if (v.duration) v.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * v.duration;
+    });
+    v.addEventListener("seeked", tick);
+    // Runs until the clip is replaced by the next step's media
+    (function loop() {
+      if (!v.isConnected) return;
+      tick();
+      requestAnimationFrame(loop);
+    })();
+  }
+
   // ---------- Part 1: hero, facts, how it works ----------
   function renderIntro() {
     $("sk-headline").textContent = K.headline;
@@ -392,6 +447,7 @@
       document.querySelectorAll("#sk-root .sk-step > .sk-pop").forEach((n) => n.remove());
       renderMedia($("sk-step-media"), s.media, "Clip " + s.shot, "Video goes here", s.title);
       if (s.media && s.media.image && s.media.hotspots) addHotspots($("sk-step-media"), s.media.hotspots, path);
+      renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), s.media && s.media.marks);
     }
     $("sk-step-title").textContent = s.title;
     $("sk-step-text").textContent = s.text;

@@ -25,6 +25,8 @@ Files
 Adding media
   Each step in content.js has a shot ID (e.g. "1-03") matching the shot list.
   Export the clip as images/1-03.mp4 and set   media: { video: "images/1-03.mp4" }
+  Key actions in a clip: add  marks: [{ t: 0, text: "Peel the backing off" }, ...]  to media.
+  t is seconds from the start. Each mark is a dot on the progress line under the clip; click it to jump there.
   Photos work the same way:                     media: { image: "images/1-03.jpg" }
   Workshop projects: add  image: "images/fig10c.jpg"  to an entry in applications.
   Overview video: paste the YouTube link into overviewVideo.youtube.

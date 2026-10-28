@@ -209,6 +209,17 @@
 #sk-root .sk-hot.is-on .sk-dot { background: var(--sk-heading); transform: scale(1.25); }
 #sk-root .sk-hot.is-on .sk-dot::after { background: #fff; }
 #sk-root .sk-hot.is-on .sk-dot::before { animation: none; opacity: 0; }
+/* Step clip progress: thin grey line, dark fill, a ring per key action (filled when it is playing) */
+.sk-scrub { display: grid; gap: 6px; margin-top: -6px; }
+.sk-scrub[hidden] { display: none; }
+.sk-scrub-track { position: relative; height: 16px; cursor: pointer; }
+.sk-scrub-track::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: var(--sk-line); }
+.sk-scrub-fill { position: absolute; left: 0; top: 7px; height: 2px; width: 0; background: var(--sk-heading); }
+#sk-root .sk-scrub-mark { position: absolute; top: 8px; width: 10px; height: 10px; margin: -5px 0 0 -5px; padding: 0; border: 2px solid var(--sk-heading); border-radius: 50%; background: var(--sk-bg); transition: transform .15s; }
+#sk-root .sk-scrub-mark::before { content: ""; position: absolute; inset: -9px; }
+#sk-root .sk-scrub-mark:hover, #sk-root .sk-scrub-mark:focus-visible { transform: scale(1.3); }
+#sk-root .sk-scrub-mark.is-on { background: var(--sk-heading); }
+.sk-scrub-label { font-size: 14px; color: var(--sk-text); min-height: 1.5em; white-space: pre; overflow: hidden; text-overflow: ellipsis; }
 .sk-pop { position: absolute; z-index: 2; width: 280px; display: grid; gap: 6px; padding: 12px; background: #fff; box-shadow: 0 2px 14px rgba(0, 0, 0, .14); }
 .sk-pop[hidden] { display: none; }
 .sk-pop img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
