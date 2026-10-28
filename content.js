@@ -105,11 +105,16 @@ window.SKINKIT = {
     make: [
       { name: "Temporary tattoo paper", note: "Silhouette temporary tattoo paper, with the adhesive sheet from its package.", image: "images/mat-tattoo-paper.jpg" },
       { name: "Water-soluble stabilizer", note: "Sulky water-soluble textile stabilizer, the middle layer.", image: "images/mat-stabilizer.jpg" },
-      { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides. We share the cut file, so you can download it and cut the same shapes.", link: { text: "Download the cut file", href: "" } },
+      { name: "Plastic scraper", note: "Presses the layers flat and pushes out bubbles." },
+      { name: "Scissors and water", note: "" },
+      { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides. We share the cut file, so you can download it and cut the same shapes.", link: { text: "Download the cut file", href: "" } }
+    ],
+    // Second half of the make path: turning skin cloth into wire modules (step with materials: "modules")
+    modules: [
+      { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
-      { name: "Plastic scraper", note: "Presses the layers flat and pushes out bubbles." },
-      { name: "Scissors and water", note: "" }
+      { name: "Scissors", note: "For cutting the tape into strips." }
     ],
     use: [
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
@@ -128,7 +133,7 @@ window.SKINKIT = {
   ],
 
   // One step = one short looping clip. media: { video: "images/1-01.mp4" } or { image: "images/1-01.jpg" }.
-  // materials: true shows that path's materials list in the step.
+  // materials: true shows that path's materials list in the step; a name ("modules") shows that list instead.
   steps: [
     { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
         image: "images/materials-make.jpg",
@@ -139,14 +144,21 @@ window.SKINKIT = {
           { item: "Plastic scraper", x: 47, y: 4, w: 15, h: 19 },
           { item: "Temporary tattoo paper", x: 15, y: 28, w: 29, h: 69 },
           { label: "Adhesive sheets", text: "Come in the tattoo paper package. One goes on the shiny side of each tattoo paper.", image: "images/mat-adhesive.jpg", x: 47, y: 29, w: 28, h: 66 },
-          { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 },
-          { item: "Mini magnets", x: 87.5, y: 5.3, w: 9.8, h: 13.8 },
-          { item: "Conductive fabric tape", x: 81, y: 75.8, w: 17.3, h: 12.9 }
+          { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
         ]
       } },
     { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: null },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: null },
     { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", media: null },
+    { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
+        image: "images/materials-modules.jpg",
+        hotspots: [
+          { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
+          { item: "Conductive fabric tape", x: 38.4, y: 15.6, w: 18.8, h: 13.3 },
+          { item: "Scissors", x: 58.4, y: 10, w: 25.6, h: 20.6 },
+          { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] }
+        ]
+      } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: null },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: null },
 
