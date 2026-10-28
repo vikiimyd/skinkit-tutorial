@@ -405,7 +405,7 @@
     mats.innerHTML = (spots.length ? `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} a dot on the photo to see what each thing is for.</p>` : "") +
       `<ul class="sk-checklist">${list.map((m) => {
         const key = path + ":" + m.name;
-        return `<li><label><input type="checkbox" data-key="${esc(key)}"${got.has(key) ? " checked" : ""}><span><strong>${esc(m.name)}</strong>${m.note ? ` ${esc(m.note)}` : ""}</span></label></li>`;
+        return `<li><label><input type="checkbox" data-key="${esc(key)}"${got.has(key) ? " checked" : ""}><span><strong>${esc(m.name)}</strong>${m.note ? ` ${esc(m.note)}` : ""}${m.link ? " " + matLink(m.link) : ""}</span></label></li>`;
       }).join("")}</ul>`;
 
     $("sk-step-done").checked = done.has(s.shot);
@@ -421,6 +421,11 @@
   function spotInfo(h, path) {
     const m = h.item ? (K.materials[path] || []).concat(K.materials.make, K.materials.use).find((x) => x.name === h.item) : null;
     return { name: h.label || (m && m.name) || "", note: h.text || (m && m.note) || "", image: h.image || (m && m.image) || "" };
+  }
+  function matLink(l) {
+    return l.href
+      ? `<a class="sk-mat-link" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.text)} ↓</a>`
+      : `<span class="sk-mat-link is-soon">${esc(l.text)} (link coming soon)</span>`;
   }
   function addHotspots(box, spots, path) {
     let active = null;
