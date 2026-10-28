@@ -154,7 +154,7 @@ window.SKINKIT = {
           { item: "Mini magnets", x: 8, y: 15, w: 26, h: 45, dot: [80, 55] },
           { item: "Conductive fabric tape", x: 40, y: 19, w: 17, h: 14 },
           { label: "Scissors", text: "For trimming tape and skin cloth.", x: 57, y: 15, w: 23, h: 21 },
-          { label: "Skin cloth", text: "Tattoo paper and stabilizer pressed together. The base of every wire module.", image: "images/mat-skin-cloth.jpg", x: 39, y: 38, w: 40, h: 46 },
+          { label: "Skin cloth", text: "Tattoo paper and stabilizer pressed together. The base of every wire module.", image: "images/mat-skin-cloth.jpg", x: 39, y: 38, w: 40, h: 46, dot: [50, 23] },
           { item: "Double-sided tape", x: 23, y: 62, w: 15, h: 20 },
           { item: "Circuit modules", x: 67, y: 67, w: 15, h: 15 }
         ]
