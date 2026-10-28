@@ -107,6 +107,7 @@ window.SKINKIT = {
       { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides." },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
+      { name: "Plastic scraper", note: "Presses the layers flat and pushes out bubbles." },
       { name: "Scissors and water", note: "" }
     ],
     use: [
@@ -136,7 +137,7 @@ window.SKINKIT = {
         // label/text/image override or describe things that are not on the list.
         hotspots: [
           { item: "Water-soluble stabilizer", x: 11, y: 6, w: 35, h: 20 },
-          { label: "Plastic scraper", text: "Presses the layers flat and pushes out bubbles.", x: 47, y: 4, w: 15, h: 19 },
+          { item: "Plastic scraper", x: 47, y: 4, w: 15, h: 19 },
           { item: "Temporary tattoo paper", x: 15, y: 28, w: 29, h: 69 },
           { label: "Adhesive sheets", text: "Come in the tattoo paper package. One goes on the shiny side of each tattoo paper.", image: "images/mat-adhesive.jpg", x: 47, y: 29, w: 28, h: 66 },
           { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }

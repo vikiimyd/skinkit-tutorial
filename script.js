@@ -38,6 +38,15 @@
     try { return new Set(JSON.parse(localStorage.getItem(DONE_KEY) || "[]")); } catch (e) { return new Set(); }
   }
   const done = loadDone();
+  // Materials ticked off in the "Gather your materials" checklist
+  const GOT_KEY = "skinkit-materials";
+  const got = (() => { try { return new Set(JSON.parse(localStorage.getItem(GOT_KEY) || "[]")); } catch (e) { return new Set(); } })();
+  $("sk-step-materials").addEventListener("change", (e) => {
+    const k = e.target.dataset && e.target.dataset.key;
+    if (!k) return;
+    if (e.target.checked) got.add(k); else got.delete(k);
+    try { localStorage.setItem(GOT_KEY, JSON.stringify(Array.from(got))); } catch (err) { /* private mode: keep it in memory */ }
+  });
   function saveDone() {
     try { localStorage.setItem(DONE_KEY, JSON.stringify(Array.from(done))); } catch (e) { /* private mode: keep it in memory */ }
   }
@@ -388,19 +397,16 @@
     $("sk-step-text").textContent = s.text;
     $("sk-step-tip").textContent = s.tip || "";
 
-    // Materials: what is in the photo is explained on hover; the rest is listed in one line
+    // Materials: a checklist visitors can tick off; ticks are saved in their own browser
     const mats = $("sk-step-materials");
     const list = s.materials ? K.materials[path] || [] : [];
     const spots = (s.media && s.media.hotspots) || [];
-    const shown = new Set(spots.map((h) => h.item));
-    const rest = list.filter((m) => !shown.has(m.name));
     mats.hidden = !list.length;
-    if (list.length && spots.length) {
-      mats.innerHTML = `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} a dot on the photo to see what each thing is and what it is for.</p>` +
-        (rest.length ? `<p class="sk-mat-rest"><strong>Also have ready:</strong> ${rest.map((m) => esc(m.name) + (m.note ? ` <span>(${esc(m.note)})</span>` : "")).join(" · ")}</p>` : "");
-    } else {
-      mats.innerHTML = `<ul>${list.map((m) => `<li>${esc(m.name)}${m.note ? ` <span>${esc(m.note)}</span>` : ""}</li>`).join("")}</ul>`;
-    }
+    mats.innerHTML = (spots.length ? `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} a dot on the photo to see what each thing is for.</p>` : "") +
+      `<ul class="sk-checklist">${list.map((m) => {
+        const key = path + ":" + m.name;
+        return `<li><label><input type="checkbox" data-key="${esc(key)}"${got.has(key) ? " checked" : ""}><span><strong>${esc(m.name)}</strong>${m.note ? ` ${esc(m.note)}` : ""}</span></label></li>`;
+      }).join("")}</ul>`;
 
     $("sk-step-done").checked = done.has(s.shot);
     $("sk-prev").disabled = i === 0;

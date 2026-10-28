@@ -188,8 +188,13 @@
 .sk-step-meta { font-size: 13.5px; color: var(--sk-meta); }
 .sk-step-title { padding-top: 6px; }
 .sk-step-text { font-size: 16px; max-width: 68ch; }
-.sk-materials ul { list-style: decimal; padding-left: 40px; margin: 0; display: grid; gap: 6px; }
-.sk-materials span { color: var(--sk-muted); }
+.sk-checklist { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--sk-line); }
+.sk-checklist li { border-bottom: 1px solid var(--sk-line); }
+.sk-checklist label { display: flex; gap: 12px; align-items: baseline; padding: 10px 0; cursor: pointer; color: var(--sk-text); }
+.sk-checklist input { flex: none; width: 16px; height: 16px; accent-color: var(--sk-heading); transform: translateY(2px); }
+.sk-checklist strong { font-weight: 400; color: var(--sk-heading); }
+.sk-checklist input:checked + span { color: var(--sk-meta); text-decoration: line-through; }
+.sk-checklist input:checked + span strong { color: var(--sk-meta); }
 #sk-root .sk-hot { position: absolute; padding: 0; border: 0; background: transparent; cursor: pointer; }
 #sk-root .sk-hot:focus-visible { outline: none; }
 /* The marker: a small white dot on each thing in the photo */
@@ -208,13 +213,10 @@
 .sk-pop strong { font-family: var(--sk-font-heading); font-weight: 400; text-transform: uppercase; letter-spacing: .06em; color: var(--sk-heading); padding-right: 24px; }
 .sk-pop span { font-size: 14.5px; color: var(--sk-h3); line-height: 1.5; }
 #sk-root .sk-pop-x { position: absolute; top: 4px; right: 4px; width: 30px; height: 30px; border: 0; background: rgba(255, 255, 255, .9); font-size: 20px; line-height: 1; color: var(--sk-heading); }
-.sk-mat-hint { font-size: 14px; color: var(--sk-text); }
+.sk-mat-hint { font-size: 14px; color: var(--sk-text); margin-bottom: 4px; }
 /* Narrow photo: the card sits under the photo instead of on top of it */
 .sk-pop--below { position: relative; width: auto; grid-template-columns: 110px 1fr; align-items: start; margin-top: -4px; }
 .sk-pop--below img { grid-row: span 2; }
-.sk-mat-rest { font-size: 14px; margin-top: 12px; }
-.sk-mat-rest strong { font-weight: 400; color: var(--sk-heading); }
-.sk-mat-rest span { color: var(--sk-text); }
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
 .sk-done { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; }
