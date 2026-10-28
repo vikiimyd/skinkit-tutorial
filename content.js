@@ -177,7 +177,7 @@ window.SKINKIT = {
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: { video: "images/1-05.mp4", marks: [
           { t: 0, text: "Lay a strip of conductive tape across the diamond" },
           { t: 4, text: "Add the next line" },
-          { t: 8, text: "Trim the ends" },
+          { t: 8, text: "Fold the ends over the edge" },
           { t: 12, text: "Three lines: power, ground, signal" }
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: { video: "images/1-07.mp4", marks: [
