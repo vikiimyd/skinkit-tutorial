@@ -181,10 +181,11 @@ window.SKINKIT = {
           { t: 12, text: "Three lines: power, ground, signal" }
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: { video: "images/1-07.mp4", marks: [
-          { t: 0, text: "Line up magnets with the module pins" },
-          { t: 3.5, text: "Pick up a magnet with tweezers" },
-          { t: 7, text: "Three magnets in a row" },
-          { t: 10, text: "One strip at each end of the diamond" }
+          { t: 0, text: "Put magnets in the module's pin holes" },
+          { t: 3.5, text: "Press clear tape over them" },
+          { t: 7, text: "Line the magnets up with tweezers" },
+          { t: 10.5, text: "Three magnets in a row" },
+          { t: 13.5, text: "One strip at each end of the diamond" }
         ] } },
 
     { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
