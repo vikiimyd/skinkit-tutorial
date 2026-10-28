@@ -188,10 +188,23 @@
 .sk-step-meta { font-size: 13.5px; color: var(--sk-meta); }
 .sk-step-title { padding-top: 6px; }
 .sk-step-text { font-size: 16px; max-width: 68ch; }
-.sk-materials { list-style: none; padding-left: 0; margin: 0; display: grid; gap: 10px; }
+.sk-materials ul { list-style: decimal; padding-left: 40px; margin: 0; display: grid; gap: 6px; }
 .sk-materials span { color: var(--sk-muted); }
-.sk-materials li { display: flex; gap: 14px; align-items: center; }
-.sk-materials img, .sk-mat-ph { width: 96px; aspect-ratio: 3 / 2; object-fit: cover; flex: none; background: var(--sk-placeholder); }
+#sk-root .sk-hot { position: absolute; padding: 0; border: 1px solid transparent; background: transparent; cursor: pointer; transition: border-color .15s, background-color .15s; }
+#sk-root .sk-hot:hover { border-color: rgba(34, 34, 34, .45); }
+#sk-root .sk-hot.is-on, #sk-root .sk-hot:focus-visible { border-color: var(--sk-heading); background: rgba(255, 255, 255, .18); outline: none; }
+.sk-pop { position: absolute; z-index: 2; width: 280px; display: grid; gap: 6px; padding: 12px; background: #fff; box-shadow: 0 2px 14px rgba(0, 0, 0, .14); }
+.sk-pop[hidden] { display: none; }
+.sk-pop img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.sk-pop strong { font-family: var(--sk-font-heading); font-weight: 400; text-transform: uppercase; letter-spacing: .06em; color: var(--sk-heading); padding-right: 24px; }
+.sk-pop span { font-size: 14px; color: var(--sk-muted); line-height: 1.5; }
+#sk-root .sk-pop-x { position: absolute; top: 4px; right: 4px; width: 30px; height: 30px; border: 0; background: rgba(255, 255, 255, .9); font-size: 20px; line-height: 1; color: var(--sk-heading); }
+.sk-mat-hint { font-size: 14px; color: var(--sk-muted); }
+/* Narrow photo: the card sits under the photo instead of on top of it */
+.sk-pop--below { position: relative; width: auto; grid-template-columns: 110px 1fr; align-items: start; margin-top: -4px; }
+.sk-pop--below img { grid-row: span 2; }
+.sk-mat-rest { font-size: 14px; margin-top: 12px; }
+.sk-mat-rest strong { font-weight: 400; color: var(--sk-heading); }
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
 .sk-done { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; }

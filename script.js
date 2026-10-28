@@ -379,15 +379,28 @@
     $("sk-toc-path").textContent = K.paths[path].name;
     renderToc();
     $("sk-step-meta").textContent = `Step ${i + 1} of ${steps.length} · ${ch.name}`;
-    if (changed) renderMedia($("sk-step-media"), s.media, "Clip " + s.shot, "Video goes here", s.title);
+    if (changed) {
+      document.querySelectorAll("#sk-root .sk-step > .sk-pop").forEach((n) => n.remove());
+      renderMedia($("sk-step-media"), s.media, "Clip " + s.shot, "Video goes here", s.title);
+      if (s.media && s.media.image && s.media.hotspots) addHotspots($("sk-step-media"), s.media.hotspots, path);
+    }
     $("sk-step-title").textContent = s.title;
     $("sk-step-text").textContent = s.text;
     $("sk-step-tip").textContent = s.tip || "";
 
+    // Materials: what is in the photo is explained on hover; the rest is listed in one line
     const mats = $("sk-step-materials");
     const list = s.materials ? K.materials[path] || [] : [];
+    const spots = (s.media && s.media.hotspots) || [];
+    const shown = new Set(spots.map((h) => h.item));
+    const rest = list.filter((m) => !shown.has(m.name));
     mats.hidden = !list.length;
-    mats.innerHTML = list.map((m) => `<li>${m.image ? `<img src="${esc(m.image)}" alt="" loading="lazy">` : `<i class="sk-mat-ph"></i>`}<div>${esc(m.name)}${m.note ? ` <span>${esc(m.note)}</span>` : ""}</div></li>`).join("");
+    if (list.length && spots.length) {
+      mats.innerHTML = `<p class="sk-mat-hint">${canHover ? "Click" : "Tap"} anything in the photo to see what it is and what it is for.</p>` +
+        (rest.length ? `<p class="sk-mat-rest"><strong>Also have ready:</strong> ${rest.map((m) => esc(m.name) + (m.note ? ` <span>(${esc(m.note)})</span>` : "")).join(" · ")}</p>` : "");
+    } else {
+      mats.innerHTML = `<ul>${list.map((m) => `<li>${esc(m.name)}${m.note ? ` <span>${esc(m.note)}</span>` : ""}</li>`).join("")}</ul>`;
+    }
 
     $("sk-step-done").checked = done.has(s.shot);
     $("sk-prev").disabled = i === 0;
@@ -395,6 +408,69 @@
     const nextBtn = $("sk-next");
     nextBtn.textContent = !last ? "Next" : path === "make" ? "Next: use the kit" : "Finish";
     $("sk-progress-bar").style.width = ((i + 1) / steps.length) * 100 + "%";
+  }
+
+  // ---------- Clickable areas on a step photo: click one to open a card, close it with × ----------
+  const canHover = !!(window.matchMedia && window.matchMedia("(hover: hover)").matches);
+  function spotInfo(h, path) {
+    const m = h.item ? (K.materials[path] || []).concat(K.materials.make, K.materials.use).find((x) => x.name === h.item) : null;
+    return { name: h.label || (m && m.name) || "", note: h.text || (m && m.note) || "", image: h.image || (m && m.image) || "" };
+  }
+  function addHotspots(box, spots, path) {
+    let active = null;
+    const card = document.createElement("div");
+    card.className = "sk-pop";
+    card.hidden = true;
+    card.setAttribute("role", "dialog");
+    const close = () => {
+      card.hidden = true;
+      if (active) { active.classList.remove("is-on"); active.setAttribute("aria-expanded", "false"); }
+      active = null;
+    };
+    const open = (b, info, h) => {
+      if (active) { active.classList.remove("is-on"); active.setAttribute("aria-expanded", "false"); }
+      active = b;
+      b.classList.add("is-on");
+      b.setAttribute("aria-expanded", "true");
+      card.setAttribute("aria-label", info.name);
+      card.innerHTML = `<button type="button" class="sk-pop-x" aria-label="Close">×</button>` +
+        (info.image ? `<img src="${esc(info.image)}" alt="">` : "") +
+        `<strong>${esc(info.name)}</strong>${info.note ? `<span>${esc(info.note)}</span>` : ""}`;
+      card.querySelector(".sk-pop-x").addEventListener("click", (e) => { e.stopPropagation(); close(); b.focus(); });
+      card.hidden = false;
+      // On a wide photo the card floats beside the item; on a narrow one it sits under the photo
+      const W = box.clientWidth, H = box.clientHeight;
+      const wide = W >= 600;
+      card.classList.toggle("sk-pop--below", !wide);
+      if (wide && card.parentNode !== box) box.appendChild(card);
+      if (!wide && card.previousElementSibling !== box) box.after(card);
+      if (wide) {
+        const cw = card.offsetWidth, ch = card.offsetHeight, gap = 12;
+        const l = (h.x / 100) * W, r = ((h.x + h.w) / 100) * W, t = (h.y / 100) * H;
+        const x = r + gap + cw <= W ? r + gap : Math.max(gap, l - gap - cw);
+        card.style.left = x + "px";
+        card.style.top = Math.max(gap, Math.min(t, H - ch - gap)) + "px";
+      } else {
+        card.style.left = card.style.top = "";
+      }
+    };
+    spots.forEach((h) => {
+      const info = spotInfo(h, path);
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "sk-hot";
+      b.style.cssText = `left:${h.x}%;top:${h.y}%;width:${h.w}%;height:${h.h}%`;
+      b.setAttribute("aria-label", info.name);
+      b.setAttribute("aria-expanded", "false");
+      b.addEventListener("click", () => open(b, info, h));
+      box.appendChild(b);
+    });
+    box.appendChild(card);
+    const onKey = (e) => { if (e.key === "Escape" && !card.hidden) { e.stopPropagation(); const b = active; close(); if (b) b.focus(); } };
+    card.addEventListener("keydown", onKey);
+    box.addEventListener("keydown", onKey);
+    // preload the close-ups so the card opens instantly
+    spots.forEach((h) => { const src = spotInfo(h, path).image; if (src) new Image().src = src; });
   }
 
   function renderToc() {
