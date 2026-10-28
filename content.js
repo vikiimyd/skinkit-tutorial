@@ -151,22 +151,19 @@ window.SKINKIT = {
     { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: { video: "images/1-02.mp4", marks: [
           { t: 0, text: "Peel the backing off the adhesive sheet" },
           { t: 3.5, text: "Lay it on the shiny side of the tattoo paper" },
-          { t: 6.5, text: "Peel off the top liner" },
-          { t: 9.5, text: "Scrape out the bubbles" },
-          { t: 13, text: "Repeat on the second sheet" }
+          { t: 6.5, text: "Scrape out the bubbles" },
+          { t: 10, text: "Repeat on the second sheet" }
         ] } },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: { video: "images/1-03.mp4", marks: [
           { t: 0, text: "Lay down the stabilizer and smooth it flat" },
-          { t: 8, text: "Add a tattoo paper on top and line up the edges" },
-          { t: 15, text: "Press out the bubbles" },
-          { t: 18.5, text: "Do the other side" },
-          { t: 22, text: "Done: three layers pressed together" }
+          { t: 4, text: "Add a tattoo paper on top" },
+          { t: 7.5, text: "Press out the bubbles" },
+          { t: 11, text: "Done: three layers pressed together" }
         ] } },
     { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", media: { video: "images/1-04.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
-          { t: 6.5, text: "Peel the backing off slowly" },
-          { t: 14.5, text: "Trim the edges" },
-          { t: 18, text: "Let it dry" }
+          { t: 3.5, text: "Peel the backing off slowly" },
+          { t: 7.5, text: "Let it dry" }
         ] } },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
@@ -178,18 +175,16 @@ window.SKINKIT = {
         ]
       } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: { video: "images/1-05.mp4", marks: [
-          { t: 0, text: "Cut a strip of conductive tape" },
-          { t: 4, text: "Lay it across the diamond" },
-          { t: 11, text: "Add the next line" },
-          { t: 15, text: "Trim the ends" },
-          { t: 22.5, text: "Three lines: power, ground, signal" }
+          { t: 0, text: "Lay a strip of conductive tape across the diamond" },
+          { t: 4, text: "Add the next line" },
+          { t: 8, text: "Trim the ends" },
+          { t: 12, text: "Three lines: power, ground, signal" }
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: { video: "images/1-07.mp4", marks: [
           { t: 0, text: "Line up magnets with the module pins" },
-          { t: 7, text: "Pick up a magnet with tweezers" },
-          { t: 10.5, text: "Place it on clear tape" },
-          { t: 14, text: "Three magnets in a row" },
-          { t: 17, text: "Stick one strip at each end of the diamond" }
+          { t: 3.5, text: "Pick up a magnet with tweezers" },
+          { t: 7, text: "Three magnets in a row" },
+          { t: 10, text: "One strip at each end of the diamond" }
         ] } },
 
     { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
