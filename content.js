@@ -99,19 +99,20 @@ window.SKINKIT = {
     availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses. TODO: confirm wording with the lab."
   },
 
+  // image (optional): a small photo shown next to the item.
   materials: {
     make: [
-      { name: "Temporary tattoo paper", note: "Silhouette temporary tattoo paper, with the adhesive sheet from its package." },
-      { name: "Water-soluble stabilizer", note: "Sulky water-soluble textile stabilizer, the middle layer." },
+      { name: "Temporary tattoo paper", note: "Silhouette temporary tattoo paper, with the adhesive sheet from its package.", image: "images/mat-tattoo-paper.jpg" },
+      { name: "Water-soluble stabilizer", note: "Sulky water-soluble textile stabilizer, the middle layer.", image: "images/mat-stabilizer.jpg" },
       { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides." },
-      { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module." },
-      { name: "Mini magnets", note: "2 mm wide, 1 mm thick." },
+      { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
+      { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors and water", note: "" }
     ],
     use: [
-      { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each." },
+      { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
       { name: "Wire modules", note: "Diamond pieces of skin cloth with three metal lines and magnets." },
-      { name: "Double-sided tape", note: "Regular tape to fix your layout, and medical-grade tape (e.g. Vapon clear tape) for your skin." },
+      { name: "Double-sided tape", note: "Regular tape to fix your layout, and medical-grade tape (e.g. Vapon clear tape) for your skin.", image: "images/mat-tape.jpg" },
       { name: "Scissors and tweezers", note: "Tweezers help separate the tiny magnets." },
       { name: "Mirror", note: "To check the placement on your body." },
       { name: "Decorations (optional)", note: "Washi tape, stickers, gems, markers." }
@@ -129,14 +130,14 @@ window.SKINKIT = {
   // One step = one short looping clip. media: { video: "images/1-01.mp4" } or { image: "images/1-01.jpg" }.
   // materials: true shows that path's materials list in the step.
   steps: [
-    { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: null },
+    { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: { image: "images/materials-make.jpg" } },
     { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: null },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: null },
     { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", media: null },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: null },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: null },
 
-    { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: null },
+    { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: { image: "images/materials-use.jpg" } },
     { chapter: "u1", shot: "1-06", title: "Meet the modules", text: "Every circuit module has a color. Yellow senses, blue changes the signal, white acts, and red powers the circuit. Arrows printed on each module show which way the signal goes.", tip: "Part 1 has a guide to all 16 modules.", media: null },
     { chapter: "u1", shot: "2-01", title: "Follow the arrows", text: "There is one rule: the signal always flows in the direction of the arrows, from power to the end. Line up the arrows on the circuit modules with the arrows on the wire modules. The magnets only snap together the right way round.", tip: "", media: null },
     { chapter: "u2", shot: "2-02", title: "Start with power and an LED", text: "Connect Main power to an LED and switch it on. The LED lights up. Try this on the table first: it is the easiest way to test.", tip: "", media: null },

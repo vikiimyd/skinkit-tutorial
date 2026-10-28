@@ -387,7 +387,7 @@
     const mats = $("sk-step-materials");
     const list = s.materials ? K.materials[path] || [] : [];
     mats.hidden = !list.length;
-    mats.innerHTML = list.map((m) => `<li>${esc(m.name)}${m.note ? ` <span>${esc(m.note)}</span>` : ""}</li>`).join("");
+    mats.innerHTML = list.map((m) => `<li>${m.image ? `<img src="${esc(m.image)}" alt="" loading="lazy">` : `<i class="sk-mat-ph"></i>`}<div>${esc(m.name)}${m.note ? ` <span>${esc(m.note)}</span>` : ""}</div></li>`).join("");
 
     $("sk-step-done").checked = done.has(s.shot);
     $("sk-prev").disabled = i === 0;
