@@ -147,9 +147,9 @@ window.SKINKIT = {
           { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
         ]
       } },
-    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: null },
-    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: null },
-    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", media: null },
+    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: { video: "images/1-02.mp4" } },
+    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: { video: "images/1-03.mp4" } },
+    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", media: { video: "images/1-04.mp4" } },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
         hotspots: [
@@ -159,8 +159,8 @@ window.SKINKIT = {
           { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] }
         ]
       } },
-    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: null },
-    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: null },
+    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: { video: "images/1-05.mp4" } },
+    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: { video: "images/1-07.mp4" } },
 
     { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
         image: "images/materials-use.jpg",
