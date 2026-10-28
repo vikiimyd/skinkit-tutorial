@@ -132,7 +132,7 @@ window.SKINKIT = {
   steps: [
     { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
         image: "images/materials-make.jpg",
-        // Hover areas on the photo, in % of its width/height. item = a name from materials (uses its note and image);
+        // Clickable things on the photo, in % of its width/height (a dot marks each one; dot: [x, y] in % of the area moves it). item = a name from materials (uses its note and image);
         // label/text/image override or describe things that are not on the list.
         hotspots: [
           { item: "Water-soluble stabilizer", x: 11, y: 6, w: 35, h: 20 },
@@ -151,7 +151,7 @@ window.SKINKIT = {
     { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
         image: "images/materials-use.jpg",
         hotspots: [
-          { item: "Mini magnets", x: 8, y: 15, w: 26, h: 45 },
+          { item: "Mini magnets", x: 8, y: 15, w: 26, h: 45, dot: [80, 55] },
           { item: "Conductive fabric tape", x: 40, y: 19, w: 17, h: 14 },
           { label: "Scissors", text: "For trimming tape and skin cloth.", x: 57, y: 15, w: 23, h: 21 },
           { label: "Skin cloth", text: "Tattoo paper and stabilizer pressed together. The base of every wire module.", image: "images/mat-skin-cloth.jpg", x: 39, y: 38, w: 40, h: 46 },
