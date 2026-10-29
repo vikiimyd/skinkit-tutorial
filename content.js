@@ -150,9 +150,9 @@ window.SKINKIT = {
       } },
     { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: { video: "images/1-02.mp4", marks: [
           { t: 0, text: "Peel the backing off the adhesive sheet" },
-          { t: 3.5, text: "Lay it on the shiny side of the tattoo paper" },
-          { t: 6.5, text: "Scrape out the bubbles" },
-          { t: 10, text: "Repeat on the second sheet" }
+          { t: 4, text: "Lay it on the shiny side of the tattoo paper" },
+          { t: 7, text: "Scrape out the bubbles" },
+          { t: 10.5, text: "Repeat on the second sheet" }
         ] } },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: { video: "images/1-03.mp4", marks: [
           { t: 0, text: "Lay down the stabilizer and smooth it flat" },
