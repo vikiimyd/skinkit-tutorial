@@ -82,6 +82,16 @@
         v.addEventListener("click", () => (v.paused ? v.play() : v.pause()));
       }
       box.appendChild(v);
+      // Paused sign: shows while the clip is stopped, so it does not look frozen
+      if (!reduceMotion) {
+        const sign = document.createElement("div");
+        sign.className = "sk-paused";
+        sign.setAttribute("aria-hidden", "true");
+        sign.hidden = true;
+        box.appendChild(sign);
+        v.addEventListener("pause", () => (sign.hidden = false));
+        v.addEventListener("play", () => (sign.hidden = true));
+      }
     } else if (media && media.image) {
       const img = document.createElement("img");
       img.src = media.image;

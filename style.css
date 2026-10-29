@@ -209,6 +209,12 @@
 #sk-root .sk-hot.is-on .sk-dot { background: var(--sk-heading); transform: scale(1.25); }
 #sk-root .sk-hot.is-on .sk-dot::after { background: #fff; }
 #sk-root .sk-hot.is-on .sk-dot::before { animation: none; opacity: 0; }
+/* Paused sign on a step clip: two bars in a dark circle; click the clip to play again */
+.sk-paused { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; background: rgba(20, 20, 20, .55); pointer-events: none; }
+.sk-paused[hidden] { display: none; }
+.sk-paused::before, .sk-paused::after { content: ""; position: absolute; top: 24px; width: 7px; height: 24px; background: #fff; }
+.sk-paused::before { left: 26px; }
+.sk-paused::after { right: 26px; }
 /* Step clip progress: thin grey line, dark fill, a ring per key action (filled when it is playing) */
 .sk-scrub { display: grid; gap: 6px; margin-top: -6px; }
 .sk-scrub[hidden] { display: none; }
