@@ -482,13 +482,13 @@
     const needs = (s.need || []).map((n) => {
       if (typeof n !== "string") return n;
       const m = allMats.find((x) => x.name === n);
-      return { name: n, image: m && m.image };
+      return { name: n, image: m && m.image, link: m && m.link };
     });
     need.hidden = !needs.length;
     need.innerHTML = needs.length
       ? `<h3 class="sk-need-title">You need</h3><ul class="sk-need-list">${needs.map((m) =>
           `<li${m.image ? "" : ' class="no-img"'}>${m.image ? `<img src="${esc(m.image)}" alt="" loading="lazy">` : ""}` +
-          `<span>${esc(m.name)}${m.note ? `<small>${esc(m.note)}</small>` : ""}</span></li>`).join("")}</ul>`
+          `<span>${esc(m.name)}${m.note ? `<small>${esc(m.note)}</small>` : ""}${m.link ? `<small>${matLink(m.link)}</small>` : ""}</span></li>`).join("")}</ul>`
       : "";
 
     $("sk-step-done").checked = done.has(s.shot);

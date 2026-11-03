@@ -107,6 +107,7 @@ window.SKINKIT = {
       { name: "Water-soluble stabilizer", note: "Sulky water-soluble textile stabilizer, the middle layer.", image: "images/mat-stabilizer.jpg" },
       { name: "Plastic scraper", note: "Presses the layers flat and pushes out bubbles." },
       { name: "Scissors and water", note: "" },
+      { name: "Foam brush", note: "Spreads water over the paper backing so it lifts off." },
       { name: "Electronic cutting machine", note: "Cuts the skin cloth into diamonds with 4 cm sides. We share the cut file, so you can download it and cut the same shapes.", link: { text: "Download the cut file", href: "" } }
     ],
     // Second half of the make path: turning skin cloth into wire modules (step with materials: "modules")
@@ -165,11 +166,14 @@ window.SKINKIT = {
           { t: 10.9, text: "Add the second tattoo paper on the other side" },
           { t: 17.4, text: "Press out the bubbles again" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Water", "Electronic cutting machine"], media: { video: "images/1-04.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
-          { t: 3.5, text: "Peel the backing off slowly" },
-          { t: 11, text: "Let it dry" }
+          { t: 7.3, text: "Flip it over" },
+          { t: 9.4, text: "Wet the other side" },
+          { t: 13.8, text: "Peel the backing papers off slowly" },
+          { t: 23, text: "Let it dry for a few days" }
         ] } },
+    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load the dry skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
         hotspots: [
