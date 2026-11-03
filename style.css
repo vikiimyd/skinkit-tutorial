@@ -238,6 +238,13 @@
 .sk-pop--below img { grid-row: span 2; }
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
+/* Options to pick from in a step: name left, one line right; stacked on phones */
+.sk-choices { margin: 0; border-top: 1px solid var(--sk-line); max-width: 68ch; }
+.sk-choices[hidden] { display: none; }
+.sk-choices > div { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--sk-line); }
+.sk-choices dt { color: var(--sk-heading); font-weight: 600; }
+.sk-choices dd { margin: 0; color: var(--sk-text); }
+@media (max-width: 760px) { .sk-choices > div { grid-template-columns: 1fr; gap: 2px; } }
 /* "You need": the materials one step uses */
 .sk-need { display: grid; gap: 8px; }
 .sk-need[hidden] { display: none; }
