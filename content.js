@@ -16,7 +16,7 @@ window.SKINKIT = {
     { value: "2 × 2 cm", label: "per module, paper-thin" },
     { value: "< 23 min", label: "average first build in the lab's study" }
   ],
-  overviewVideo: { youtube: "", shot: "0-00" }, // the overview video's YouTube link, once uploaded
+  overviewVideo: { youtube: "https://youtu.be/Er8yJwxMnp4", shot: "0-00" }, // the lab's SkinKit video, as on the SkinKit page of the lab site
 
   how: [
     { title: "Pick your modules", text: "Yellow modules sense, blue ones change the signal, white ones do something you can see or feel. Red gives power." },
@@ -224,20 +224,20 @@ window.SKINKIT = {
           { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
         ]
       } },
-    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package. You end up with two identical sheets, each with adhesive on its shiny side.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02-v4.mp4", marks: [
+    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package. You end up with two identical sheets, each with adhesive on its shiny side.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02-v5.mp4", marks: [
           { t: 0, text: "Peel the backing off the adhesive sheet" },
           { t: 4.5, text: "Lay it on the shiny side of the tattoo paper" },
           { t: 10.5, text: "Scrape out the bubbles" },
           { t: 13.9, text: "Repeat on the second sheet" }
         ] } },
-    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03-v4.mp4", marks: [
+    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03-v5.mp4", marks: [
           { t: 0, text: "Lay the first tattoo paper on the stabilizer, adhesive side down" },
           { t: 5.9, text: "Press out the bubbles" },
           { t: 8.65, text: "Flip it over" },
           { t: 10.9, text: "Add the second tattoo paper on the other side" },
           { t: 17.4, text: "Press out the bubbles again" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v4.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v5.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
           { t: 5.5, text: "Flip it over" },
           { t: 7.6, text: "Wet the other side" },
@@ -250,13 +250,13 @@ window.SKINKIT = {
         { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05m", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
         { id: "flap-out", name: "Flap-out", image: "images/wire-flap-out.jpg", go: "1-05m", text: "Like Flap-in, but the flap is on the side the arrow points to. Its magnets are flipped to match the signal direction, from input to output." },
         { id: "double-flaps", name: "Double flaps", tag: "Shown in the videos", image: "images/wire-double-flaps.jpg", go: "1-05m", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
-        { id: "cross", name: "Cross shape", image: "images/wire-cross.jpg", go: "1-05m", text: "A four-way piece. Turns the circuit or splits it into two directions." },
+        { id: "cross", name: "Cross shape", image: "images/wire-cross-v2.jpg", go: "1-05m", text: "A four-way piece. Turns the circuit or splits it into two directions." },
         { id: "blank", name: "Blank", image: "images/wire-blank.jpg", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear. Nothing to add: use a diamond from Step 5 as it is." }
       ], media: false },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
       "double-flaps": "The videos in the next steps show how to make this one."
     }, tip: "", media: {
-        image: "images/materials-modules-5.jpg",
+        image: "images/materials-modules-6.jpg",
         hotspots: [
           { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
           { item: "Conductive fabric tape", x: 38.4, y: 15.6, w: 18.8, h: 13.3 },
