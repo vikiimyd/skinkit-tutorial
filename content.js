@@ -159,10 +159,11 @@ window.SKINKIT = {
           { t: 13.9, text: "Repeat on the second sheet" }
         ] } },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03.mp4", marks: [
-          { t: 0, text: "Lay down the stabilizer and smooth it flat" },
-          { t: 4, text: "Add a tattoo paper on top" },
-          { t: 7.5, text: "Press out the bubbles" },
-          { t: 11, text: "Done: three layers pressed together" }
+          { t: 0, text: "Lay the first tattoo paper on the stabilizer, adhesive side down" },
+          { t: 5.9, text: "Press out the bubbles" },
+          { t: 8.65, text: "Flip it over" },
+          { t: 10.9, text: "Add the second tattoo paper on the other side" },
+          { t: 17.4, text: "Press out the bubbles again" }
         ] } },
     { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Water", "Electronic cutting machine"], media: { video: "images/1-04.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
