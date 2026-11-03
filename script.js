@@ -404,7 +404,7 @@
       `<button type="button" class="sk-chip" data-f="${f.id}" aria-pressed="${f.id === moduleFilter}">${f.color ? `<span class="sk-dot" style="background:${f.color}"></span>` : ""}${esc(f.name)}</button>`).join("");
     const list = K.modules.filter((m) => moduleFilter === "all" || m.family === moduleFilter);
     $("sk-modules").innerHTML = list.map((m) =>
-      `<div class="sk-module">${tile(colorOfModule(m.name))}<div><h3>${esc(m.name)}</h3><p>${esc(m.does)}</p></div></div>`).join("");
+      `<div class="sk-module">${m.image ? `<img class="sk-module-img" src="${esc(m.image)}" alt="" loading="lazy">` : tile(colorOfModule(m.name))}<div><h3>${esc(m.name)}</h3><p>${esc(m.does)}</p></div></div>`).join("");
   }
   $("sk-filters").addEventListener("click", (e) => {
     const b = e.target.closest(".sk-chip");

@@ -73,24 +73,25 @@ window.SKINKIT = {
   ],
 
   // The 16 modules from the paper, plus the DIY board shown in Fig. 3.
+  // image = photo of the module (lab press image "2_FPCB_modules").
   modules: [
-    { name: "Proximity", family: "sensor", does: "Notices when something comes close." },
-    { name: "Light", family: "sensor", does: "Reacts to how bright it is around you." },
-    { name: "Capacitive touch", family: "sensor", does: "Notices when you touch its pad." },
-    { name: "Temperature", family: "sensor", does: "Feels how warm your skin is." },
-    { name: "Pressure", family: "sensor", does: "Senses air pressure, for example a deep breath." },
-    { name: "Blink", family: "modifier", does: "Turns a steady signal into on-off blinking." },
-    { name: "Fade", family: "modifier", does: "Makes the signal rise and fall smoothly." },
-    { name: "Inverter", family: "modifier", does: "Flips the signal: on becomes off, off becomes on." },
-    { name: "Volume knob", family: "modifier", does: "Turn it to make the output stronger or weaker." },
-    { name: "LED", family: "actuator", does: "Lights up." },
-    { name: "Vibration", family: "actuator", does: "Buzzes gently against your skin." },
-    { name: "Buzzer", family: "actuator", does: "Makes a sound." },
-    { name: "Shape-memory alloy", family: "actuator", does: "A small coil that tightens when it warms up. Needs external power." },
-    { name: "Thermochromic", family: "actuator", does: "Changes color when it warms up. Needs external power." },
-    { name: "Main power", family: "power", does: "Holds the battery. Every circuit starts here." },
-    { name: "External power", family: "power", does: "Extra power for the modules that heat up." },
-    { name: "DIY protoboard", family: "power", does: "Lets you add your own components. TODO: confirm it is in the kit." }
+    { name: "Proximity", family: "sensor", does: "Notices when something comes close.", image: "images/fpcb-proximity.jpg" },
+    { name: "Light", family: "sensor", does: "Reacts to how bright it is around you.", image: "images/fpcb-light.jpg" },
+    { name: "Capacitive touch", family: "sensor", does: "Notices when you touch its pad.", image: "images/fpcb-capacitive-touch.jpg" },
+    { name: "Temperature", family: "sensor", does: "Feels how warm your skin is.", image: "images/fpcb-temperature.jpg" },
+    { name: "Pressure", family: "sensor", does: "Senses air pressure, for example a deep breath.", image: "images/fpcb-pressure.jpg" },
+    { name: "Blink", family: "modifier", does: "Turns a steady signal into on-off blinking.", image: "images/fpcb-blink.jpg" },
+    { name: "Fade", family: "modifier", does: "Makes the signal rise and fall smoothly.", image: "images/fpcb-fade.jpg" },
+    { name: "Inverter", family: "modifier", does: "Flips the signal: on becomes off, off becomes on.", image: "images/fpcb-inverter.jpg" },
+    { name: "Volume knob", family: "modifier", does: "Turn it to make the output stronger or weaker.", image: "images/fpcb-volume.jpg" },
+    { name: "LED", family: "actuator", does: "Lights up.", image: "images/fpcb-led.jpg" },
+    { name: "Vibration", family: "actuator", does: "Buzzes gently against your skin.", image: "images/fpcb-vibration.jpg" },
+    { name: "Buzzer", family: "actuator", does: "Makes a sound.", image: "images/fpcb-buzzer.jpg" },
+    { name: "Shape-memory alloy", family: "actuator", does: "A small coil that tightens when it warms up. Needs external power.", image: "images/fpcb-sma.jpg" },
+    { name: "Thermochromic", family: "actuator", does: "Changes color when it warms up. Needs external power.", image: "images/fpcb-thermochromic.jpg" },
+    { name: "Main power", family: "power", does: "Holds the battery. Every circuit starts here.", image: "images/fpcb-main-power.jpg" },
+    { name: "External power", family: "power", does: "Extra power for the modules that heat up.", image: "images/fpcb-external-power.jpg" },
+    { name: "DIY protoboard", family: "power", does: "Lets you add your own components. TODO: confirm it is in the kit.", image: "images/fpcb-diy-protoboard.jpg" }
   ],
 
   // ---------- Part 2: Make & use ----------

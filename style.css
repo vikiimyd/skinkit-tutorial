@@ -171,6 +171,7 @@
 .sk-dot { width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.25); flex: none; }
 .sk-modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0 36px; }
 .sk-module { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--sk-line); }
+.sk-module-img { width: 88px; height: 88px; flex: none; object-fit: contain; display: block; }
 .sk-module h3 { font-size: 14px !important; color: var(--sk-heading) !important; }
 .sk-module p { font-size: 14px; line-height: 1.6; }
 .sk-next { justify-items: start; }
