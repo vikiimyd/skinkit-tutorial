@@ -462,10 +462,14 @@
     const steps = stepsOf(path);
     if (!steps.length) return;
     const i = Math.max(0, Math.min(steps.length - 1, n - 1));
-    const changed = cur.path !== path || cur.i !== i;
+    const s = steps[i];
+    // Wire module types other than the one filmed get a blank video box on the steps that differ by type
+    const otherType = !!(s.forType && K.wireBase && moduleType !== K.wireBase);
+    const typeKey = s.forType ? moduleType : "";
+    const changed = cur.path !== path || cur.i !== i || cur.type !== typeKey;
     cur.path = path;
     cur.i = i;
-    const s = steps[i];
+    cur.type = typeKey;
     const ch = chapterById[s.chapter];
 
     $("sk-toc-path").textContent = K.paths[path].name;
@@ -474,9 +478,11 @@
     if (changed) {
       document.querySelectorAll("#sk-root .sk-step > .sk-pop").forEach((n) => n.remove());
       $("sk-step-media").hidden = s.media === false;
-      renderMedia($("sk-step-media"), s.media, "Clip " + s.shot, "Video goes here", s.title);
-      if (s.media && s.media.image && s.media.hotspots) addHotspots($("sk-step-media"), s.media.hotspots, path);
-      renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), s.media && s.media.marks);
+      const media = otherType && s.media && s.media.video ? null : s.media;
+      const typeName = otherType ? (moduleTypes.find((t) => t.id === moduleType) || {}).name : "";
+      renderMedia($("sk-step-media"), media, otherType ? typeName : "Clip " + s.shot, otherType ? "Video coming soon" : "Video goes here", s.title);
+      if (media && media.image && media.hotspots) addHotspots($("sk-step-media"), media.hotspots, path);
+      renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), media && media.marks);
     }
     $("sk-step-title").textContent = s.title;
     $("sk-step-text").textContent = s.text;
@@ -514,9 +520,7 @@
     typeBox.innerHTML = notes
       ? `<div class="sk-type-chips" role="group" aria-label="Wire module type">${moduleTypes.map((t) =>
           `<button type="button" class="sk-chip" data-type="${esc(t.id)}" aria-pressed="${t.id === moduleType}">${esc(t.name)}</button>`).join("")}</div>` +
-        (picked && notes[moduleType] ? `<p class="sk-type-note"><strong>${esc(picked.name)}:</strong> ${esc(notes[moduleType])}` +
-          (s.media && s.media.video && K.wireBase && moduleType !== K.wireBase
-            ? ` <em>The video shows a ${esc((moduleTypes.find((t) => t.id === K.wireBase) || {}).name || "")} module.</em>` : "") + `</p>` : "")
+        (picked && notes[moduleType] ? `<p class="sk-type-note"><strong>${esc(picked.name)}:</strong> ${esc(notes[moduleType])}</p>` : "")
       : "";
 
     // What this step uses, shown under its text. A name from the materials lists reuses that item's photo;
