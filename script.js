@@ -368,6 +368,15 @@
       : `The ${act.noun || act.name} ${verb} ${when}.`;
   }
 
+  // ---------- Part 1: example photos ----------
+  function renderGallery() {
+    const box = $("sk-gallery");
+    if (!box) return;
+    box.innerHTML = (K.examples || []).map((e) =>
+      `<figure><img src="${esc(e.image)}" alt="SkinKit worn on the ${esc(e.label.toLowerCase())}" loading="lazy"${e.pos ? ` style="object-position:${esc(e.pos)}"` : ""}>` +
+      `<figcaption>${esc(e.label)}</figcaption></figure>`).join("");
+  }
+
   // ---------- Part 1: applications ----------
   function renderApps() {
     const box = $("sk-apps");
@@ -692,6 +701,7 @@
   renderIntro();
   renderStrip();
   renderSim();
+  renderGallery();
   renderApps();
   renderModules();
   renderReference();
