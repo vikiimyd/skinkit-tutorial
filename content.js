@@ -63,16 +63,16 @@ window.SKINKIT = {
   },
 
   // The "Try it on the body" playground. Wording and spots only; the behavior is in script.js.
-  // Spots are in the body drawing's coordinates (300 x 600). layout "line" runs along angle (degrees), "grid" is 2 x 2.
+  // Each spot has a close-up drawing in script.js (SCENES), with the same id.
   sim: {
     lead: "SkinKit is made for trying ideas right on the body. Pick a spot, stick on a circuit and test it. Not right? Peel it off and try another spot or another module. This is a simulation of how the real modules behave.",
     spots: [
-      { id: "cheek", name: "Cheek", x: 161, y: 60, layout: "grid", size: 9 },
-      { id: "neck", name: "Neck", x: 150, y: 114, layout: "line", angle: 0 },
-      { id: "chest", name: "Chest", x: 150, y: 178, layout: "line", angle: 0 },
-      { id: "forearm", name: "Forearm", x: 81, y: 277, layout: "line", angle: 97 },
-      { id: "hand", name: "Back of the hand", x: 73, y: 340, layout: "grid", size: 8 },
-      { id: "calf", name: "Calf", x: 173, y: 488, layout: "line", angle: 90 }
+      { id: "forearm", name: "Forearm" },
+      { id: "hand", name: "Back of the hand" },
+      { id: "neck", name: "Back of the neck" },
+      { id: "chest", name: "Chest" },
+      { id: "cheek", name: "Cheek" },
+      { id: "calf", name: "Calf" }
     ],
     presets: [
       { name: "Night-walk light", spot: "calf", sensor: "none", modifier: "blink", actuator: "led" },

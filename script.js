@@ -290,7 +290,7 @@
   }
 
   // ---------- Part 1: "Try it on the body" ----------
-  // A circuit stuck on a drawn body. Pick a spot (peel and re-stick), swap modules, then test it.
+  // A circuit of real module photos stuck on a close-up of one body part. Pick a spot (peel and re-stick), swap modules, then test it.
   const sim = { spot: "forearm", sensor: "proximity", modifier: "blink", actuator: "led", level: 0.2, touching: false };
   const SLOTS = [
     { key: null, family: "power", title: "Power" },
@@ -299,16 +299,38 @@
     { key: "actuator", family: "actuator", title: "Actuator", list: K.sim.actuators }
   ];
   const pick = (list, id) => list.find((o) => o.id === id) || list[0];
-  const SVGNS = "http://www.w3.org/2000/svg";
-  // The body, drawn as one flat shape (front view). Coordinates match K.sim.spots.
-  const BODY_SHAPES = '<ellipse cx="150" cy="52" rx="24" ry="30"/>' +
-    '<path d="M141 74 L141 102 Q139 116 118 122 Q101 127 100 146 L108 236 Q110 262 106 296 L104 322 Q150 334 196 322 L194 296 Q190 262 192 236 L200 146 Q199 127 182 122 Q161 116 159 102 L159 74 Z"/>' +
-    '<ellipse cx="73" cy="341" rx="10" ry="17" transform="rotate(7 73 341)"/><ellipse cx="227" cy="341" rx="10" ry="17" transform="rotate(-7 227 341)"/>' +
-    '<ellipse cx="120" cy="556" rx="14" ry="7.5"/><ellipse cx="180" cy="556" rx="14" ry="7.5"/>' +
-    '<path d="M90.2 146.2 L78.1 234.8 L69.8 317.2 L82.2 318.8 L93.9 237.2 L111.8 149.8 Z"/><circle cx="101" cy="148" r="11"/><circle cx="86" cy="236" r="8"/><circle cx="76" cy="318" r="6.2"/>' +
-    '<path d="M188.2 149.8 L206.1 237.2 L217.8 318.8 L230.2 317.2 L221.9 234.8 L209.8 146.2 Z"/><circle cx="199" cy="148" r="11"/><circle cx="214" cy="236" r="8"/><circle cx="224" cy="318" r="6.2"/>' +
-    '<path d="M110 321.8 L115.5 435.9 L114 477.9 L119 546 L133 546 L138 478.1 L138.5 436.1 L146 322.2 Z"/><circle cx="128" cy="322" r="18"/><circle cx="127" cy="436" r="11.5"/><circle cx="126" cy="478" r="12"/><circle cx="126" cy="546" r="7"/>' +
-    '<path d="M154 322.2 L161.5 436.1 L162 478.1 L167 546 L181 546 L186 477.9 L184.5 435.9 L190 321.8 Z"/><circle cx="172" cy="322" r="18"/><circle cx="173" cy="436" r="11.5"/><circle cx="174" cy="478" r="12"/><circle cx="174" cy="546" r="7"/>';
+  // One close-up per spot, drawn in a 400 x 300 box. at = centre of the circuit, layout "line" runs along angle (degrees), "grid" is 2 x 2.
+  // finger = the direction (degrees) a finger comes from when a sensor needs one.
+  const SCENES = {
+    forearm: { at: [180, 152], layout: "line", angle: -2,
+      svg: '<path class="sk-b-skin" d="M-10 88 C 90 82 210 96 312 110 C 330 112 348 102 374 98 L 410 96 L 410 224 L 374 216 C 348 212 330 198 312 194 C 210 198 90 216 -10 218 Z"/>' +
+        '<path class="sk-b-crease" d="M318 118 C 322 140 322 166 318 188"/><path class="sk-b-crease" d="M382 120 C 386 150 386 180 382 206"/>' },
+    hand: { at: [200, 208], layout: "grid", finger: -20,
+      svg: '<path class="sk-b-skin" d="M150 310 L 146 270 C 136 236 128 200 130 168 L 132 140 L 270 140 L 270 170 C 272 206 262 240 252 270 L 250 310 Z"/>' +
+        '<rect class="sk-b-skin" x="126" y="-20" width="34" height="176" rx="17"/><rect class="sk-b-skin" x="163" y="-40" width="36" height="196" rx="18"/>' +
+        '<rect class="sk-b-skin" x="202" y="-26" width="34" height="182" rx="17"/><rect class="sk-b-skin" x="238" y="14" width="30" height="146" rx="15"/>' +
+        '<path class="sk-b-skin" d="M134 236 C 108 214 84 188 70 158 C 62 140 78 128 92 138 C 112 154 130 176 146 196 Z"/>' +
+        '<path class="sk-b-crease" d="M140 150 C 150 156 156 156 162 150 M178 148 C 186 154 194 154 200 148 M216 150 C 224 156 230 156 236 150 M244 156 C 252 162 258 162 264 156"/>' },
+    neck: { at: [200, 128], layout: "grid", finger: -20,
+      svg: '<path class="sk-b-skin" d="M134 20 C 132 110 128 156 98 182 C 60 206 10 218 -10 228 L -10 310 L 410 310 L 410 228 C 390 218 340 206 302 182 C 272 156 268 110 266 20 Z"/>' +
+        '<path class="sk-b-hair" d="M96 -10 L 304 -10 L 304 30 C 296 58 270 62 248 52 C 226 44 174 44 152 52 C 130 62 104 58 96 30 Z"/>' +
+        '<path class="sk-b-crease" d="M190 210 C 196 216 204 216 210 210 M200 232 L 200 300"/>' },
+    chest: { at: [200, 196], layout: "line", angle: 0,
+      svg: '<path class="sk-b-skin" d="M156 -10 L 244 -10 L 246 30 C 266 52 330 58 380 70 C 400 75 410 82 410 92 L 410 310 L -10 310 L -10 92 C -10 82 0 75 20 70 C 70 58 134 52 154 30 Z"/>' +
+        '<path class="sk-b-crease" d="M112 84 C 146 72 170 76 192 90 M288 84 C 254 72 230 76 208 90"/><path class="sk-b-crease" d="M190 96 C 196 104 204 104 210 96"/>' },
+    cheek: { at: [232, 166], layout: "grid", finger: -40,
+      svg: '<path class="sk-b-skin" d="M162 -10 C 140 22 130 54 132 84 C 124 100 108 120 100 136 C 96 144 102 150 114 152 C 112 160 116 164 114 170 C 110 176 116 182 118 188 C 114 200 118 214 136 226 C 150 236 168 240 186 238 C 190 262 192 290 190 310 L 340 310 C 330 270 320 236 318 200 C 340 170 350 120 340 70 C 330 20 300 -10 270 -10 Z"/>' +
+        '<path class="sk-b-hair" d="M170 -10 L 410 -10 L 410 230 C 380 200 350 160 344 110 C 330 60 290 40 240 40 C 210 40 186 24 170 -10 Z"/>' +
+        '<path class="sk-b-skin" d="M300 122 C 318 110 336 124 334 150 C 332 178 316 192 300 184 Z"/><path class="sk-b-crease" d="M310 134 C 322 132 326 150 318 168"/>' +
+        '<path class="sk-b-crease" d="M138 98 C 150 92 162 94 170 100"/>' },
+    calf: { at: [201, 132], layout: "line", angle: 90, finger: -10,
+      svg: '<path class="sk-b-skin" d="M138 -10 L 264 -10 C 282 50 286 112 264 172 C 250 210 238 232 236 254 C 242 276 252 290 254 310 L 70 310 C 72 292 100 284 150 276 C 162 270 166 260 168 250 C 160 202 132 152 130 92 C 128 52 132 20 138 -10 Z"/>' +
+        '<path class="sk-b-crease" d="M176 262 C 186 270 214 270 228 262"/>' }
+  };
+  const BOARD = 40;   // a circuit module, in drawing units
+  const BOARD_IMG = { power: "main-power", touch: "capacitive-touch" };
+  const boardImage = (id) => `images/fpcb-${BOARD_IMG[id] || id}.jpg`;
+  const deg = (r) => r * 180 / Math.PI;
 
   function renderSim() {
     $("sk-try-lead").textContent = K.sim.lead || "";
@@ -326,19 +348,14 @@
       </div>`;
     }).join("");
 
-    const svg = $("sk-body");
-    svg.insertAdjacentHTML("beforeend",
-      '<defs><radialGradient id="sk-glow-grad"><stop offset="0" stop-color="#fff6c8"/><stop offset=".35" stop-color="#ffd23f" stop-opacity=".9"/><stop offset="1" stop-color="#ffd23f" stop-opacity="0"/></radialGradient></defs>' +
-      '<rect class="sk-b-room" x="40" y="12" width="220" height="564"/>' +
-      `<g class="sk-b-shape">${BODY_SHAPES}</g>` +
-      '<g class="sk-b-dots"></g><g class="sk-b-device"></g><rect class="sk-b-dark" x="40" y="12" width="220" height="564"/>' +
+    const h = BOARD / 2;
+    $("sk-body").insertAdjacentHTML("beforeend",
+      '<defs><radialGradient id="sk-glow-grad"><stop offset="0" stop-color="#fff6c8"/><stop offset=".35" stop-color="#ffd23f" stop-opacity=".9"/><stop offset="1" stop-color="#ffd23f" stop-opacity="0"/></radialGradient>' +
+      `<clipPath id="sk-b-clip"><rect x="${-h}" y="${-h}" width="${BOARD}" height="${BOARD}" rx="2"/></clipPath>` +
+      '<filter id="sk-b-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>' +
+      '<rect class="sk-b-room" x="-50" y="-50" width="500" height="400"/>' +
+      '<g class="sk-b-scene"></g><g class="sk-b-device"></g><rect class="sk-b-dark" x="-50" y="-50" width="500" height="400"/>' +
       '<g class="sk-b-fx"></g>');
-    svg.querySelector(".sk-b-dots").innerHTML = K.sim.spots.map((p) =>
-      `<g class="sk-b-dot" data-spot="${esc(p.id)}" tabindex="-1"><circle cx="${p.x}" cy="${p.y}" r="9" class="sk-b-hit"/><circle cx="${p.x}" cy="${p.y}" r="3.5"/><circle cx="${p.x}" cy="${p.y}" r="7" class="sk-b-ring"/><title>${esc(p.name)}</title></g>`).join("");
-    svg.addEventListener("click", (e) => {
-      const d = e.target.closest(".sk-b-dot");
-      if (d) moveTo(d.dataset.spot);
-    });
 
     $("sk-presets").addEventListener("click", (e) => {
       const b = e.target.closest("[data-preset]");
@@ -361,24 +378,31 @@
       restick();
     });
     renderControl();
+    drawScene();
     drawDevice();
     syncPanel();
     updateSim();
   }
 
+  function drawScene() {
+    const spot = pick(K.sim.spots, sim.spot);
+    $("sk-body").querySelector(".sk-b-scene").innerHTML = (SCENES[spot.id] || SCENES.forearm).svg;
+    $("sk-body-title").textContent = `A close-up of the ${spot.name.toLowerCase()} with the circuit stuck on it`;
+  }
+
   let peelTimer = 0;
-  // Peel the circuit off, then stick it on again (at a new spot, or with new modules).
+  // Peel the circuit off, then stick it on again (on a new spot, or with new modules).
   function restick(spotId) {
-    const dev = $("sk-body").querySelector(".sk-b-device");
-    const fx = $("sk-body").querySelector(".sk-b-fx");
-    dev.classList.add("is-peeled"); fx.classList.add("is-peeled");
+    const svg = $("sk-body");
+    const layers = [".sk-b-device", ".sk-b-fx"].concat(spotId && spotId !== sim.spot ? [".sk-b-scene"] : []).map((s) => svg.querySelector(s));
+    layers.forEach((g) => g.classList.add("is-peeled"));
     clearTimeout(peelTimer);
     peelTimer = setTimeout(() => {
-      if (spotId) sim.spot = spotId;
+      if (spotId && spotId !== sim.spot) { sim.spot = spotId; drawScene(); }
       drawDevice();
       syncPanel();
       updateSim();
-      requestAnimationFrame(() => { dev.classList.remove("is-peeled"); fx.classList.remove("is-peeled"); });
+      requestAnimationFrame(() => layers.forEach((g) => g.classList.remove("is-peeled")));
     }, 220);
     syncPanel(spotId);
   }
@@ -387,55 +411,67 @@
     restick(spotId);
   }
 
-  // Where each tile of the chain sits, in body coordinates.
+  // Where each module of the chain sits in the close-up, and which way its arrows point (dir, degrees).
   function layoutChain() {
-    const spot = pick(K.sim.spots, sim.spot);
+    const sc = SCENES[sim.spot] || SCENES.forearm;
     const parts = [{ family: "power", id: "power" }];
     if (sim.sensor !== "none") parts.push({ family: "sensor", id: sim.sensor });
     if (sim.modifier !== "none") parts.push({ family: "modifier", id: sim.modifier });
     parts.push({ family: "actuator", id: sim.actuator });
-    const size = spot.size || 11, gap = Math.round(size * 0.45), step = size + gap;
     let local;
-    if (spot.layout === "grid") {
-      const cells = [[0, 0], [1, 0], [1, 1], [0, 1]];
+    if (sc.layout === "grid") {
+      const step = 64, cells = [[0, 0], [1, 0], [1, 1], [0, 1]];
       const cols = parts.length > 1 ? 2 : 1, rows = parts.length > 2 ? 2 : 1;
       local = parts.map((_, i) => [(cells[i][0] - (cols - 1) / 2) * step, (cells[i][1] - (rows - 1) / 2) * step]);
     } else {
-      const a = (spot.angle || 0) * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
+      const step = 68, a = (sc.angle || 0) * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
       local = parts.map((_, i) => { const t = (i - (parts.length - 1) / 2) * step; return [t * c, t * s]; });
     }
-    return { spot, size, parts: parts.map((p, i) => Object.assign({ x: spot.x + local[i][0], y: spot.y + local[i][1] }, p)) };
+    parts.forEach((p, i) => { p.x = sc.at[0] + local[i][0]; p.y = sc.at[1] + local[i][1]; });
+    parts.forEach((p, i) => {
+      const a = i < parts.length - 1 ? p : parts[i - 1], b = i < parts.length - 1 ? parts[i + 1] : p;
+      p.dir = parts.length > 1 ? deg(Math.atan2(b.y - a.y, b.x - a.x)) : (sc.angle || 0);
+    });
+    return { sc, parts };
   }
 
   function drawDevice() {
     const svg = $("sk-body");
-    const { spot, size, parts } = layoutChain();
-    const h = size / 2;
+    const { sc, parts } = layoutChain();
+    const S = BOARD, pad = S / 0.975 / 2;   // the photos have a thin white margin; scale it past the clip
+    const f = (n) => +n.toFixed(1);
     let out = "";
-    for (let i = 1; i < parts.length; i++) {   // wire modules (skin cloth diamonds) between the boards
-      const a = parts[i - 1], b = parts[i], mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, r = size * 0.62;
-      out += `<path class="sk-b-wire" d="M${mx} ${my - r} L${mx + r} ${my} L${mx} ${my + r} L${mx - r} ${my} Z"/>`;
+    for (let i = 1; i < parts.length; i++) {   // a wire module (skin cloth diamond, three lines) under each joint
+      const a = parts[i - 1], b = parts[i];
+      const dist = Math.hypot(b.x - a.x, b.y - a.y), hd = dist / 2 + S * 0.32, hw = S * 0.64;
+      out += `<g transform="translate(${f((a.x + b.x) / 2)} ${f((a.y + b.y) / 2)}) rotate(${f(deg(Math.atan2(b.y - a.y, b.x - a.x)))})">` +
+        `<path class="sk-b-cloth" d="M${f(-hd)} 0 L0 ${f(-hw)} L${f(hd)} 0 L0 ${f(hw)} Z"/>` +
+        [-0.36, 0, 0.36].map((k) => `<rect class="sk-b-line" x="${f(-dist / 2)}" y="${f(k * S - 2.4)}" width="${f(dist)}" height="4.8"/>`).join("") + "</g>";
     }
     parts.forEach((p) => {
       const touch = p.family === "sensor" && p.id === "touch";
-      out += `<rect class="sk-b-board${touch ? " is-touch" : ""}" data-family="${p.family}" x="${p.x - h}" y="${p.y - h}" width="${size}" height="${size}" fill="${colorOfFamily(p.family)}"` +
-        (touch ? ' role="button" tabindex="0" aria-label="Touch the sensor"' : "") + "/>";
+      out += `<g class="sk-b-board${touch ? " is-touch" : ""}" data-family="${p.family}" transform="translate(${f(p.x)} ${f(p.y)})"` +
+        (touch ? ' role="button" tabindex="0" aria-label="Touch the sensor"' : "") + ">" +
+        `<rect class="sk-b-shadow" x="${-S / 2}" y="${-S / 2}" width="${S}" height="${S}" rx="2" transform="translate(1.5 3) rotate(${f(p.dir)})" filter="url(#sk-b-blur)"/>` +
+        `<g transform="rotate(${f(p.dir)})"><g class="sk-b-shake"><image href="${boardImage(p.id)}" x="${f(-pad)}" y="${f(-pad)}" width="${f(pad * 2)}" height="${f(pad * 2)}" clip-path="url(#sk-b-clip)" preserveAspectRatio="none"/></g></g></g>`;
     });
     svg.querySelector(".sk-b-device").innerHTML = out;
-    svg.querySelectorAll(".sk-b-dot").forEach((d) => d.classList.toggle("is-here", d.dataset.spot === spot.id));
 
     const act = parts[parts.length - 1], sen = parts.find((p) => p.family === "sensor");
     let fx = `<g class="sk-b-out" data-kind="${sim.actuator}">`;
-    if (sim.actuator === "led") fx += `<circle class="sk-b-glow" cx="${act.x}" cy="${act.y}" r="${size * 2.6}" fill="url(#sk-glow-grad)"/>`;
-    else if (sim.actuator === "vibration") fx += [1.3, 2, 2.7].map((k, i) => `<circle class="sk-b-ripple" style="animation-delay:${i * 0.18}s" cx="${act.x}" cy="${act.y}" r="${size * k}"/>`).join("");
-    else fx += [1.1, 1.8, 2.5].map((k, i) => `<path class="sk-b-wave" style="animation-delay:${i * 0.15}s" d="M${act.x + size * k * 0.7} ${act.y - size * k * 0.7} A${size * k} ${size * k} 0 0 1 ${act.x + size * k * 0.7} ${act.y + size * k * 0.7}"/>`).join("");
+    if (sim.actuator === "led") fx += `<circle class="sk-b-glow" cx="${f(act.x)}" cy="${f(act.y)}" r="${S * 1.5}" fill="url(#sk-glow-grad)"/>`;
+    else if (sim.actuator === "vibration") fx += [0.8, 1.15, 1.5].map((k, i) => `<circle class="sk-b-ripple" style="animation-delay:${i * 0.18}s" cx="${f(act.x)}" cy="${f(act.y)}" r="${f(S * k)}"/>`).join("");
+    else fx += `<g transform="translate(${f(act.x)} ${f(act.y)}) rotate(${f(act.dir)})">` + [0.8, 1.1, 1.4].map((k, i) => {
+      const r = S * k;
+      return `<path class="sk-b-wave" style="animation-delay:${i * 0.15}s" d="M${f(r * 0.7)} ${f(-r * 0.7)} A${f(r)} ${f(r)} 0 0 1 ${f(r * 0.7)} ${f(r * 0.7)}"/>`;
+    }).join("") + "</g>";
     fx += "</g>";
-    if (sen && (sen.id === "proximity" || sen.id === "pressure")) {
-      // the thing coming close (or the finger pressing), drawn as a fingertip
-      const ang = Math.atan2(sen.y - 300, sen.x - 150) || -Math.PI / 2;
-      fx += `<g class="sk-b-finger" data-cx="${sen.x}" data-cy="${sen.y}" data-ang="${ang}"><circle r="${size * 0.9}"/></g>`;
+    if (sen && (sen.id === "proximity" || sen.id === "pressure" || sen.id === "touch")) {
+      // a finger: coming close, pressing, or touching. Drawn tip first, pointing at the sensor.
+      const fa = sc.finger ?? -70;
+      fx += `<g class="sk-b-finger" data-cx="${f(sen.x)}" data-cy="${f(sen.y)}" data-ang="${fa}"><g transform="rotate(${fa})">` +
+        '<rect class="sk-b-fskin" x="-15" y="-15" width="240" height="30" rx="15"/><ellipse class="sk-b-nail" cx="9" cy="0" rx="8" ry="9.5"/></g></g>';
     }
-    if (sen && sen.id === "touch") fx += `<circle class="sk-b-press" cx="${sen.x}" cy="${sen.y}" r="${size * 0.95}"/>`;
     svg.querySelector(".sk-b-fx").innerHTML = fx;
 
     const board = svg.querySelector(".sk-b-board.is-touch");
@@ -468,7 +504,7 @@
         <div class="sk-range"><span>${esc(sen.low)}</span><input type="range" id="sk-sim-range" min="0" max="100" value="${Math.round(sim.level * 100)}"><span>${esc(sen.high)}</span></div>`;
       box.querySelector("input").addEventListener("input", (e) => { sim.level = e.target.value / 100; updateSim(); });
     } else if (sen.id === "touch") {
-      box.innerHTML = head + `<p class="sk-control-sub">Hold the yellow sensor on the body, or this button.</p>
+      box.innerHTML = head + `<p class="sk-control-sub">Hold the touch sensor in the picture, or this button.</p>
         <button type="button" class="sk-btn sk-hold" data-on="false">${esc(sen.control)}</button>`;
       const b = box.querySelector("button");
       const set = (on) => { if (sim.touching !== on) { sim.touching = on; b.dataset.on = String(on); updateSim(); } };
@@ -495,17 +531,15 @@
 
     const svg = $("sk-body");
     // the world around the sensor
-    svg.style.setProperty("--dark", sen.id === "light" ? ((1 - sim.level) * 0.6).toFixed(3) : "0");
+    svg.style.setProperty("--dark", sen.id === "light" ? ((1 - sim.level) * 0.62).toFixed(3) : "0");
     svg.style.setProperty("--warm", sen.id === "temperature" ? sim.level.toFixed(3) : "0");
     const finger = svg.querySelector(".sk-b-finger");
     if (finger) {
-      const cx = +finger.dataset.cx, cy = +finger.dataset.cy, ang = +finger.dataset.ang;
-      const d = sen.id === "pressure" ? 9 * (1 - sim.level) + 1 : 70 * (1 - sim.level) + 10;
+      const cx = +finger.dataset.cx, cy = +finger.dataset.cy, ang = +finger.dataset.ang * Math.PI / 180;
+      const d = sen.id === "pressure" ? 6 + 10 * (1 - sim.level) : sen.id === "touch" ? (sim.touching ? 4 : 70) : 26 + 130 * (1 - sim.level);
       finger.setAttribute("transform", `translate(${(cx + Math.cos(ang) * d).toFixed(1)} ${(cy + Math.sin(ang) * d).toFixed(1)})`);
-      finger.style.opacity = sen.id === "pressure" ? (0.25 + 0.6 * sim.level).toFixed(2) : "";
+      finger.classList.toggle("is-pressing", sen.id === "pressure" ? sim.level >= 0.5 : sen.id === "touch" && sim.touching);
     }
-    const press = svg.querySelector(".sk-b-press");
-    if (press) press.classList.toggle("is-on", sim.touching);
 
     // the actuator
     const outG = svg.querySelector(".sk-b-out");
@@ -514,8 +548,8 @@
     outG.classList.toggle("is-fade", pattern === "fade");
     const lvl = !on ? 0 : act.id === "led" && !pattern ? Math.min(1, 0.55 + 0.9 * (s - 0.5)) : 1;
     outG.style.setProperty("--lvl", lvl.toFixed(3));
-    const actBoard = svg.querySelectorAll(".sk-b-board");
-    actBoard[actBoard.length - 1].classList.toggle("is-shaking", on && act.id === "vibration");
+    const boards = svg.querySelectorAll(".sk-b-board");
+    boards[boards.length - 1].classList.toggle("is-shaking", on && act.id === "vibration");
 
     const state = !on ? "off" : pattern === "blink" ? "blinking" : pattern === "fade" ? "fading in and out" : "on";
     const label = $("sk-out-label");
