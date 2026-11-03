@@ -126,8 +126,8 @@ window.SKINKIT = {
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors", note: "For cutting the tape into strips." },
-      { name: "Clear tape", note: "Holds the magnets in place on the module." },
-      { name: "Tweezers", note: "For lining up the tiny magnets." }
+      { name: "Clear tape", note: "Holds the magnets in place on the module.", image: "images/mat-clear-tape.jpg" },
+      { name: "Tweezers", note: "For lining up the tiny magnets.", image: "images/mat-tweezers.jpg" }
     ],
     use: [
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
@@ -200,12 +200,14 @@ window.SKINKIT = {
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
       "double-flaps": "The videos in the next steps show how to make this one."
     }, tip: "", media: {
-        image: "images/materials-modules.jpg",
+        image: "images/materials-modules-2.jpg",
         hotspots: [
           { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
           { item: "Conductive fabric tape", x: 38.4, y: 15.6, w: 18.8, h: 13.3 },
           { item: "Scissors", x: 58.4, y: 10, w: 25.6, h: 20.6 },
-          { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] }
+          { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] },
+          { item: "Clear tape", x: 14.5, y: 62.5, w: 15, h: 25.8 },
+          { item: "Tweezers", x: 84, y: 39.4, w: 15, h: 54.6 }
         ]
       } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
