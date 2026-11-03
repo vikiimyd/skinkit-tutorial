@@ -171,6 +171,7 @@
 .sk-dot { width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.25); flex: none; }
 .sk-modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0 36px; }
 .sk-module { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--sk-line); }
+.sk-module-img { width: 88px; height: 88px; flex: none; object-fit: contain; display: block; }
 .sk-module h3 { font-size: 14px !important; color: var(--sk-heading) !important; }
 .sk-module p { font-size: 14px; line-height: 1.6; }
 .sk-next { justify-items: start; }
@@ -252,12 +253,25 @@
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
 /* Options to pick from in a step: name left, one line right; stacked on phones */
-.sk-choices { margin: 0; border-top: 1px solid var(--sk-line); max-width: 68ch; }
+/* Step cards to pick from (wire module types) */
+.sk-choices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .sk-choices[hidden] { display: none; }
-.sk-choices > div { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--sk-line); }
-.sk-choices dt { color: var(--sk-heading); font-weight: 600; }
-.sk-choices dd { margin: 0; color: var(--sk-text); }
-@media (max-width: 760px) { .sk-choices > div { grid-template-columns: 1fr; gap: 2px; } }
+.sk-choices > li { display: flex; min-width: 0; }
+.sk-choice { display: flex; flex-direction: column; gap: 6px; width: 100%; padding: 10px 12px 14px; border: 1px solid var(--sk-line); background: #fff; text-align: left; font: inherit; color: inherit; }
+button.sk-choice { cursor: pointer; }
+button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-btn); }
+.sk-choice img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; display: block; }
+.sk-choice-name { font-family: var(--sk-font-heading); text-transform: uppercase; letter-spacing: .08em; font-size: 14px; color: var(--sk-heading); }
+.sk-choice-text { font-size: 13.5px; line-height: 1.6; color: var(--sk-text); }
+.sk-choice-go { margin-top: auto; padding-top: 4px; font-size: 13px; color: var(--sk-link); text-decoration: underline; text-decoration-color: var(--sk-link-line); text-underline-offset: 3px; }
+.sk-type { display: grid; gap: 10px; max-width: 68ch; }
+.sk-type[hidden] { display: none; }
+.sk-type-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sk-type-chips .sk-chip { padding: 5px 10px; font-size: 12px !important; }
+.sk-type-note { padding: 10px 14px; background: #f3f3f3; color: var(--sk-text); }
+.sk-type-note strong { color: var(--sk-heading); font-weight: 600; }
+#sk-root .sk-media[hidden] { display: none; }
+@media (max-width: 760px) { .sk-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
 /* "You need": the materials one step uses */
 .sk-need { display: grid; gap: 8px; }
 .sk-need[hidden] { display: none; }
