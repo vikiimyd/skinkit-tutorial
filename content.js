@@ -165,10 +165,12 @@ window.SKINKIT = {
           { t: 10.9, text: "Add the second tattoo paper on the other side" },
           { t: 17.4, text: "Press out the bubbles again" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Water", "Electronic cutting machine"], media: { video: "images/1-04.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Water", "Electronic cutting machine"], media: { video: "images/1-04.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
-          { t: 3.5, text: "Peel the backing off slowly" },
-          { t: 11, text: "Let it dry" }
+          { t: 7.3, text: "Flip it over" },
+          { t: 9.4, text: "Wet the other side" },
+          { t: 13.8, text: "Peel the backing papers off slowly" },
+          { t: 23, text: "Let it dry for a few days" }
         ] } },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
