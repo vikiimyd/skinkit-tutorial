@@ -262,6 +262,8 @@ button.sk-choice { cursor: pointer; }
 button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-btn); }
 .sk-choice img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; display: block; }
 .sk-choice-name { font-family: var(--sk-font-heading); text-transform: uppercase; letter-spacing: .08em; font-size: 14px; color: var(--sk-heading); }
+.sk-choice-tag { align-self: flex-start; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-family: var(--sk-font-heading); color: var(--sk-heading); background: #f0f0f0; padding: 2px 6px 1px; }
+.sk-type-note em { display: block; margin-top: 4px; color: var(--sk-muted); font-style: normal; font-size: 13px; }
 .sk-choice-text { font-size: 13.5px; line-height: 1.6; color: var(--sk-text); }
 .sk-choice-go { margin-top: auto; padding-top: 4px; font-size: 13px; color: var(--sk-link); text-decoration: underline; text-decoration-color: var(--sk-link-line); text-underline-offset: 3px; }
 .sk-type { display: grid; gap: 10px; max-width: 68ch; }
