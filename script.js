@@ -51,7 +51,7 @@
   const TYPE_KEY = "skinkit-module-type";
   const moduleTypes = [].concat(...K.steps.map((s) => s.choices || [])).filter((c) => c.go);
   let moduleType = (() => { try { return localStorage.getItem(TYPE_KEY) || ""; } catch (e) { return ""; } })();
-  if (!moduleTypes.some((t) => t.id === moduleType)) moduleType = moduleTypes.length ? moduleTypes[0].id : "";
+  if (!moduleTypes.some((t) => t.id === moduleType)) moduleType = K.wireBase || (moduleTypes.length ? moduleTypes[0].id : "");
   function setModuleType(id) {
     moduleType = id;
     try { localStorage.setItem(TYPE_KEY, id); } catch (e) { /* private mode: keep it in memory */ }
@@ -499,7 +499,7 @@
     choices.hidden = !(s.choices && s.choices.length);
     choices.innerHTML = (s.choices || []).map((c) => {
       const inner = (c.image ? `<img src="${esc(c.image)}" alt="" loading="lazy">` : "") +
-        `<span class="sk-choice-name">${esc(c.name)}</span><span class="sk-choice-text">${esc(c.text)}</span>` +
+        `<span class="sk-choice-name">${esc(c.name)}</span>${c.tag ? `<span class="sk-choice-tag">${esc(c.tag)}</span>` : ""}<span class="sk-choice-text">${esc(c.text)}</span>` +
         (c.go ? `<span class="sk-choice-go">How to make it →</span>` : "");
       return `<li>${c.go
         ? `<button type="button" class="sk-choice" data-type="${esc(c.id)}" data-go="${esc(c.go)}">${inner}</button>`
@@ -514,7 +514,9 @@
     typeBox.innerHTML = notes
       ? `<div class="sk-type-chips" role="group" aria-label="Wire module type">${moduleTypes.map((t) =>
           `<button type="button" class="sk-chip" data-type="${esc(t.id)}" aria-pressed="${t.id === moduleType}">${esc(t.name)}</button>`).join("")}</div>` +
-        (picked && notes[moduleType] ? `<p class="sk-type-note"><strong>${esc(picked.name)}:</strong> ${esc(notes[moduleType])}</p>` : "")
+        (picked && notes[moduleType] ? `<p class="sk-type-note"><strong>${esc(picked.name)}:</strong> ${esc(notes[moduleType])}` +
+          (s.media && s.media.video && K.wireBase && moduleType !== K.wireBase
+            ? ` <em>The video shows a ${esc((moduleTypes.find((t) => t.id === K.wireBase) || {}).name || "")} module.</em>` : "") + `</p>` : "")
       : "";
 
     // What this step uses, shown under its text. A name from the materials lists reuses that item's photo;
