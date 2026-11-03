@@ -191,7 +191,7 @@ window.SKINKIT = {
         { name: "Double flaps", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
         { name: "Cross shape", text: "A four-way piece. Turns the circuit or splits it into two directions." },
         { name: "Blank", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear." }
-      ], media: { image: "images/1-05t.jpg" } },
+      ], media: { image: "images/1-05t-types.jpg" } },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
         hotspots: [
