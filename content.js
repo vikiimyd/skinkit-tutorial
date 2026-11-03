@@ -266,24 +266,24 @@ window.SKINKIT = {
           { item: "Tweezers", x: 8.3, y: 8.5, w: 28.4, h: 8 }
         ]
       } },
-    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v3.mp4", marks: [
+    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v4.mp4", marks: [
           { t: 0, text: "Cut the double-sided tape into small triangles" },
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "Make two strips of tape with three magnets each, spaced like the magnets on a circuit module. Stick one strip at each end of the diamond. The two strips must have opposite poles.", forType: {
       "double-flaps": "One strip of magnets at each end, on both flaps, where the line ends will go."
-    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07-v3.mp4", marks: [
+    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07-v5.mp4", marks: [
           { t: 0, text: "Use a module to mark the magnet spots on the tape" },
-          { t: 5.6, text: "Put a magnet on each mark with tweezers" },
-          { t: 9.6, text: "Make a second strip the same way" },
-          { t: 14.6, text: "Line the magnets up with tweezers" },
-          { t: 21.3, text: "Stick one strip at each end of the diamond" },
-          { t: 26.9, text: "The two rows have opposite poles" }
+          { t: 5.1, text: "The two rows have opposite poles" },
+          { t: 10.1, text: "Put a magnet on each mark with tweezers" },
+          { t: 14.13, text: "Make a second strip the same way" },
+          { t: 19.13, text: "Line the magnets up with tweezers" },
+          { t: 25.83, text: "Stick one strip at each end of the diamond" }
         ] } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "Peel the backing off a strip of conductive fabric tape. Stick it across the diamond so it covers one magnet at each end, and fold each end around the edge of the flap. Repeat twice more for three lines: power, ground and signal.", forType: {
       "double-flaps": "Run each line from one flap across to the other."
-    }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05-v2.mp4", marks: [
+    }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05-v3.mp4", marks: [
           { t: 0, text: "Peel the backing off a strip of conductive tape" },
           { t: 6.7, text: "Stick it down over a magnet on one flap" },
           { t: 10.5, text: "Press it flat and fold the end around the edge" },
