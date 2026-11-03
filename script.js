@@ -289,8 +289,9 @@
     }
   }
 
-  // ---------- Part 1: "Try a circuit" ----------
-  const sim = { sensor: "proximity", modifier: "blink", actuator: "led", level: 0.2, touching: false };
+  // ---------- Part 1: "Try it on the body" ----------
+  // A circuit stuck on a drawn body. Pick a spot (peel and re-stick), swap modules, then test it.
+  const sim = { spot: "forearm", sensor: "proximity", modifier: "blink", actuator: "led", level: 0.2, touching: false };
   const SLOTS = [
     { key: null, family: "power", title: "Power" },
     { key: "sensor", family: "sensor", title: "Sensor", list: K.sim.sensors },
@@ -298,53 +299,176 @@
     { key: "actuator", family: "actuator", title: "Actuator", list: K.sim.actuators }
   ];
   const pick = (list, id) => list.find((o) => o.id === id) || list[0];
+  const SVGNS = "http://www.w3.org/2000/svg";
+  // The body, drawn as one flat shape (front view). Coordinates match K.sim.spots.
+  const BODY_SHAPES = '<ellipse cx="150" cy="52" rx="24" ry="30"/>' +
+    '<path d="M141 74 L141 102 Q139 116 118 122 Q101 127 100 146 L108 236 Q110 262 106 296 L104 322 Q150 334 196 322 L194 296 Q190 262 192 236 L200 146 Q199 127 182 122 Q161 116 159 102 L159 74 Z"/>' +
+    '<ellipse cx="73" cy="341" rx="10" ry="17" transform="rotate(7 73 341)"/><ellipse cx="227" cy="341" rx="10" ry="17" transform="rotate(-7 227 341)"/>' +
+    '<ellipse cx="120" cy="556" rx="14" ry="7.5"/><ellipse cx="180" cy="556" rx="14" ry="7.5"/>' +
+    '<path d="M90.2 146.2 L78.1 234.8 L69.8 317.2 L82.2 318.8 L93.9 237.2 L111.8 149.8 Z"/><circle cx="101" cy="148" r="11"/><circle cx="86" cy="236" r="8"/><circle cx="76" cy="318" r="6.2"/>' +
+    '<path d="M188.2 149.8 L206.1 237.2 L217.8 318.8 L230.2 317.2 L221.9 234.8 L209.8 146.2 Z"/><circle cx="199" cy="148" r="11"/><circle cx="214" cy="236" r="8"/><circle cx="224" cy="318" r="6.2"/>' +
+    '<path d="M110 321.8 L115.5 435.9 L114 477.9 L119 546 L133 546 L138 478.1 L138.5 436.1 L146 322.2 Z"/><circle cx="128" cy="322" r="18"/><circle cx="127" cy="436" r="11.5"/><circle cx="126" cy="478" r="12"/><circle cx="126" cy="546" r="7"/>' +
+    '<path d="M154 322.2 L161.5 436.1 L162 478.1 L167 546 L181 546 L186 477.9 L184.5 435.9 L190 321.8 Z"/><circle cx="172" cy="322" r="18"/><circle cx="173" cy="436" r="11.5"/><circle cx="174" cy="478" r="12"/><circle cx="174" cy="546" r="7"/>';
 
   function renderSim() {
-    $("sk-chain").innerHTML = SLOTS.map((slot, i) => {
+    $("sk-try-lead").textContent = K.sim.lead || "";
+    $("sk-presets").innerHTML = (K.sim.presets || []).map((p, i) =>
+      `<button type="button" class="sk-opt" data-preset="${i}" aria-pressed="false">${esc(p.name)}</button>`).join("");
+    $("sk-spots").innerHTML = K.sim.spots.map((p) =>
+      `<button type="button" class="sk-opt" data-spot="${esc(p.id)}" aria-pressed="false">${esc(p.name)}</button>`).join("");
+    $("sk-chain").innerHTML = SLOTS.map((slot) => {
       const options = slot.key
         ? slot.list.map((o) => `<button type="button" class="sk-opt" data-key="${slot.key}" data-id="${esc(o.id)}" aria-pressed="false">${esc(o.name)}</button>`).join("")
         : '<button type="button" class="sk-opt" aria-pressed="true" disabled>Main power</button>';
       return `<div class="sk-slot" role="group" aria-label="${esc(slot.title)}">
-        <div class="sk-slot-head">${tile(colorOfFamily(slot.family))}<div><strong>${i + 1}. ${esc(slot.title)}</strong><span data-name="${slot.key || "power"}">Main power</span></div></div>
+        <div class="sk-slot-head">${tile(colorOfFamily(slot.family), "sk-mod--md")}<strong>${esc(slot.title)}</strong></div>
         <div class="sk-options">${options}</div>
       </div>`;
     }).join("");
+
+    const svg = $("sk-body");
+    svg.insertAdjacentHTML("beforeend",
+      '<defs><radialGradient id="sk-glow-grad"><stop offset="0" stop-color="#fff6c8"/><stop offset=".35" stop-color="#ffd23f" stop-opacity=".9"/><stop offset="1" stop-color="#ffd23f" stop-opacity="0"/></radialGradient></defs>' +
+      '<rect class="sk-b-room" x="40" y="12" width="220" height="564"/>' +
+      `<g class="sk-b-shape">${BODY_SHAPES}</g>` +
+      '<g class="sk-b-dots"></g><g class="sk-b-device"></g><rect class="sk-b-dark" x="40" y="12" width="220" height="564"/>' +
+      '<g class="sk-b-fx"></g>');
+    svg.querySelector(".sk-b-dots").innerHTML = K.sim.spots.map((p) =>
+      `<g class="sk-b-dot" data-spot="${esc(p.id)}" tabindex="-1"><circle cx="${p.x}" cy="${p.y}" r="9" class="sk-b-hit"/><circle cx="${p.x}" cy="${p.y}" r="3.5"/><circle cx="${p.x}" cy="${p.y}" r="7" class="sk-b-ring"/><title>${esc(p.name)}</title></g>`).join("");
+    svg.addEventListener("click", (e) => {
+      const d = e.target.closest(".sk-b-dot");
+      if (d) moveTo(d.dataset.spot);
+    });
+
+    $("sk-presets").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-preset]");
+      if (!b) return;
+      const p = K.sim.presets[+b.dataset.preset];
+      const sensorChanged = sim.sensor !== p.sensor;
+      Object.assign(sim, { sensor: p.sensor, modifier: p.modifier, actuator: p.actuator });
+      if (sensorChanged) { sim.level = 0.2; sim.touching = false; renderControl(); }
+      moveTo(p.spot, true);
+    });
+    $("sk-spots").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-spot]");
+      if (b) moveTo(b.dataset.spot);
+    });
     $("sk-chain").addEventListener("click", (e) => {
       const b = e.target.closest(".sk-opt[data-key]");
       if (!b || sim[b.dataset.key] === b.dataset.id) return;
       sim[b.dataset.key] = b.dataset.id;
       if (b.dataset.key === "sensor") { sim.level = 0.2; sim.touching = false; renderControl(); }
-      if (b.dataset.key === "actuator") renderOutput();
-      syncChain();
-      updateSim();
+      restick();
     });
-    syncChain();
     renderControl();
-    renderOutput();
+    drawDevice();
+    syncPanel();
     updateSim();
   }
 
-  function syncChain() {
-    const chain = $("sk-chain");
-    chain.querySelectorAll(".sk-opt[data-key]").forEach((b) => b.setAttribute("aria-pressed", String(sim[b.dataset.key] === b.dataset.id)));
-    SLOTS.forEach((slot) => {
-      if (!slot.key) return;
-      const chosen = pick(slot.list, sim[slot.key]);
-      const name = chain.querySelector(`[data-name="${slot.key}"]`);
-      name.textContent = chosen.name;
-      name.closest(".sk-slot-head").querySelector(".sk-mod").classList.toggle("is-empty", chosen.id === "none");
+  let peelTimer = 0;
+  // Peel the circuit off, then stick it on again (at a new spot, or with new modules).
+  function restick(spotId) {
+    const dev = $("sk-body").querySelector(".sk-b-device");
+    const fx = $("sk-body").querySelector(".sk-b-fx");
+    dev.classList.add("is-peeled"); fx.classList.add("is-peeled");
+    clearTimeout(peelTimer);
+    peelTimer = setTimeout(() => {
+      if (spotId) sim.spot = spotId;
+      drawDevice();
+      syncPanel();
+      updateSim();
+      requestAnimationFrame(() => { dev.classList.remove("is-peeled"); fx.classList.remove("is-peeled"); });
+    }, 220);
+    syncPanel(spotId);
+  }
+  function moveTo(spotId, force) {
+    if (spotId === sim.spot && !force) return;
+    restick(spotId);
+  }
+
+  // Where each tile of the chain sits, in body coordinates.
+  function layoutChain() {
+    const spot = pick(K.sim.spots, sim.spot);
+    const parts = [{ family: "power", id: "power" }];
+    if (sim.sensor !== "none") parts.push({ family: "sensor", id: sim.sensor });
+    if (sim.modifier !== "none") parts.push({ family: "modifier", id: sim.modifier });
+    parts.push({ family: "actuator", id: sim.actuator });
+    const size = spot.size || 11, gap = Math.round(size * 0.45), step = size + gap;
+    let local;
+    if (spot.layout === "grid") {
+      const cells = [[0, 0], [1, 0], [1, 1], [0, 1]];
+      const cols = parts.length > 1 ? 2 : 1, rows = parts.length > 2 ? 2 : 1;
+      local = parts.map((_, i) => [(cells[i][0] - (cols - 1) / 2) * step, (cells[i][1] - (rows - 1) / 2) * step]);
+    } else {
+      const a = (spot.angle || 0) * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
+      local = parts.map((_, i) => { const t = (i - (parts.length - 1) / 2) * step; return [t * c, t * s]; });
+    }
+    return { spot, size, parts: parts.map((p, i) => Object.assign({ x: spot.x + local[i][0], y: spot.y + local[i][1] }, p)) };
+  }
+
+  function drawDevice() {
+    const svg = $("sk-body");
+    const { spot, size, parts } = layoutChain();
+    const h = size / 2;
+    let out = "";
+    for (let i = 1; i < parts.length; i++) {   // wire modules (skin cloth diamonds) between the boards
+      const a = parts[i - 1], b = parts[i], mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, r = size * 0.62;
+      out += `<path class="sk-b-wire" d="M${mx} ${my - r} L${mx + r} ${my} L${mx} ${my + r} L${mx - r} ${my} Z"/>`;
+    }
+    parts.forEach((p) => {
+      const touch = p.family === "sensor" && p.id === "touch";
+      out += `<rect class="sk-b-board${touch ? " is-touch" : ""}" data-family="${p.family}" x="${p.x - h}" y="${p.y - h}" width="${size}" height="${size}" fill="${colorOfFamily(p.family)}"` +
+        (touch ? ' role="button" tabindex="0" aria-label="Touch the sensor"' : "") + "/>";
+    });
+    svg.querySelector(".sk-b-device").innerHTML = out;
+    svg.querySelectorAll(".sk-b-dot").forEach((d) => d.classList.toggle("is-here", d.dataset.spot === spot.id));
+
+    const act = parts[parts.length - 1], sen = parts.find((p) => p.family === "sensor");
+    let fx = `<g class="sk-b-out" data-kind="${sim.actuator}">`;
+    if (sim.actuator === "led") fx += `<circle class="sk-b-glow" cx="${act.x}" cy="${act.y}" r="${size * 2.6}" fill="url(#sk-glow-grad)"/>`;
+    else if (sim.actuator === "vibration") fx += [1.3, 2, 2.7].map((k, i) => `<circle class="sk-b-ripple" style="animation-delay:${i * 0.18}s" cx="${act.x}" cy="${act.y}" r="${size * k}"/>`).join("");
+    else fx += [1.1, 1.8, 2.5].map((k, i) => `<path class="sk-b-wave" style="animation-delay:${i * 0.15}s" d="M${act.x + size * k * 0.7} ${act.y - size * k * 0.7} A${size * k} ${size * k} 0 0 1 ${act.x + size * k * 0.7} ${act.y + size * k * 0.7}"/>`).join("");
+    fx += "</g>";
+    if (sen && (sen.id === "proximity" || sen.id === "pressure")) {
+      // the thing coming close (or the finger pressing), drawn as a fingertip
+      const ang = Math.atan2(sen.y - 300, sen.x - 150) || -Math.PI / 2;
+      fx += `<g class="sk-b-finger" data-cx="${sen.x}" data-cy="${sen.y}" data-ang="${ang}"><circle r="${size * 0.9}"/></g>`;
+    }
+    if (sen && sen.id === "touch") fx += `<circle class="sk-b-press" cx="${sen.x}" cy="${sen.y}" r="${size * 0.95}"/>`;
+    svg.querySelector(".sk-b-fx").innerHTML = fx;
+
+    const board = svg.querySelector(".sk-b-board.is-touch");
+    if (board) {
+      const set = (on) => { if (sim.touching !== on) { sim.touching = on; updateSim(); const hb = $("sk-control").querySelector(".sk-hold"); if (hb) hb.dataset.on = String(on); } };
+      board.addEventListener("pointerdown", (e) => { e.preventDefault(); if (board.setPointerCapture) board.setPointerCapture(e.pointerId); set(true); });
+      ["pointerup", "pointercancel", "lostpointercapture"].forEach((t) => board.addEventListener(t, () => set(false)));
+      board.addEventListener("keydown", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); set(true); } });
+      board.addEventListener("keyup", (e) => { if (e.key === " " || e.key === "Enter") set(false); });
+      board.addEventListener("blur", () => set(false));
+    }
+  }
+
+  function syncPanel(nextSpot) {
+    const spotId = nextSpot || sim.spot;
+    $("sk-spots").querySelectorAll("[data-spot]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.spot === spotId)));
+    $("sk-chain").querySelectorAll(".sk-opt[data-key]").forEach((b) => b.setAttribute("aria-pressed", String(sim[b.dataset.key] === b.dataset.id)));
+    $("sk-presets").querySelectorAll("[data-preset]").forEach((b) => {
+      const p = K.sim.presets[+b.dataset.preset];
+      b.setAttribute("aria-pressed", String(p.spot === spotId && p.sensor === sim.sensor && p.modifier === sim.modifier && p.actuator === sim.actuator));
     });
   }
 
   function renderControl() {
     const box = $("sk-control");
     const sen = pick(K.sim.sensors, sim.sensor);
-    if (sen.id === "proximity" || sen.id === "light") {
-      box.innerHTML = `<label class="sk-control-label" for="sk-sim-range">${esc(sen.control)}</label>
+    const head = '<p class="sk-control-label">Test it</p>';
+    if (sen.low) {
+      box.innerHTML = head + `<label class="sk-control-sub" for="sk-sim-range">${esc(sen.control)}</label>
         <div class="sk-range"><span>${esc(sen.low)}</span><input type="range" id="sk-sim-range" min="0" max="100" value="${Math.round(sim.level * 100)}"><span>${esc(sen.high)}</span></div>`;
       box.querySelector("input").addEventListener("input", (e) => { sim.level = e.target.value / 100; updateSim(); });
     } else if (sen.id === "touch") {
-      box.innerHTML = `<p class="sk-control-label">Touch the sensor pad</p>
+      box.innerHTML = head + `<p class="sk-control-sub">Hold the yellow sensor on the body, or this button.</p>
         <button type="button" class="sk-btn sk-hold" data-on="false">${esc(sen.control)}</button>`;
       const b = box.querySelector("button");
       const set = (on) => { if (sim.touching !== on) { sim.touching = on; b.dataset.on = String(on); updateSim(); } };
@@ -355,52 +479,54 @@
       b.addEventListener("blur", () => set(false));
       b.addEventListener("contextmenu", (e) => e.preventDefault());
     } else {
-      box.innerHTML = `<p class="sk-control-label">${esc(sen.name)}</p><p>${esc(sen.control)}</p>`;
+      box.innerHTML = head + `<p class="sk-control-sub">${esc(sen.control)}</p>`;
     }
-  }
-
-  function renderOutput() {
-    const box = $("sk-output");
-    const visual = sim.actuator === "vibration"
-      ? '<div class="sk-motor" aria-hidden="true">Motor</div>'
-      : sim.actuator === "buzzer"
-        ? '<div class="sk-waves" aria-hidden="true">((( • )))</div>'
-        : '<div class="sk-led" aria-hidden="true"></div>';
-    box.innerHTML = visual + '<p class="sk-out-label"></p>';
   }
 
   function updateSim() {
     const sen = pick(K.sim.sensors, sim.sensor);
     const act = pick(K.sim.actuators, sim.actuator);
+    const spot = pick(K.sim.spots, sim.spot);
     const mod = sim.modifier;
     let s = sen.id === "none" ? 1 : sen.id === "touch" ? (sim.touching ? 1 : 0) : sim.level;
     if (mod === "inverter") s = 1 - s;
     const on = s >= 0.5;
     const pattern = on && (mod === "blink" || mod === "fade") ? mod : "";
 
-    const box = $("sk-output");
-    const visual = box.firstElementChild;
-    visual.classList.toggle("is-blink", pattern === "blink");
-    visual.classList.toggle("is-fade", pattern === "fade");
-    if (act.id === "led") {
-      // Steady signal: the closer / brighter, the brighter the LED once it is on.
-      const lvl = !on ? 0 : pattern ? 1 : 0.55 + 0.9 * (s - 0.5);
-      visual.style.setProperty("--lvl", Math.min(1, lvl).toFixed(3));
-    } else if (act.id === "vibration") {
-      visual.classList.toggle("is-on", on);
-    } else {
-      visual.style.opacity = on ? 1 : 0.15;
+    const svg = $("sk-body");
+    // the world around the sensor
+    svg.style.setProperty("--dark", sen.id === "light" ? ((1 - sim.level) * 0.6).toFixed(3) : "0");
+    svg.style.setProperty("--warm", sen.id === "temperature" ? sim.level.toFixed(3) : "0");
+    const finger = svg.querySelector(".sk-b-finger");
+    if (finger) {
+      const cx = +finger.dataset.cx, cy = +finger.dataset.cy, ang = +finger.dataset.ang;
+      const d = sen.id === "pressure" ? 9 * (1 - sim.level) + 1 : 70 * (1 - sim.level) + 10;
+      finger.setAttribute("transform", `translate(${(cx + Math.cos(ang) * d).toFixed(1)} ${(cy + Math.sin(ang) * d).toFixed(1)})`);
+      finger.style.opacity = sen.id === "pressure" ? (0.25 + 0.6 * sim.level).toFixed(2) : "";
     }
+    const press = svg.querySelector(".sk-b-press");
+    if (press) press.classList.toggle("is-on", sim.touching);
+
+    // the actuator
+    const outG = svg.querySelector(".sk-b-out");
+    outG.classList.toggle("is-on", on);
+    outG.classList.toggle("is-blink", pattern === "blink");
+    outG.classList.toggle("is-fade", pattern === "fade");
+    const lvl = !on ? 0 : act.id === "led" && !pattern ? Math.min(1, 0.55 + 0.9 * (s - 0.5)) : 1;
+    outG.style.setProperty("--lvl", lvl.toFixed(3));
+    const actBoard = svg.querySelectorAll(".sk-b-board");
+    actBoard[actBoard.length - 1].classList.toggle("is-shaking", on && act.id === "vibration");
+
     const state = !on ? "off" : pattern === "blink" ? "blinking" : pattern === "fade" ? "fading in and out" : "on";
-    const label = box.querySelector(".sk-out-label");
-    const text = `${act.name}: ${state}`;
+    const label = $("sk-out-label");
+    const text = `${spot.name}: ${act.name} ${state}`;
     if (label.textContent !== text) label.textContent = text;
 
     const verb = mod === "blink" ? act.blink : mod === "fade" ? act.fade : act.verb;
     const when = mod === "inverter" ? sen.whenInverted : sen.when;
     $("sk-sentence").textContent = sen.id === "none" && mod === "inverter"
-      ? `The ${act.noun || act.name} stays off.`
-      : `The ${act.noun || act.name} ${verb} ${when}.`;
+      ? `On the ${spot.name.toLowerCase()}, the ${act.noun || act.name} stays off.`
+      : `On the ${spot.name.toLowerCase()}, the ${act.noun || act.name} ${verb} ${when}.`;
   }
 
   // ---------- Part 1: example photos ----------

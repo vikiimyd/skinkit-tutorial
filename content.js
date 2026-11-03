@@ -62,13 +62,31 @@ window.SKINKIT = {
     credit: "Drawings from the SkinKit paper (Ku et al., IMWUT 2021, Fig. 7)."
   },
 
-  // The "Try a circuit" playground. Wording only; the behavior is in script.js.
+  // The "Try it on the body" playground. Wording and spots only; the behavior is in script.js.
+  // Spots are in the body drawing's coordinates (300 x 600). layout "line" runs along angle (degrees), "grid" is 2 x 2.
   sim: {
+    lead: "SkinKit is made for trying ideas right on the body. Pick a spot, stick on a circuit and test it. Not right? Peel it off and try another spot or another module. This is a simulation of how the real modules behave.",
+    spots: [
+      { id: "cheek", name: "Cheek", x: 161, y: 60, layout: "grid", size: 9 },
+      { id: "neck", name: "Neck", x: 150, y: 114, layout: "line", angle: 0 },
+      { id: "chest", name: "Chest", x: 150, y: 178, layout: "line", angle: 0 },
+      { id: "forearm", name: "Forearm", x: 81, y: 277, layout: "line", angle: 97 },
+      { id: "hand", name: "Back of the hand", x: 73, y: 340, layout: "grid", size: 8 },
+      { id: "calf", name: "Calf", x: 173, y: 488, layout: "line", angle: 90 }
+    ],
+    presets: [
+      { name: "Night-walk light", spot: "calf", sensor: "none", modifier: "blink", actuator: "led" },
+      { name: "Personal space alert", spot: "neck", sensor: "proximity", modifier: "none", actuator: "vibration" },
+      { name: "Deep-breath reminder", spot: "cheek", sensor: "pressure", modifier: "none", actuator: "vibration" },
+      { name: "Exercise temperature", spot: "chest", sensor: "temperature", modifier: "none", actuator: "vibration" }
+    ],
     sensors: [
       { id: "none", name: "No sensor", when: "all the time", whenInverted: "never", control: "No sensor, so the signal is always on." },
       { id: "proximity", name: "Proximity", when: "when something comes close", whenInverted: "when nothing is close", control: "Move your hand closer", low: "Far", high: "Close" },
       { id: "light", name: "Light", when: "when the room is bright", whenInverted: "when it gets dark", control: "Room light", low: "Dark", high: "Bright" },
-      { id: "touch", name: "Capacitive touch", when: "while you touch it", whenInverted: "until you touch it", control: "Hold to touch" }
+      { id: "touch", name: "Capacitive touch", when: "while you touch it", whenInverted: "until you touch it", control: "Hold to touch" },
+      { id: "pressure", name: "Pressure", when: "when it is pressed", whenInverted: "until it is pressed", control: "Press on it", low: "Light", high: "Hard" },
+      { id: "temperature", name: "Temperature", when: "when your skin gets warm", whenInverted: "until your skin gets warm", control: "Skin temperature", low: "Cool", high: "Warm" }
     ],
     modifiers: [
       { id: "none", name: "No modifier" },

@@ -81,15 +81,30 @@
       </section>
 
       <section class="sk-section" id="try">
-        <h2>Try a circuit</h2>
-        <p class="sk-lead">Pick one module of each kind and see what your device would do. This is a simulation of how the real modules behave.</p>
-        <div class="sk-sim">
-          <div class="sk-chain" id="sk-chain"></div>
-          <div class="sk-stage">
-            <div class="sk-control" id="sk-control"></div>
-            <div class="sk-output" id="sk-output" aria-live="polite"></div>
+        <h2>Try it on the body</h2>
+        <p class="sk-lead" id="sk-try-lead"></p>
+        <div class="sk-proto">
+          <figure class="sk-body">
+            <svg id="sk-body" viewBox="40 12 220 564" role="img" aria-labelledby="sk-body-title"><title id="sk-body-title">A body with the circuit stuck on it</title></svg>
+            <figcaption class="sk-out-label" id="sk-out-label" aria-live="polite"></figcaption>
+          </figure>
+          <div class="sk-proto-panel">
+            <div class="sk-proto-block">
+              <p class="sk-control-label">Start from a workshop project</p>
+              <div class="sk-options" id="sk-presets"></div>
+            </div>
+            <div class="sk-proto-block">
+              <p class="sk-control-label">Pick a spot</p>
+              <div class="sk-options" id="sk-spots"></div>
+              <p class="sk-control-sub">Or tap a dot on the body.</p>
+            </div>
+            <div class="sk-proto-block">
+              <p class="sk-control-label">Build the circuit</p>
+              <div class="sk-chain" id="sk-chain"></div>
+            </div>
+            <div class="sk-proto-block sk-control" id="sk-control"></div>
+            <p class="sk-sentence" id="sk-sentence"></p>
           </div>
-          <p class="sk-sentence" id="sk-sentence"></p>
         </div>
       </section>
 
