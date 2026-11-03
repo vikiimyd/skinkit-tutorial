@@ -55,6 +55,15 @@ window.SKINKIT = {
     { name: "Ballet pointe trainer", where: "Foot", fig: "10H", text: "Lights up or buzzes when the heel drops too close to the floor.", chain: ["Main power", "Proximity", "Buzzer"] }
   ],
 
+  // Lab photos of SkinKit on the body (press images "7_SkinKit_*_example"). pos = CSS object-position, keeps the device in frame.
+  examples: [
+    { label: "Chest", image: "images/ex-chest.jpg", pos: "48% 62%" },
+    { label: "Shoulder", image: "images/ex-shoulder.jpg", pos: "28% 56%" },
+    { label: "Back of the neck", image: "images/ex-neck.jpg", pos: "52% 50%" },
+    { label: "Hand", image: "images/ex-hand.jpg", pos: "55% 50%" },
+    { label: "Leg", image: "images/ex-leg.jpg", pos: "65% 40%" }
+  ],
+
   // Four color families (paper, Fig. 3).
   families: [
     { id: "sensor", name: "Sensors", color: "#F2C230", plain: "Notice something about you or the world." },
