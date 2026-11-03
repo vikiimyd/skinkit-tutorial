@@ -290,8 +290,10 @@
   }
 
   // ---------- Part 1: "Try it on the body" ----------
-  // A circuit of real module photos stuck on a close-up of one body part. Pick a spot (peel and re-stick), swap modules, then test it.
-  const sim = { spot: "forearm", sensor: "proximity", modifier: "blink", actuator: "led", level: 0.2, touching: false };
+  // Real module photos stuck on a close-up of one body part: circuit modules sit on the seams between skin cloth wire modules,
+  // joined the way the real pieces join (without flaps, with flaps, wire to wire, or a Cross shape to turn).
+  // Pick a spot (peel and re-stick), swap modules and skin cloth, then test it.
+  const sim = { spot: "forearm", sensor: "proximity", modifier: "blink", actuator: "led", joint: "flaps", shape: "straight", level: 0.2, touching: false };
   const SLOTS = [
     { key: null, family: "power", title: "Power" },
     { key: "sensor", family: "sensor", title: "Sensor", list: K.sim.sensors },
@@ -299,38 +301,40 @@
     { key: "actuator", family: "actuator", title: "Actuator", list: K.sim.actuators }
   ];
   const pick = (list, id) => list.find((o) => o.id === id) || list[0];
-  // One close-up per spot, drawn in a 400 x 300 box. at = centre of the circuit, layout "line" runs along angle (degrees), "grid" is 2 x 2.
+  // One close-up per spot, drawn in a 400 x 300 box. at = centre of the circuit, angle = which way it runs (degrees),
+  // room = the most space it may take [along, across] (it shrinks to fit), turn = which way a Cross shape turns (1 or -1),
   // finger = the direction (degrees) a finger comes from when a sensor needs one.
   const SCENES = {
-    forearm: { at: [180, 152], layout: "line", angle: -2,
+    forearm: { at: [178, 152], angle: -2, room: [290, 112], turn: 1,
       svg: '<path class="sk-b-skin" d="M-10 88 C 90 82 210 96 312 110 C 330 112 348 102 374 98 L 410 96 L 410 224 L 374 216 C 348 212 330 198 312 194 C 210 198 90 216 -10 218 Z"/>' +
         '<path class="sk-b-crease" d="M318 118 C 322 140 322 166 318 188"/><path class="sk-b-crease" d="M382 120 C 386 150 386 180 382 206"/>' },
-    hand: { at: [200, 208], layout: "grid", finger: -20,
+    hand: { at: [200, 214], angle: -90, room: [150, 128], turn: 1, finger: -20,
       svg: '<path class="sk-b-skin" d="M150 310 L 146 270 C 136 236 128 200 130 168 L 132 140 L 270 140 L 270 170 C 272 206 262 240 252 270 L 250 310 Z"/>' +
         '<rect class="sk-b-skin" x="126" y="-20" width="34" height="176" rx="17"/><rect class="sk-b-skin" x="163" y="-40" width="36" height="196" rx="18"/>' +
         '<rect class="sk-b-skin" x="202" y="-26" width="34" height="182" rx="17"/><rect class="sk-b-skin" x="238" y="14" width="30" height="146" rx="15"/>' +
         '<path class="sk-b-skin" d="M134 236 C 108 214 84 188 70 158 C 62 140 78 128 92 138 C 112 154 130 176 146 196 Z"/>' +
         '<path class="sk-b-crease" d="M140 150 C 150 156 156 156 162 150 M178 148 C 186 154 194 154 200 148 M216 150 C 224 156 230 156 236 150 M244 156 C 252 162 258 162 264 156"/>' },
-    neck: { at: [200, 128], layout: "grid", finger: -20,
+    neck: { at: [200, 142], angle: 90, room: [170, 124], turn: -1, finger: -20,
       svg: '<path class="sk-b-skin" d="M134 20 C 132 110 128 156 98 182 C 60 206 10 218 -10 228 L -10 310 L 410 310 L 410 228 C 390 218 340 206 302 182 C 272 156 268 110 266 20 Z"/>' +
         '<path class="sk-b-hair" d="M96 -10 L 304 -10 L 304 30 C 296 58 270 62 248 52 C 226 44 174 44 152 52 C 130 62 104 58 96 30 Z"/>' +
         '<path class="sk-b-crease" d="M190 210 C 196 216 204 216 210 210 M200 232 L 200 300"/>' },
-    chest: { at: [200, 196], layout: "line", angle: 0,
+    chest: { at: [200, 192], angle: 0, room: [300, 160], turn: 1,
       svg: '<path class="sk-b-skin" d="M156 -10 L 244 -10 L 246 30 C 266 52 330 58 380 70 C 400 75 410 82 410 92 L 410 310 L -10 310 L -10 92 C -10 82 0 75 20 70 C 70 58 134 52 154 30 Z"/>' +
         '<path class="sk-b-crease" d="M112 84 C 146 72 170 76 192 90 M288 84 C 254 72 230 76 208 90"/><path class="sk-b-crease" d="M190 96 C 196 104 204 104 210 96"/>' },
-    cheek: { at: [232, 166], layout: "grid", finger: -40,
+    cheek: { at: [230, 166], angle: -90, room: [150, 124], turn: 1, finger: -40,
       svg: '<path class="sk-b-skin" d="M162 -10 C 140 22 130 54 132 84 C 124 100 108 120 100 136 C 96 144 102 150 114 152 C 112 160 116 164 114 170 C 110 176 116 182 118 188 C 114 200 118 214 136 226 C 150 236 168 240 186 238 C 190 262 192 290 190 310 L 340 310 C 330 270 320 236 318 200 C 340 170 350 120 340 70 C 330 20 300 -10 270 -10 Z"/>' +
         '<path class="sk-b-hair" d="M170 -10 L 410 -10 L 410 230 C 380 200 350 160 344 110 C 330 60 290 40 240 40 C 210 40 186 24 170 -10 Z"/>' +
         '<path class="sk-b-skin" d="M300 122 C 318 110 336 124 334 150 C 332 178 316 192 300 184 Z"/><path class="sk-b-crease" d="M310 134 C 322 132 326 150 318 168"/>' +
         '<path class="sk-b-crease" d="M138 98 C 150 92 162 94 170 100"/>' },
-    calf: { at: [201, 132], layout: "line", angle: 90, finger: -10,
+    calf: { at: [201, 128], angle: 90, room: [232, 96], turn: 1, finger: -10,
       svg: '<path class="sk-b-skin" d="M138 -10 L 264 -10 C 282 50 286 112 264 172 C 250 210 238 232 236 254 C 242 276 252 290 254 310 L 70 310 C 72 292 100 284 150 276 C 162 270 166 260 168 250 C 160 202 132 152 130 92 C 128 52 132 20 138 -10 Z"/>' +
         '<path class="sk-b-crease" d="M176 262 C 186 270 214 270 228 262"/>' }
   };
-  const BOARD = 40;   // a circuit module, in drawing units
+  // Sizes before a scene shrinks them: a circuit module is about two thirds of a skin cloth square (as in the worn photos).
+  const BOARD = 46, CLOTH = 69, FLAP = 24;
   const BOARD_IMG = { power: "main-power", touch: "capacitive-touch" };
   const boardImage = (id) => `images/fpcb-${BOARD_IMG[id] || id}.jpg`;
-  const deg = (r) => r * 180 / Math.PI;
+  const clothImage = (kind) => `images/cloth-${kind}.png`;   // cut from the lab's wire module photos
 
   function renderSim() {
     $("sk-try-lead").textContent = K.sim.lead || "";
@@ -347,12 +351,20 @@
         <div class="sk-options">${options}</div>
       </div>`;
     }).join("");
+    const C = K.sim.cloth;
+    $("sk-cloth").innerHTML = [["joint", "Joints", C.joints], ["shape", "Shape", C.shapes]].map(([key, title, list]) =>
+      `<div class="sk-slot" role="group" aria-label="${esc(title)}">
+        <div class="sk-slot-head"><strong>${esc(title)}</strong></div>
+        <div class="sk-options">${list.map((o) => `<button type="button" class="sk-opt" data-cloth="${key}" data-id="${esc(o.id)}" aria-pressed="false">${esc(o.name)}</button>`).join("")}</div>
+      </div>`).join("");
 
     const h = BOARD / 2;
     $("sk-body").insertAdjacentHTML("beforeend",
       '<defs><radialGradient id="sk-glow-grad"><stop offset="0" stop-color="#fff6c8"/><stop offset=".35" stop-color="#ffd23f" stop-opacity=".9"/><stop offset="1" stop-color="#ffd23f" stop-opacity="0"/></radialGradient>' +
       `<clipPath id="sk-b-clip"><rect x="${-h}" y="${-h}" width="${BOARD}" height="${BOARD}" rx="2"/></clipPath>` +
-      '<filter id="sk-b-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>' +
+      '<filter id="sk-b-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter>' +
+      '<filter id="sk-b-blur2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.6"/></filter>' +
+      '<linearGradient id="sk-b-fold" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient></defs>' +
       '<rect class="sk-b-room" x="-50" y="-50" width="500" height="400"/>' +
       '<g class="sk-b-scene"></g><g class="sk-b-device"></g><rect class="sk-b-dark" x="-50" y="-50" width="500" height="400"/>' +
       '<g class="sk-b-fx"></g>');
@@ -362,7 +374,7 @@
       if (!b) return;
       const p = K.sim.presets[+b.dataset.preset];
       const sensorChanged = sim.sensor !== p.sensor;
-      Object.assign(sim, { sensor: p.sensor, modifier: p.modifier, actuator: p.actuator });
+      Object.assign(sim, { sensor: p.sensor, modifier: p.modifier, actuator: p.actuator, joint: p.joint || sim.joint, shape: p.shape || sim.shape });
       if (sensorChanged) { sim.level = 0.2; sim.touching = false; renderControl(); }
       moveTo(p.spot, true);
     });
@@ -375,6 +387,12 @@
       if (!b || sim[b.dataset.key] === b.dataset.id) return;
       sim[b.dataset.key] = b.dataset.id;
       if (b.dataset.key === "sensor") { sim.level = 0.2; sim.touching = false; renderControl(); }
+      restick();
+    });
+    $("sk-cloth").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-cloth]");
+      if (!b || sim[b.dataset.cloth] === b.dataset.id) return;
+      sim[b.dataset.cloth] = b.dataset.id;
       restick();
     });
     renderControl();
@@ -411,65 +429,121 @@
     restick(spotId);
   }
 
-  // Where each module of the chain sits in the close-up, and which way its arrows point (dir, degrees).
+  // Lay the chain out, then fit it into the scene. Each circuit module sits on the seam between two skin cloth squares
+  // (its magnets on the line ends of both). Local units: a square is CLOTH wide, the chain starts at 0,0 going right.
   function layoutChain() {
     const sc = SCENES[sim.spot] || SCENES.forearm;
-    const parts = [{ family: "power", id: "power" }];
-    if (sim.sensor !== "none") parts.push({ family: "sensor", id: sim.sensor });
-    if (sim.modifier !== "none") parts.push({ family: "modifier", id: sim.modifier });
-    parts.push({ family: "actuator", id: sim.actuator });
-    let local;
-    if (sc.layout === "grid") {
-      const step = 64, cells = [[0, 0], [1, 0], [1, 1], [0, 1]];
-      const cols = parts.length > 1 ? 2 : 1, rows = parts.length > 2 ? 2 : 1;
-      local = parts.map((_, i) => [(cells[i][0] - (cols - 1) / 2) * step, (cells[i][1] - (rows - 1) / 2) * step]);
-    } else {
-      const step = 68, a = (sc.angle || 0) * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
-      local = parts.map((_, i) => { const t = (i - (parts.length - 1) / 2) * step; return [t * c, t * s]; });
+    const n = 2 + (sim.sensor !== "none") + (sim.modifier !== "none");
+    if (sim.shape !== "turn") return buildChain(sc, -1);
+    // Turn after the first circuit module or before the last one, whichever fits the spot bigger.
+    return [buildChain(sc, Math.min(1, n - 2)), buildChain(sc, n - 2)].sort((a, b) => b.k - a.k)[0];
+  }
+  function buildChain(sc, turnAt) {
+    const boards = [{ family: "power", id: "power" }];
+    if (sim.sensor !== "none") boards.push({ family: "sensor", id: sim.sensor });
+    if (sim.modifier !== "none") boards.push({ family: "modifier", id: sim.modifier });
+    boards.push({ family: "actuator", id: sim.actuator });
+    const n = boards.length, flaps = sim.joint === "flaps", turn = sc.turn || 1;
+    const reachAt = sim.shape === "reach" ? n - 2 : -1;               // the last gap gets two pieces joined wire to wire
+    const cloth = [];
+    let x = 0, y = 0, dir = 0;
+    const go = (d, dist) => { x += Math.cos(d * Math.PI / 180) * dist; y += Math.sin(d * Math.PI / 180) * dist; };
+    const kindOf = (inFlap, outFlap) => inFlap && outFlap ? "double-flaps" : inFlap ? "flap-in" : outFlap ? "flap-out" : "flat";
+    Object.assign(boards[0], { x, y, dir });
+    for (let i = 1; i < n; i++) {
+      if (i - 1 === turnAt) {
+        // A Cross shape lies flat; its arms reach out, so the circuit modules on two of them sit clear of each other.
+        go(dir, CLOTH / 2 + FLAP);
+        const out = dir + 90 * turn;
+        cloth.push({ kind: "cross", x, y, dir, turn });
+        go(out, CLOTH / 2 + FLAP); dir = out;
+      } else if (i - 1 === reachAt) {
+        go(dir, CLOTH / 2);
+        cloth.push({ kind: kindOf(flaps, true), x, y, dir, inFlap: flaps, outFlap: true, wireToWire: true });
+        go(dir, CLOTH);
+        cloth.push({ kind: kindOf(false, flaps), x, y, dir, inFlap: false, outFlap: flaps });
+        go(dir, CLOTH / 2);
+      } else {
+        go(dir, CLOTH / 2);
+        cloth.push({ kind: kindOf(flaps, flaps), x, y, dir, inFlap: flaps, outFlap: flaps });
+        go(dir, CLOTH / 2);
+      }
+      Object.assign(boards[i], { x, y, dir });
     }
-    parts.forEach((p, i) => { p.x = sc.at[0] + local[i][0]; p.y = sc.at[1] + local[i][1]; });
-    parts.forEach((p, i) => {
-      const a = i < parts.length - 1 ? p : parts[i - 1], b = i < parts.length - 1 ? parts[i + 1] : p;
-      p.dir = parts.length > 1 ? deg(Math.atan2(b.y - a.y, b.x - a.x)) : (sc.angle || 0);
+    // A board is raised when a flap folds up under it.
+    boards.forEach((bd) => { bd.raised = false; });
+    cloth.forEach((c) => {
+      if (c.kind === "cross") return;
+      const r = c.dir * Math.PI / 180, edge = (sgn) => [c.x + sgn * Math.cos(r) * CLOTH / 2, c.y + sgn * Math.sin(r) * CLOTH / 2];
+      const near = ([ex, ey]) => boards.find((bd) => Math.hypot(bd.x - ex, bd.y - ey) < 1);
+      const prev = near(edge(-1)), next = near(edge(1));
+      if (prev && c.inFlap) prev.raised = true;
+      if (next && c.outFlap) next.raised = true;
+      c.prevBoard = !!prev; c.nextBoard = !!next;
     });
-    return { sc, parts };
+
+    // Fit: centre the bounding box, shrink to the scene's room, turn to the scene's angle.
+    const pts = [];
+    boards.forEach((bd) => pts.push([bd.x - BOARD / 2, bd.y - BOARD / 2], [bd.x + BOARD / 2, bd.y + BOARD / 2]));
+    cloth.forEach((c) => { const h = CLOTH / 2 + (c.kind === "cross" ? FLAP : 0); pts.push([c.x - h, c.y - h], [c.x + h, c.y + h]); });
+    const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+    const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+    const room = sc.room || [300, 120];
+    const k = Math.min(1, room[0] / (Math.max(...xs) - Math.min(...xs)), room[1] / (Math.max(...ys) - Math.min(...ys)));
+    const a = (sc.angle || 0) * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+    const place = (o) => {
+      const lx = (o.x - cx) * k, ly = (o.y - cy) * k;
+      o.gx = sc.at[0] + lx * ca - ly * sa; o.gy = sc.at[1] + lx * sa + ly * ca; o.gdir = o.dir + (sc.angle || 0);
+    };
+    boards.forEach(place); cloth.forEach(place);
+    return { sc, k, boards, cloth };
   }
 
   function drawDevice() {
     const svg = $("sk-body");
-    const { sc, parts } = layoutChain();
-    const S = BOARD, pad = S / 0.975 / 2;   // the photos have a thin white margin; scale it past the clip
-    const f = (n) => +n.toFixed(1);
-    let out = "";
-    for (let i = 1; i < parts.length; i++) {   // a wire module (skin cloth diamond, three lines) under each joint
-      const a = parts[i - 1], b = parts[i];
-      const dist = Math.hypot(b.x - a.x, b.y - a.y), hd = dist / 2 + S * 0.32, hw = S * 0.64;
-      out += `<g transform="translate(${f((a.x + b.x) / 2)} ${f((a.y + b.y) / 2)}) rotate(${f(deg(Math.atan2(b.y - a.y, b.x - a.x)))})">` +
-        `<path class="sk-b-cloth" d="M${f(-hd)} 0 L0 ${f(-hw)} L${f(hd)} 0 L0 ${f(hw)} Z"/>` +
-        [-0.36, 0, 0.36].map((k) => `<rect class="sk-b-line" x="${f(-dist / 2)}" y="${f(k * S - 2.4)}" width="${f(dist)}" height="4.8"/>`).join("") + "</g>";
-    }
-    parts.forEach((p) => {
+    const { sc, k, boards, cloth } = layoutChain();
+    const S = BOARD, C = CLOTH, pad = S / 0.975 / 2;   // the board photos have a thin white margin; scale it past the clip
+    const f = (n) => +n.toFixed(2);
+    const at = (o, rot, extra) => `translate(${f(o.gx)} ${f(o.gy)}) rotate(${f(rot)}) scale(${f(k)})${extra || ""}`;
+    const flapImg = (x, w, h) => `<image href="${clothImage("flap")}" x="${f(x)}" y="${f(-h / 2)}" width="${f(w)}" height="${f(h)}" preserveAspectRatio="none"/>`;
+    let under = "", over = "", ridges = "";
+    cloth.forEach((c) => {
+      const flip = c.kind === "cross" && c.turn > 0 ? " scale(1 -1)" : "";   // the photo's second arrow points up; flip it to point where the chain turns
+      under += `<g class="sk-b-cloth" transform="${at(c, c.gdir, flip)}"><image href="${clothImage(c.kind)}" x="${-C / 2}" y="${-C / 2}" width="${C}" height="${C}"/></g>`;
+      // Flaps: folded up under a circuit module (a ridge at the seam), laid onto the next piece (wire to wire),
+      // or lying flat (all four arms of a Cross shape; two of them carry circuit modules at their ends).
+      const sides = c.kind === "cross" ? [180, 0, 90, -90] : [].concat(c.inFlap ? [180] : [], c.outFlap ? [0] : []);
+      sides.forEach((side) => {
+        const g = `<g transform="${at(c, c.gdir, flip)} rotate(${side})">`;   // the flip mirrors 90 and -90, which are both drawn
+        if (c.kind === "cross") under += g + `<g class="sk-b-cloth">${flapImg(C / 2 - 1, FLAP + 1, C)}</g></g>`;
+        else if (c.wireToWire && side === 0) over += g + `<g class="sk-b-cloth sk-b-w2w">${flapImg(C / 2 - 1, FLAP + 1, C)}</g></g>`;
+        else if (side === 180 ? c.prevBoard : c.nextBoard) ridges += g + `<g class="sk-b-ridge">${flapImg(C / 2 - 5, 5, C)}<rect x="${C / 2 - 5}" y="${-C / 2}" width="5" height="${C}" fill="url(#sk-b-fold)"/></g></g>`;
+      });
+    });
+    let out = under + over + ridges;
+    boards.forEach((p) => {
       const touch = p.family === "sensor" && p.id === "touch";
-      out += `<g class="sk-b-board${touch ? " is-touch" : ""}" data-family="${p.family}" transform="translate(${f(p.x)} ${f(p.y)})"` +
+      const lift = p.raised ? [3, 6.5, "sk-b-blur2"] : [1.5, 3, "sk-b-blur"];
+      out += `<rect class="sk-b-shadow${p.raised ? " is-raised" : ""}" x="${-S / 2}" y="${-S / 2}" width="${S}" height="${S}" rx="2" transform="translate(${f(p.gx + lift[0] * k)} ${f(p.gy + lift[1] * k)}) rotate(${f(p.gdir)}) scale(${f(k)})" filter="url(#${lift[2]})"/>`;
+      out += `<g class="sk-b-board${touch ? " is-touch" : ""}" data-family="${p.family}" transform="${at(p, p.gdir)}"` +
         (touch ? ' role="button" tabindex="0" aria-label="Touch the sensor"' : "") + ">" +
-        `<rect class="sk-b-shadow" x="${-S / 2}" y="${-S / 2}" width="${S}" height="${S}" rx="2" transform="translate(1.5 3) rotate(${f(p.dir)})" filter="url(#sk-b-blur)"/>` +
-        `<g transform="rotate(${f(p.dir)})"><g class="sk-b-shake"><image href="${boardImage(p.id)}" x="${f(-pad)}" y="${f(-pad)}" width="${f(pad * 2)}" height="${f(pad * 2)}" clip-path="url(#sk-b-clip)" preserveAspectRatio="none"/></g></g></g>`;
+        `<g class="sk-b-shake"><image href="${boardImage(p.id)}" x="${f(-pad)}" y="${f(-pad)}" width="${f(pad * 2)}" height="${f(pad * 2)}" clip-path="url(#sk-b-clip)" preserveAspectRatio="none"/></g></g>`;
     });
     svg.querySelector(".sk-b-device").innerHTML = out;
 
-    const act = parts[parts.length - 1], sen = parts.find((p) => p.family === "sensor");
+    const act = boards[boards.length - 1], sen = boards.find((p) => p.family === "sensor");
     let fx = `<g class="sk-b-out" data-kind="${sim.actuator}">`;
-    if (sim.actuator === "led") fx += `<circle class="sk-b-glow" cx="${f(act.x)}" cy="${f(act.y)}" r="${S * 1.5}" fill="url(#sk-glow-grad)"/>`;
-    else if (sim.actuator === "vibration") fx += [0.8, 1.15, 1.5].map((k, i) => `<circle class="sk-b-ripple" style="animation-delay:${i * 0.18}s" cx="${f(act.x)}" cy="${f(act.y)}" r="${f(S * k)}"/>`).join("");
-    else fx += `<g transform="translate(${f(act.x)} ${f(act.y)}) rotate(${f(act.dir)})">` + [0.8, 1.1, 1.4].map((k, i) => {
-      const r = S * k;
+    if (sim.actuator === "led") fx += `<circle class="sk-b-glow" cx="${f(act.gx)}" cy="${f(act.gy)}" r="${f(S * 1.5 * k)}" fill="url(#sk-glow-grad)"/>`;
+    else if (sim.actuator === "vibration") fx += [0.8, 1.15, 1.5].map((m, i) => `<circle class="sk-b-ripple" style="animation-delay:${i * 0.18}s" cx="${f(act.gx)}" cy="${f(act.gy)}" r="${f(S * m * k)}"/>`).join("");
+    else fx += `<g transform="${at(act, act.gdir)}">` + [0.8, 1.1, 1.4].map((m, i) => {
+      const r = S * m;
       return `<path class="sk-b-wave" style="animation-delay:${i * 0.15}s" d="M${f(r * 0.7)} ${f(-r * 0.7)} A${f(r)} ${f(r)} 0 0 1 ${f(r * 0.7)} ${f(r * 0.7)}"/>`;
     }).join("") + "</g>";
     fx += "</g>";
     if (sen && (sen.id === "proximity" || sen.id === "pressure" || sen.id === "touch")) {
       // a finger: coming close, pressing, or touching. Drawn tip first, pointing at the sensor.
       const fa = sc.finger ?? -70;
-      fx += `<g class="sk-b-finger" data-cx="${f(sen.x)}" data-cy="${f(sen.y)}" data-ang="${fa}"><g transform="rotate(${fa})">` +
+      fx += `<g class="sk-b-finger" data-cx="${f(sen.gx)}" data-cy="${f(sen.gy)}" data-ang="${fa}"><g transform="rotate(${fa})">` +
         '<rect class="sk-b-fskin" x="-15" y="-15" width="240" height="30" rx="15"/><ellipse class="sk-b-nail" cx="9" cy="0" rx="8" ry="9.5"/></g></g>';
     }
     svg.querySelector(".sk-b-fx").innerHTML = fx;
@@ -489,9 +563,15 @@
     const spotId = nextSpot || sim.spot;
     $("sk-spots").querySelectorAll("[data-spot]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.spot === spotId)));
     $("sk-chain").querySelectorAll(".sk-opt[data-key]").forEach((b) => b.setAttribute("aria-pressed", String(sim[b.dataset.key] === b.dataset.id)));
+    $("sk-cloth").querySelectorAll("[data-cloth]").forEach((b) => b.setAttribute("aria-pressed", String(sim[b.dataset.cloth] === b.dataset.id)));
+    const C = K.sim.cloth, spot = pick(K.sim.spots, spotId);
+    const joint = pick(C.joints, sim.joint), shape = pick(C.shapes, sim.shape);
+    $("sk-cloth-hint").textContent = [spot.curved && joint.onCurved ? joint.onCurved : joint.hint, shape.hint]
+      .filter(Boolean).join(" ").replace(/\{spot\}/g, spot.name.toLowerCase());
     $("sk-presets").querySelectorAll("[data-preset]").forEach((b) => {
       const p = K.sim.presets[+b.dataset.preset];
-      b.setAttribute("aria-pressed", String(p.spot === spotId && p.sensor === sim.sensor && p.modifier === sim.modifier && p.actuator === sim.actuator));
+      b.setAttribute("aria-pressed", String(p.spot === spotId && p.sensor === sim.sensor && p.modifier === sim.modifier && p.actuator === sim.actuator &&
+        (p.joint || sim.joint) === sim.joint && (p.shape || sim.shape) === sim.shape));
     });
   }
 

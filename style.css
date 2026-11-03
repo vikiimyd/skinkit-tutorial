@@ -140,8 +140,7 @@
 .sk-b-scene.is-peeled { opacity: 0; }
 .sk-b-device, .sk-b-fx { transition: opacity .2s, transform .2s; }
 .sk-b-device.is-peeled, .sk-b-fx.is-peeled { opacity: 0; transform: translateY(-8px); }
-.sk-b-cloth { fill: #f8f6f2; stroke: #d8d1c6; stroke-width: 1; }
-.sk-b-line { fill: #b8b9ba; }
+.sk-b-ridge image { opacity: .9; }
 .sk-b-shadow { fill: rgba(70, 40, 25, .3); }
 .sk-b-board.is-touch { cursor: pointer; }
 .sk-b-board.is-shaking .sk-b-shake { animation: sk-shake-s .09s linear infinite; }

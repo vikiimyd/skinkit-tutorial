@@ -67,18 +67,31 @@ window.SKINKIT = {
   sim: {
     lead: "SkinKit is made for trying ideas right on the body. Pick a spot, stick on a circuit and test it. Not right? Peel it off and try another spot or another module. This is a simulation of how the real modules behave.",
     spots: [
-      { id: "forearm", name: "Forearm" },
+      { id: "forearm", name: "Forearm", curved: true },
       { id: "hand", name: "Back of the hand" },
-      { id: "neck", name: "Back of the neck" },
+      { id: "neck", name: "Back of the neck", curved: true },
       { id: "chest", name: "Chest" },
-      { id: "cheek", name: "Cheek" },
-      { id: "calf", name: "Calf" }
+      { id: "cheek", name: "Cheek", curved: true },
+      { id: "calf", name: "Calf", curved: true }
     ],
+    // How the skin cloth wire modules join (see "How the modules connect" in Part 1). {spot} becomes the spot's name.
+    cloth: {
+      joints: [
+        { id: "flat", name: "Without flaps", hint: "Flat wire modules, with each circuit module laid across two of them. The slimmest choice for a flat, smooth spot.",
+          onCurved: "Flat wire modules are the slimmest, but on a curved spot like the {spot} a circuit module can lift off when you move. Try With flaps." },
+        { id: "flaps", name: "With flaps", hint: "The flaps of two wire modules fold up under each circuit module and bend like a hinge, so it stays connected on curved spots." }
+      ],
+      shapes: [
+        { id: "straight", name: "Straight" },
+        { id: "turn", name: "Turn a corner", hint: "A Cross shape piece turns the circuit." },
+        { id: "reach", name: "Reach further", hint: "Wire to wire: a flap folds onto a flat wire module and their magnets meet, so the circuit reaches further without another circuit module." }
+      ]
+    },
     presets: [
-      { name: "Night-walk light", spot: "calf", sensor: "none", modifier: "blink", actuator: "led" },
-      { name: "Personal space alert", spot: "neck", sensor: "proximity", modifier: "none", actuator: "vibration" },
-      { name: "Deep-breath reminder", spot: "cheek", sensor: "pressure", modifier: "none", actuator: "vibration" },
-      { name: "Exercise temperature", spot: "chest", sensor: "temperature", modifier: "none", actuator: "vibration" }
+      { name: "Night-walk light", spot: "calf", sensor: "none", modifier: "blink", actuator: "led", joint: "flaps", shape: "straight" },
+      { name: "Personal space alert", spot: "neck", sensor: "proximity", modifier: "none", actuator: "vibration", joint: "flaps", shape: "turn" },
+      { name: "Deep-breath reminder", spot: "cheek", sensor: "pressure", modifier: "none", actuator: "vibration", joint: "flaps", shape: "straight" },
+      { name: "Exercise temperature", spot: "chest", sensor: "temperature", modifier: "none", actuator: "vibration", joint: "flat", shape: "turn" }
     ],
     sensors: [
       { id: "none", name: "No sensor", when: "all the time", whenInverted: "never", control: "No sensor, so the signal is always on." },
