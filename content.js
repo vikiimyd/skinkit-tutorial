@@ -150,7 +150,8 @@ window.SKINKIT = {
   // materials: true shows that path's materials list in the step; a name ("modules") shows that list instead.
   // choices (optional): cards shown under the text, { id, name, image, text, go }. go = shot of the step a card opens (it also picks that type).
   // forType (optional): a note per wire module type, shown with a type picker. media: false hides the media box.
-  // wireBase: the wire module type the step videos show; it is picked by default.
+  // wireBase: the wire module type the step videos show; it is picked by default. For other types, a step with forType
+  // shows a blank video box and only their own note (none yet: left blank until they are filmed).
   // need (optional): what this step uses, shown as "You need" under the text. A name from the materials lists
   // reuses that item's photo; { name, note, image } adds a one-off. Leave it out on "Gather your materials" steps.
   wireBase: "double-flaps",
@@ -197,11 +198,7 @@ window.SKINKIT = {
         { id: "blank", name: "Blank", image: "images/wire-blank.jpg", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear. Nothing to add: use a diamond from Step 5 as it is." }
       ], media: false },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
-      "double-flaps": "The videos in the next steps show how to make this one.",
-      "flat": "The videos in the next steps show a Double flaps module. Flat uses the same materials, but has no flaps.",
-      "flap-in": "The videos in the next steps show a Double flaps module. Flap-in is the same, but with a flap on the input side only.",
-      "flap-out": "The videos in the next steps show a Double flaps module. Flap-out is the same, but with a flap on the output side only.",
-      "cross": "The videos in the next steps show a Double flaps module. Cross shape starts from a cross-shaped piece of skin cloth instead of a diamond. TODO: confirm how it is cut."
+      "double-flaps": "The videos in the next steps show how to make this one."
     }, tip: "", media: {
         image: "images/materials-modules.jpg",
         hotspots: [
@@ -212,11 +209,7 @@ window.SKINKIT = {
         ]
       } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
-      "double-flaps": "Run each line from one flap across to the other.",
-      "flat": "No flaps: keep the three lines short, inside the middle square of the diamond.",
-      "flap-in": "Run the lines onto a flap on the input side only, behind the arrow. On the other side they end on the diamond.",
-      "flap-out": "Run the lines onto a flap on the output side only, where the arrow points. On the other side they end on the diamond.",
-      "cross": "Lay three lines across and three lines up and down, so they cross in the middle. TODO: confirm which go on first."
+      "double-flaps": "Run each line from one flap across to the other."
     }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05.mp4", marks: [
           { t: 0, text: "Lay a strip of conductive tape across the diamond" },
           { t: 4, text: "Add the next line" },
@@ -224,11 +217,7 @@ window.SKINKIT = {
           { t: 12, text: "Three lines: power, ground, signal" }
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", forType: {
-      "double-flaps": "One strip of magnets at each end, under the line ends on both flaps.",
-      "flat": "One strip of magnets at each end of the short lines.",
-      "flap-in": "The magnets on the flap go under the line ends. Flap-in and Flap-out differ only in which way these magnets face, to match the signal direction. TODO: confirm how to tell which way.",
-      "flap-out": "As on Flap-in, but the magnets on the flap face the other way, to match the signal direction. TODO: confirm how to tell which way.",
-      "cross": "Magnets at all four ends. Then add two arrow stickers, one pointing across and one pointing up."
+      "double-flaps": "One strip of magnets at each end, under the line ends on both flaps."
     }, tip: "", need: ["Mini magnets", "Clear tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
           { t: 0, text: "Put magnets in the module's pin holes" },
           { t: 3.5, text: "Press clear tape over them" },
