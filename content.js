@@ -24,12 +24,24 @@ window.SKINKIT = {
     { title: "Wear it", text: "Arrange the skin cloth into any shape, preview it on your body, then stick it on with skin-safe tape." }
   ],
 
-  // "What's in the kit" cards, right under the intro.
+  // "What's in the kit", right under the intro. From the paper (sections 3.2, 3.4, 5.1.1): the set the lab gave
+  // each workshop participant. kitNote sits under the heading; kitExtras is the short list under the cards.
+  kitNote: "SkinKit isn't sold as a box. This is the set the lab gave each person in its workshops.",
   kit: [
-    { name: "Skin cloth", image: "images/mat-skin-cloth.jpg", text: "The base of everything. Temporary tattoo paper and water-soluble stabilizer pressed into a sheet thin and soft enough to wear, then cut into 4 cm diamonds." },
-    { name: "Wire modules", image: "images/wire-double-flaps.jpg", text: "Skin cloth with three lines of conductive fabric tape for power, ground and signal, and tiny magnets under the line ends. Five shapes, plus a blank piece for decoration." },
-    { name: "Circuit modules", image: "images/mat-circuit-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm, colored by the job they do. Each one has six magnets, three at each end." }
+    { name: "16 circuit modules", image: "images/kit-circuit-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm and 0.1 mm thin, each with a small pre-programmed chip, six magnets and printed arrows. The color tells you the job: 5 sensors (yellow), 5 actuators (white), 4 modifiers (blue) and 2 power modules (red)." },
+    { name: "Wire modules", image: "images/wire-double-flaps.jpg", text: "Diamonds of skin cloth, a soft sheet made from temporary tattoo paper and stabilizer. Each has three lines of conductive fabric tape for power, ground and signal, with magnets under the line ends. Five shapes: flat, flap-in, flap-out, double flaps and cross." },
+    { name: "Blank and stretchable pieces", image: "images/wire-blank.jpg", text: "Blank skin cloth with no lines, to fill out the shape and decorate. A stretchable piece made with Kinesio tape carries the circuit over joints that bend a lot, like the elbow or knee." }
   ],
+  kitExtras: {
+    title: "Plus tape and tools",
+    items: [
+      { name: "Double-sided tape", note: "Joins pieces for good once the layout is final." },
+      { name: "Medical-grade double-sided tape", note: "Sticks the device to your skin (the lab used Vapon)." },
+      { name: "Arrow stickers", note: "On the wire modules, to show which way the signal goes." },
+      { name: "Scissors and tweezers", note: "For trimming and for handling the tiny parts." },
+      { name: "Decorations", note: "Optional: washi tape, stickers, gems, color pencils." }
+    ]
+  },
 
   // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7).
   connect: {
