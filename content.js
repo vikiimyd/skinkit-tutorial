@@ -238,14 +238,14 @@ window.SKINKIT = {
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
       "double-flaps": "The videos in the next steps show how to make this one."
     }, tip: "", media: {
-        image: "images/materials-modules-4.jpg",
+        image: "images/materials-modules-5.jpg",
         hotspots: [
           { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
           { item: "Conductive fabric tape", x: 38.4, y: 15.6, w: 18.8, h: 13.3 },
           { item: "Scissors", x: 58.4, y: 10, w: 25.6, h: 20.6 },
           { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] },
-          { item: "Double-sided tape", x: 21.7, y: 62.7, w: 13.6, h: 23 },
-          { item: "Tweezers", x: 70.5, y: 72.5, w: 28.6, h: 9.5 }
+          { item: "Double-sided tape", x: 15.6, y: 62.7, w: 13.6, h: 23 },
+          { item: "Tweezers", x: 8.3, y: 8.5, w: 28.4, h: 8 }
         ]
       } },
     { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v3.mp4", marks: [
@@ -253,23 +253,25 @@ window.SKINKIT = {
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
-    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", forType: {
+    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "Make two strips of tape with three magnets each, spaced like the magnets on a circuit module. Stick one strip at each end of the diamond. The two strips must have opposite poles.", forType: {
       "double-flaps": "One strip of magnets at each end, on both flaps, where the line ends will go."
-    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07-v2.mp4", marks: [
-          { t: 0, text: "Put magnets in the module's pin holes" },
-          { t: 3.5, text: "Press double-sided tape over them" },
-          { t: 7, text: "Line the magnets up with tweezers" },
-          { t: 10.5, text: "Three magnets in a row" },
-          { t: 13.5, text: "One strip at each end of the diamond" },
-          { t: 17.5, text: "The two rows have opposite poles" }
+    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07-v3.mp4", marks: [
+          { t: 0, text: "Use a module to mark the magnet spots on the tape" },
+          { t: 5.6, text: "Put a magnet on each mark with tweezers" },
+          { t: 9.6, text: "Make a second strip the same way" },
+          { t: 14.6, text: "Line the magnets up with tweezers" },
+          { t: 21.3, text: "Stick one strip at each end of the diamond" },
+          { t: 26.9, text: "The two rows have opposite poles" }
         ] } },
-    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
+    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "Peel the backing off a strip of conductive fabric tape. Stick it across the diamond so it covers one magnet at each end, and fold each end around the edge of the flap. Repeat twice more for three lines: power, ground and signal.", forType: {
       "double-flaps": "Run each line from one flap across to the other."
-    }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05.mp4", marks: [
-          { t: 0, text: "Lay a strip of conductive tape across the diamond" },
-          { t: 4, text: "Add the next line" },
-          { t: 8, text: "Fold the ends over the edge" },
-          { t: 12, text: "Three lines: power, ground, signal" }
+    }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05-v2.mp4", marks: [
+          { t: 0, text: "Peel the backing off a strip of conductive tape" },
+          { t: 6.7, text: "Stick it down over a magnet on one flap" },
+          { t: 10.5, text: "Press it flat and fold the end around the edge" },
+          { t: 16.1, text: "Do the same on the other flap" },
+          { t: 20, text: "That's one line" },
+          { t: 22, text: "Repeat twice more for three lines" }
         ] } },
 
     { chapter: "u1", shot: "2-00", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
