@@ -152,7 +152,7 @@ window.SKINKIT = {
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors", note: "For cutting the tape into strips." },
-      { name: "Double-sided tape", note: "Holds the magnets in place on the module.", image: "images/mat-tape-roll.jpg" },
+      { name: "Double-sided tape", note: "Cut into small triangles for the corners of each diamond.", image: "images/mat-tape-roll.jpg" },
       { name: "Tweezers", note: "For lining up the tiny magnets.", image: "images/mat-tweezers-2.jpg" }
     ],
     use: [
@@ -236,6 +236,11 @@ window.SKINKIT = {
           { item: "Tweezers", x: 85.6, y: 40.5, w: 10.6, h: 49 }
         ]
       } },
+    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c.mp4", marks: [
+          { t: 0, text: "Cut the double-sided tape into small triangles" },
+          { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
+          { t: 19.3, text: "Leave the backing on for now" }
+        ] } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
       "double-flaps": "Run each line from one flap across to the other."
     }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05.mp4", marks: [
