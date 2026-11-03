@@ -175,13 +175,13 @@ window.SKINKIT = {
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
     { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load the dry skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
-    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond, but there are a few types. Pick the ones your design needs, and make several of each.", tip: "Not sure yet? Start with a few Flat and Flap-in modules.", choices: [
-        { name: "Flat", text: "Three short lines stay inside the middle square. The slimmest one, for flat spots." },
-        { name: "Flap-in", text: "The lines run onto an extra flap at the input end, behind the arrow. For curved spots." },
-        { name: "Flap-out", text: "Like Flap-in, but the flap is at the output end, where the arrow points." },
-        { name: "Double flaps", text: "Flaps at both ends, with the lines running from one flap to the other." },
-        { name: "Cross shape", text: "Lines run both across and up and down. Turns a corner or splits the circuit in two." },
-        { name: "Blank", text: "Skin cloth only, no lines or magnets. For decoration and filling gaps." }
+    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
+        { name: "Flat", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
+        { name: "Flap-in", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
+        { name: "Flap-out", text: "Like Flap-in, but the flap is on the side the arrow points to. Its magnets are flipped to match the signal direction, from input to output." },
+        { name: "Double flaps", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
+        { name: "Cross shape", text: "A four-way piece. Turns the circuit or splits it into two directions." },
+        { name: "Blank", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear." }
       ], media: { image: "images/1-05t.jpg" } },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
