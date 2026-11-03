@@ -238,6 +238,15 @@
 .sk-pop--below img { grid-row: span 2; }
 .sk-tip { border-left: 1px solid var(--sk-text); padding-left: 15px; font-style: italic; }
 .sk-tip:empty { display: none; }
+/* "You need": the materials one step uses */
+.sk-need { display: grid; gap: 8px; }
+.sk-need[hidden] { display: none; }
+#sk-root .sk-need-title { font-family: var(--sk-font-body); font-size: 12px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--sk-muted); margin: 0; padding: 0; }
+.sk-need-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.sk-need-list li { display: flex; align-items: center; gap: 10px; min-height: 50px; padding: 4px 14px 4px 4px; border: 1px solid var(--sk-line); background: #fff; font-size: 14.5px; color: var(--sk-heading); line-height: 1.3; max-width: 100%; }
+.sk-need-list li.no-img { padding-left: 14px; }
+.sk-need-list img { flex: none; width: 40px; height: 40px; object-fit: cover; background: var(--sk-placeholder); }
+.sk-need-list small { display: block; font-size: 12.5px; color: var(--sk-text); }
 .sk-step-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
 .sk-done { display: inline-flex; gap: 6px; align-items: center; font-size: 13.5px; color: var(--sk-text); white-space: nowrap; cursor: pointer; flex: none; }
 .sk-done input { accent-color: var(--sk-heading); }

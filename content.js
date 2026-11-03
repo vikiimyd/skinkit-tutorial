@@ -114,7 +114,9 @@ window.SKINKIT = {
       { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
-      { name: "Scissors", note: "For cutting the tape into strips." }
+      { name: "Scissors", note: "For cutting the tape into strips." },
+      { name: "Clear tape", note: "Holds the magnets in place on the module." },
+      { name: "Tweezers", note: "For lining up the tiny magnets." }
     ],
     use: [
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
@@ -135,6 +137,8 @@ window.SKINKIT = {
   // One step = one short looping clip. media: { video: "images/1-01.mp4" } or { image: "images/1-01.jpg" }.
   // marks (optional, video only): key actions in the clip, { t: seconds from the start, text }. Each gets a dot on the progress line, and its text shows under it while it plays.
   // materials: true shows that path's materials list in the step; a name ("modules") shows that list instead.
+  // need (optional): what this step uses, shown as "You need" under the text. A name from the materials lists
+  // reuses that item's photo; { name, note, image } adds a one-off. Leave it out on "Gather your materials" steps.
   steps: [
     { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
         image: "images/materials-make.jpg",
@@ -148,20 +152,20 @@ window.SKINKIT = {
           { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
         ]
       } },
-    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", media: { video: "images/1-02.mp4", marks: [
+    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02.mp4", marks: [
           { t: 0, text: "Peel the backing off the adhesive sheet" },
           { t: 4.5, text: "Lay it on the shiny side of the tattoo paper" },
           { t: 10.5, text: "Scrape out the bubbles" },
           { t: 14, text: "Flip the glued first layer over" },
           { t: 18.5, text: "Repeat the same steps" }
         ] } },
-    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: { video: "images/1-03.mp4", marks: [
+    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03.mp4", marks: [
           { t: 0, text: "Lay down the stabilizer and smooth it flat" },
           { t: 4, text: "Add a tattoo paper on top" },
           { t: 7.5, text: "Press out the bubbles" },
           { t: 11, text: "Done: three layers pressed together" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", media: { video: "images/1-04.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel, dry and cut", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry, then cut it into diamonds with a cutting machine. This is your skin cloth.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Water", "Electronic cutting machine"], media: { video: "images/1-04.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
           { t: 3.5, text: "Peel the backing off slowly" },
           { t: 11, text: "Let it dry" }
@@ -175,13 +179,13 @@ window.SKINKIT = {
           { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] }
         ]
       } },
-    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", media: { video: "images/1-05.mp4", marks: [
+    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05.mp4", marks: [
           { t: 0, text: "Lay a strip of conductive tape across the diamond" },
           { t: 4, text: "Add the next line" },
           { t: 8, text: "Fold the ends over the edge" },
           { t: 12, text: "Three lines: power, ground, signal" }
         ] } },
-    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", media: { video: "images/1-07.mp4", marks: [
+    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", need: ["Mini magnets", "Clear tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
           { t: 0, text: "Put magnets in the module's pin holes" },
           { t: 3.5, text: "Press clear tape over them" },
           { t: 7, text: "Line the magnets up with tweezers" },
@@ -200,17 +204,17 @@ window.SKINKIT = {
           { item: "Circuit modules", x: 67, y: 67, w: 15, h: 15 }
         ]
       } },
-    { chapter: "u1", shot: "1-06", title: "Meet the modules", text: "Every circuit module has a color. Yellow senses, blue changes the signal, white acts, and red powers the circuit. Arrows printed on each module show which way the signal goes.", tip: "Part 1 has a guide to all 16 modules.", media: null },
-    { chapter: "u1", shot: "2-01", title: "Follow the arrows", text: "There is one rule: the signal always flows in the direction of the arrows, from power to the end. Line up the arrows on the circuit modules with the arrows on the wire modules. The magnets only snap together the right way round.", tip: "", media: null },
-    { chapter: "u2", shot: "2-02", title: "Start with power and an LED", text: "Connect Main power to an LED and switch it on. The LED lights up. Try this on the table first: it is the easiest way to test.", tip: "", media: null },
-    { chapter: "u2", shot: "2-03", title: "Add a sensor", text: "Put a Proximity sensor between the power and the LED. Now the LED only lights up when something comes close to the sensor.", tip: "", media: null },
-    { chapter: "u2", shot: "2-04", title: "Add a modifier", text: "Put a Blink module between the sensor and the LED. Now the LED blinks when something comes close. Swap modules or change their order to see what else you can make.", tip: "Nothing happens? Check every arrow points the same way and the magnets are snapped together.", media: null },
+    { chapter: "u1", shot: "1-06", title: "Meet the modules", text: "Every circuit module has a color. Yellow senses, blue changes the signal, white acts, and red powers the circuit. Arrows printed on each module show which way the signal goes.", tip: "Part 1 has a guide to all 16 modules.", need: ["Circuit modules"], media: null },
+    { chapter: "u1", shot: "2-01", title: "Follow the arrows", text: "There is one rule: the signal always flows in the direction of the arrows, from power to the end. Line up the arrows on the circuit modules with the arrows on the wire modules. The magnets only snap together the right way round.", tip: "", need: ["Circuit modules", "Wire modules"], media: null },
+    { chapter: "u2", shot: "2-02", title: "Start with power and an LED", text: "Connect Main power to an LED and switch it on. The LED lights up. Try this on the table first: it is the easiest way to test.", tip: "", need: [{ name: "Main power and LED modules", image: "images/mat-circuit-modules.jpg" }, "Wire modules"], media: null },
+    { chapter: "u2", shot: "2-03", title: "Add a sensor", text: "Put a Proximity sensor between the power and the LED. Now the LED only lights up when something comes close to the sensor.", tip: "", need: [{ name: "A Proximity module", image: "images/mat-circuit-modules.jpg" }, "Wire modules"], media: null },
+    { chapter: "u2", shot: "2-04", title: "Add a modifier", text: "Put a Blink module between the sensor and the LED. Now the LED blinks when something comes close. Swap modules or change their order to see what else you can make.", tip: "Nothing happens? Check every arrow points the same way and the magnets are snapped together.", need: [{ name: "A Blink module", image: "images/mat-circuit-modules.jpg" }, "Wire modules"], media: null },
     { chapter: "u3", shot: "3-01", title: "Decide where to wear it", text: "Where on your body will it go? Is that spot flat or curved? How many modules will you use? What shape fits that spot best?", tip: "Forearm and wrist are good first choices: easy to reach and easy to see.", media: null },
-    { chapter: "u3", shot: "3-02", title: "Lay out the wire modules", text: "Fit the diamond wire modules together into the shape you want. Use the cross-shaped piece to turn a corner or split the circuit in two, and blank pieces for decoration.", tip: "", media: null },
-    { chapter: "u3", shot: "3-03", title: "Pick a connection", text: "On curved spots, connect two pieces that have flaps and set the module on the flaps, so it stays connected when you bend. On flat spots, use flat pieces for a slimmer look. To extend the circuit without a module, fold a flap onto a flat piece.", tip: "", media: null },
+    { chapter: "u3", shot: "3-02", title: "Lay out the wire modules", text: "Fit the diamond wire modules together into the shape you want. Use the cross-shaped piece to turn a corner or split the circuit in two, and blank pieces for decoration.", tip: "", need: ["Wire modules"], media: null },
+    { chapter: "u3", shot: "3-03", title: "Pick a connection", text: "On curved spots, connect two pieces that have flaps and set the module on the flaps, so it stays connected when you bend. On flat spots, use flat pieces for a slimmer look. To extend the circuit without a module, fold a flap onto a flat piece.", tip: "", need: ["Wire modules"], media: null },
     { chapter: "u3", shot: "3-04", title: "Preview it on your body", text: "Hold the device on your body and look in the mirror. Rearrange pieces or swap modules until you like it.", tip: "", media: null },
-    { chapter: "u3", shot: "3-05", title: "Make it permanent and decorate", text: "When the layout is final, secure the joints between wire modules with double-sided tape. Then, if you like, decorate it with washi tape, stickers, gems or markers.", tip: "Keep decorations off the magnets and metal lines so the circuit still works.", media: null },
-    { chapter: "u3", shot: "3-06", title: "Put it on", text: "Apply medical-grade double-sided tape to the back and press the device onto clean, dry skin. Switch on the power and try it out.", tip: "", media: null },
+    { chapter: "u3", shot: "3-05", title: "Make it permanent and decorate", text: "When the layout is final, secure the joints between wire modules with double-sided tape. Then, if you like, decorate it with washi tape, stickers, gems or markers.", tip: "Keep decorations off the magnets and metal lines so the circuit still works.", need: ["Double-sided tape", { name: "Decorations (optional)", note: "Washi tape, stickers, gems or markers" }], media: null },
+    { chapter: "u3", shot: "3-06", title: "Put it on", text: "Apply medical-grade double-sided tape to the back and press the device onto clean, dry skin. Switch on the power and try it out.", tip: "", need: [{ name: "Medical-grade double-sided tape", image: "images/mat-tape.jpg" }], media: null },
     { chapter: "u3", shot: "3-07", title: "Take it off", text: "TODO: how to remove it gently and store the modules for reuse.", tip: "The circuit modules are reusable: unsnap them for your next project.", media: null }
   ],
 
