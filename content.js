@@ -126,8 +126,8 @@ window.SKINKIT = {
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors", note: "For cutting the tape into strips." },
-      { name: "Clear tape", note: "Holds the magnets in place on the module.", image: "images/mat-clear-tape.jpg" },
-      { name: "Tweezers", note: "For lining up the tiny magnets.", image: "images/mat-tweezers.jpg" }
+      { name: "Double-sided tape", note: "Holds the magnets in place on the module.", image: "images/mat-tape-roll.jpg" },
+      { name: "Tweezers", note: "For lining up the tiny magnets.", image: "images/mat-tweezers-2.jpg" }
     ],
     use: [
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
@@ -200,14 +200,14 @@ window.SKINKIT = {
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
       "double-flaps": "The videos in the next steps show how to make this one."
     }, tip: "", media: {
-        image: "images/materials-modules-2.jpg",
+        image: "images/materials-modules-3.jpg",
         hotspots: [
           { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
           { item: "Conductive fabric tape", x: 38.4, y: 15.6, w: 18.8, h: 13.3 },
           { item: "Scissors", x: 58.4, y: 10, w: 25.6, h: 20.6 },
           { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] },
-          { item: "Clear tape", x: 14.5, y: 62.5, w: 15, h: 25.8 },
-          { item: "Tweezers", x: 84, y: 39.4, w: 15, h: 54.6 }
+          { item: "Double-sided tape", x: 21.7, y: 62.7, w: 13.8, h: 23.5 },
+          { item: "Tweezers", x: 85.6, y: 40.5, w: 10.6, h: 49 }
         ]
       } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
@@ -220,9 +220,9 @@ window.SKINKIT = {
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", forType: {
       "double-flaps": "One strip of magnets at each end, under the line ends on both flaps."
-    }, tip: "", need: ["Mini magnets", "Clear tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
+    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
           { t: 0, text: "Put magnets in the module's pin holes" },
-          { t: 3.5, text: "Press clear tape over them" },
+          { t: 3.5, text: "Press double-sided tape over them" },
           { t: 7, text: "Line the magnets up with tweezers" },
           { t: 10.5, text: "Three magnets in a row" },
           { t: 13.5, text: "One strip at each end of the diamond" }
