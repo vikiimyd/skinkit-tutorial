@@ -475,6 +475,11 @@
         return `<li><label><input type="checkbox" data-key="${esc(key)}"${got.has(key) ? " checked" : ""}><span><strong>${esc(m.name)}</strong>${m.note ? ` ${esc(m.note)}` : ""}${m.link ? " " + matLink(m.link) : ""}</span></label></li>`;
       }).join("")}</ul>`;
 
+    // Options to pick from (e.g. the wire module types), as name + one line each
+    const choices = $("sk-step-choices");
+    choices.hidden = !(s.choices && s.choices.length);
+    choices.innerHTML = (s.choices || []).map((c) => `<div><dt>${esc(c.name)}</dt><dd>${esc(c.text)}</dd></div>`).join("");
+
     // What this step uses, shown under its text. A name from the materials lists reuses that item's photo;
     // { name, note, image } adds a one-off (its note shows; listed items' notes stay on the "Gather" step).
     const need = $("sk-step-need");

@@ -138,6 +138,7 @@ window.SKINKIT = {
   // One step = one short looping clip. media: { video: "images/1-01.mp4" } or { image: "images/1-01.jpg" }.
   // marks (optional, video only): key actions in the clip, { t: seconds from the start, text }. Each gets a dot on the progress line, and its text shows under it while it plays.
   // materials: true shows that path's materials list in the step; a name ("modules") shows that list instead.
+  // choices (optional): a short list of options shown under the text, { name, text } each.
   // need (optional): what this step uses, shown as "You need" under the text. A name from the materials lists
   // reuses that item's photo; { name, note, image } adds a one-off. Leave it out on "Gather your materials" steps.
   steps: [
@@ -174,6 +175,14 @@ window.SKINKIT = {
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
     { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load the dry skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
+    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond, but there are a few types. Pick the ones your design needs, and make several of each.", tip: "Not sure yet? Start with a few Flat and Flap-in modules.", choices: [
+        { name: "Flat", text: "Three short lines stay inside the middle square. The slimmest one, for flat spots." },
+        { name: "Flap-in", text: "The lines run onto an extra flap at the input end, behind the arrow. For curved spots." },
+        { name: "Flap-out", text: "Like Flap-in, but the flap is at the output end, where the arrow points." },
+        { name: "Double flaps", text: "Flaps at both ends, with the lines running from one flap to the other." },
+        { name: "Cross shape", text: "Lines run both across and up and down. Turns a corner or splits the circuit in two." },
+        { name: "Blank", text: "Skin cloth only, no lines or magnets. For decoration and filling gaps." }
+      ], media: { image: "images/1-05t.jpg" } },
     { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
         image: "images/materials-modules.jpg",
         hotspots: [
