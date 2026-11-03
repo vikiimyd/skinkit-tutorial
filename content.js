@@ -206,20 +206,20 @@ window.SKINKIT = {
           { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
         ]
       } },
-    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package. You end up with two identical sheets, each with adhesive on its shiny side.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02-v3.mp4", marks: [
+    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package. You end up with two identical sheets, each with adhesive on its shiny side.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02-v4.mp4", marks: [
           { t: 0, text: "Peel the backing off the adhesive sheet" },
           { t: 4.5, text: "Lay it on the shiny side of the tattoo paper" },
           { t: 10.5, text: "Scrape out the bubbles" },
           { t: 13.9, text: "Repeat on the second sheet" }
         ] } },
-    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03-v3.mp4", marks: [
+    { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03-v4.mp4", marks: [
           { t: 0, text: "Lay the first tattoo paper on the stabilizer, adhesive side down" },
           { t: 5.9, text: "Press out the bubbles" },
           { t: 8.65, text: "Flip it over" },
           { t: 10.9, text: "Add the second tattoo paper on the other side" },
           { t: 17.4, text: "Press out the bubbles again" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v3.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v4.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
           { t: 5.5, text: "Flip it over" },
           { t: 7.6, text: "Wet the other side" },
@@ -248,19 +248,20 @@ window.SKINKIT = {
           { item: "Tweezers", x: 70.5, y: 72.5, w: 28.6, h: 9.5 }
         ]
       } },
-    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v2.mp4", marks: [
+    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v3.mp4", marks: [
           { t: 0, text: "Cut the double-sided tape into small triangles" },
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", forType: {
       "double-flaps": "One strip of magnets at each end, on both flaps, where the line ends will go."
-    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
+    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers"], media: { video: "images/1-07-v2.mp4", marks: [
           { t: 0, text: "Put magnets in the module's pin holes" },
           { t: 3.5, text: "Press double-sided tape over them" },
           { t: 7, text: "Line the magnets up with tweezers" },
           { t: 10.5, text: "Three magnets in a row" },
-          { t: 13.5, text: "One strip at each end of the diamond" }
+          { t: 13.5, text: "One strip at each end of the diamond" },
+          { t: 17.5, text: "The two rows have opposite poles" }
         ] } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
       "double-flaps": "Run each line from one flap across to the other."
