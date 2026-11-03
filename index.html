@@ -29,31 +29,31 @@
         <dl class="sk-facts" id="sk-facts"></dl>
         <div class="sk-actions">
           <a class="sk-btn sk-btn--primary" href="#tutorial">Start building</a>
-          <a class="sk-btn sk-btn--ghost" href="#try">Try a circuit</a>
+          <a class="sk-btn sk-btn--ghost" href="#connect">See how it connects</a>
         </div>
       </section>
 
-      <figure class="sk-strip">
-        <svg id="sk-strip" viewBox="0 0 1200 280" role="img" aria-label="A strip of diamond-shaped skin cloth with a power, sensor, modifier and LED module snapped along it; a signal travels from the power module to the LED."></svg>
-        <figcaption>Diamond skin cloth pieces, with modules snapped on from power to LED.</figcaption>
-      </figure>
+      <section class="sk-section sk-kit-section">
+        <h2>What's in the kit</h2>
+        <ul class="sk-kit" id="sk-kit"></ul>
+      </section>
+
+      <section class="sk-section" id="connect">
+        <h2>How the modules connect</h2>
+        <p class="sk-lead" id="sk-connect-lead"></p>
+        <div class="sk-connect">
+          <figure id="sk-connect-figure"></figure>
+          <ul class="sk-points" id="sk-connect-points"></ul>
+        </div>
+        <h3 class="sk-subhead" id="sk-conn-title"></h3>
+        <ul class="sk-conn-types" id="sk-conn-types"></ul>
+        <p class="sk-conn-rule" id="sk-conn-rule"></p>
+        <p class="sk-credit" id="sk-conn-credit"></p>
+      </section>
 
       <section class="sk-section">
         <h2>How it works</h2>
         <ol class="sk-how" id="sk-how"></ol>
-      </section>
-
-      <section class="sk-section" id="try">
-        <h2>Try a circuit</h2>
-        <p class="sk-lead">Pick one module of each kind and see what your device would do. This is a simulation of how the real modules behave.</p>
-        <div class="sk-sim">
-          <div class="sk-chain" id="sk-chain"></div>
-          <div class="sk-stage">
-            <div class="sk-control" id="sk-control"></div>
-            <div class="sk-output" id="sk-output" aria-live="polite"></div>
-          </div>
-          <p class="sk-sentence" id="sk-sentence"></p>
-        </div>
       </section>
 
       <section class="sk-section">
@@ -75,6 +75,19 @@
         <p class="sk-lead">Each color is a different kind of job. Tap a color to filter.</p>
         <div class="sk-chips" id="sk-filters"></div>
         <div class="sk-modules" id="sk-modules"></div>
+      </section>
+
+      <section class="sk-section" id="try">
+        <h2>Try a circuit</h2>
+        <p class="sk-lead">Pick one module of each kind and see what your device would do. This is a simulation of how the real modules behave.</p>
+        <div class="sk-sim">
+          <div class="sk-chain" id="sk-chain"></div>
+          <div class="sk-stage">
+            <div class="sk-control" id="sk-control"></div>
+            <div class="sk-output" id="sk-output" aria-live="polite"></div>
+          </div>
+          <p class="sk-sentence" id="sk-sentence"></p>
+        </div>
       </section>
 
       <section class="sk-section sk-next">

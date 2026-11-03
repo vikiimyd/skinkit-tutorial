@@ -24,6 +24,32 @@ window.SKINKIT = {
     { title: "Wear it", text: "Arrange the skin cloth into any shape, preview it on your body, then stick it on with skin-safe tape." }
   ],
 
+  // "What's in the kit" cards, right under the intro.
+  kit: [
+    { name: "Skin cloth", image: "images/mat-skin-cloth.jpg", text: "The base of everything. Temporary tattoo paper and water-soluble stabilizer pressed into a sheet thin and soft enough to wear, then cut into 4 cm diamonds." },
+    { name: "Wire modules", image: "images/wire-double-flaps.jpg", text: "Skin cloth with three lines of conductive fabric tape for power, ground and signal, and tiny magnets under the line ends. Five shapes, plus a blank piece for decoration." },
+    { name: "Circuit modules", image: "images/mat-circuit-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm, colored by the job they do. Each one has six magnets, three at each end." }
+  ],
+
+  // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7).
+  connect: {
+    lead: "A circuit module sits across two wire modules. Magnets do all the joining, so nothing is sewn or soldered, and every piece comes apart again.",
+    diagram: { image: "images/connect-exploded.jpg", alt: "Exploded view of one joint: top magnets, the flexible circuit board with its colored chip, the flap of the wire module, and the bottom magnets under the metal lines.", caption: "One joint, pulled apart. Diagram from the SkinKit paper (Ku et al., IMWUT 2021, Fig. 1)." },
+    points: [
+      { title: "Magnets clamp the lines", text: "Six magnets on the circuit module line up with six magnets under the wire modules' metal lines. They pull together through the board and the lines, pressing them into a solid electric contact." },
+      { title: "It only fits one way", text: "The two rows of magnets have opposite poles, so a module only clicks on in the direction the signal flows. Arrows on the modules show which way that is." },
+      { title: "Lift it off to reuse it", text: "Pull a module off and snap it on somewhere else. You can rearrange the pieces as often as you like." }
+    ],
+    typesTitle: "Three ways to join pieces",
+    types: [
+      { name: "With flaps", image: "images/connect-flaps.png", text: "Two wire modules with flaps meet edge to edge, and the circuit module sits on both flaps. The flaps bend with you, so use this on curved parts of the body." },
+      { name: "Without flaps", image: "images/connect-flat.png", text: "Two flat wire modules, with the circuit module laid across both. Slimmer, for flat, smooth parts of the body." },
+      { name: "Wire to wire", image: "images/connect-wire.png", text: "A flap folds onto a flat module and their magnets meet. No circuit module here: use it to extend the circuit, go around a part of the body, or change the shape." }
+    ],
+    rule: "The one rule: keep the signal going one way. Line up the arrows on every piece.",
+    credit: "Drawings from the SkinKit paper (Ku et al., IMWUT 2021, Fig. 7)."
+  },
+
   // The "Try a circuit" playground. Wording only; the behavior is in script.js.
   sim: {
     sensors: [

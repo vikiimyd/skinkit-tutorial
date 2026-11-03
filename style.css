@@ -156,6 +156,24 @@
 }
 
 /* Applications: the lab's 3-column square grid with captions under each image */
+/* What's in the kit, and how the modules connect */
+.sk-kit, .sk-conn-types { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; }
+.sk-kit li, .sk-conn-types li { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.sk-kit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--sk-placeholder); }
+#sk-root .sk-kit h3, #sk-root .sk-conn-types h3, #sk-root .sk-points h3 { font-size: 16px; padding-top: 4px; }
+.sk-kit p, .sk-conn-types p, .sk-points p { font-size: 14.5px; line-height: 1.7; }
+.sk-connect { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 6px; }
+.sk-connect img { width: 100%; height: auto; display: block; }
+.sk-connect figcaption, .sk-credit { font-size: 12px; line-height: 1.5; color: var(--sk-muted); padding-top: 8px; }
+.sk-points { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
+.sk-points li { display: grid; gap: 6px; padding-left: 16px; border-left: 2px solid var(--sk-line); }
+.sk-conn-types img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; display: block; background: #fff; border: 1px solid var(--sk-line); padding: 14px; box-sizing: border-box; }
+#sk-root .sk-conn-rule { font-family: var(--sk-font-heading); font-size: 15px; letter-spacing: .04em; color: var(--sk-heading); padding: 14px 18px; background: var(--sk-placeholder); margin-top: 10px; }
+#sk-root .sk-credit { padding-top: 0; }
+@media (max-width: 760px) {
+  .sk-kit, .sk-conn-types, .sk-connect { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+
 .sk-apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 36px; }
 .sk-app { display: grid; gap: 8px; align-content: start; min-width: 0; text-align: center; }
 .sk-app h3 { font-size: 14px; font-weight: 300; color: #404040; letter-spacing: .06em; padding-top: 6px; }
@@ -168,7 +186,7 @@
 .sk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .sk-chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--sk-line); background: var(--sk-bg); padding: 6px 14px; color: var(--sk-text); border-radius: 0; font-family: var(--sk-font-heading) !important; text-transform: uppercase; letter-spacing: .06em; font-size: 13px !important; }
 .sk-chip[aria-pressed="true"] { border-color: var(--sk-btn); color: var(--sk-heading); }
-.sk-dot { width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.25); flex: none; }
+.sk-swatch { width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.25); flex: none; }
 .sk-modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0 36px; }
 .sk-module { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--sk-line); }
 .sk-module-img { width: 88px; height: 88px; flex: none; object-fit: contain; display: block; }

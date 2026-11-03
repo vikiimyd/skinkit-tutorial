@@ -1,6 +1,7 @@
 // Builds the page from content.js (window.SKINKIT). Nothing here needs editing to change text.
 // Where you are is kept in the address after "#":
 //   #about        Part 1, what SkinKit is
+//   #connect      Part 1, scrolled to how the modules connect
 //   #try          Part 1, scrolled to the circuit playground
 //   #tutorial     Part 2, choose a path
 //   #make-3       Part 2, step 3 of "Make it yourself" (#use-3 for "I have a SkinKit")
@@ -191,6 +192,25 @@
     const ov = K.overviewVideo || {};
     renderMedia($("sk-overview-media"), ov.youtube ? { youtube: ov.youtube } : ov.media || null,
       "Overview video", "Clip " + (ov.shot || "0-00") + ". Add the YouTube link in content.js.", "SkinKit overview video");
+  }
+
+  // ---------- Part 1: what's in the kit, and how the modules connect ----------
+  function renderKit() {
+    const kit = $("sk-kit");
+    if (kit) kit.innerHTML = (K.kit || []).map((k) =>
+      `<li><img src="${esc(k.image)}" alt="" loading="lazy"><h3>${esc(k.name)}</h3><p>${esc(k.text)}</p></li>`).join("");
+    const c = K.connect;
+    if (!c || !$("connect")) return;
+    $("sk-connect-lead").textContent = c.lead || "";
+    $("sk-connect-figure").innerHTML = c.diagram
+      ? `<img src="${esc(c.diagram.image)}" alt="${esc(c.diagram.alt || "")}" loading="lazy">${c.diagram.caption ? `<figcaption>${esc(c.diagram.caption)}</figcaption>` : ""}`
+      : "";
+    $("sk-connect-points").innerHTML = (c.points || []).map((pt) => `<li><h3>${esc(pt.title)}</h3><p>${esc(pt.text)}</p></li>`).join("");
+    $("sk-conn-title").textContent = c.typesTitle || "";
+    $("sk-conn-types").innerHTML = (c.types || []).map((t) =>
+      `<li><img src="${esc(t.image)}" alt="" loading="lazy"><h3>${esc(t.name)}</h3><p>${esc(t.text)}</p></li>`).join("");
+    $("sk-conn-rule").textContent = c.rule || "";
+    $("sk-conn-credit").textContent = c.credit || "";
   }
 
   // ---------- Part 1: the strip drawing, with a signal running from power to the LED ----------
@@ -410,7 +430,7 @@
   function renderModules() {
     const filters = [{ id: "all", name: "All" }].concat(K.families);
     $("sk-filters").innerHTML = filters.map((f) =>
-      `<button type="button" class="sk-chip" data-f="${f.id}" aria-pressed="${f.id === moduleFilter}">${f.color ? `<span class="sk-dot" style="background:${f.color}"></span>` : ""}${esc(f.name)}</button>`).join("");
+      `<button type="button" class="sk-chip" data-f="${f.id}" aria-pressed="${f.id === moduleFilter}">${f.color ? `<span class="sk-swatch" style="background:${f.color}"></span>` : ""}${esc(f.name)}</button>`).join("");
     const list = K.modules.filter((m) => moduleFilter === "all" || m.family === moduleFilter);
     $("sk-modules").innerHTML = list.map((m) =>
       `<div class="sk-module">${m.image ? `<img class="sk-module-img" src="${esc(m.image)}" alt="" loading="lazy">` : tile(colorOfModule(m.name))}<div><h3>${esc(m.name)}</h3><p>${esc(m.does)}</p></div></div>`).join("");
@@ -715,12 +735,12 @@
       toTopOf(root);
     } else {
       showView("about");
-      if (r === "try") $("try").scrollIntoView({ block: "start" });
+      if (r === "try" || r === "connect") $(r).scrollIntoView({ block: "start" });
       else if (r === "about" || prevView !== "about") toTopOf(root);
     }
   }
 
-  const KNOWN = /^(about|try|faq|tutorial|(make|use)-\d+)$/;
+  const KNOWN = /^(about|try|connect|faq|tutorial|(make|use)-\d+)$/;
   function go(r) {
     if (useHash) {
       if (location.hash.slice(1) === r) render(r); else location.hash = r;
@@ -746,6 +766,7 @@
 
   // ---------- Start ----------
   renderIntro();
+  renderKit();
   renderStrip();
   renderSim();
   renderGallery();
