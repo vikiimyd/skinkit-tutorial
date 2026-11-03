@@ -104,9 +104,9 @@
 .sk-how-visual { display: flex; align-items: center; gap: 6px; min-height: 44px; }
 
 /* Try it on the body */
-.sk-proto { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 48px; align-items: start; border: 1px solid var(--sk-rule); padding: 24px; }
-.sk-body { margin: 0; background: var(--sk-placeholder); }
-.sk-body svg { display: block; height: 640px; width: auto; aspect-ratio: 220 / 564; max-width: 100%; margin: 0 auto; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.sk-proto { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px; align-items: start; border: 1px solid var(--sk-rule); padding: 24px; }
+.sk-body { margin: 0; background: var(--sk-placeholder); position: sticky; top: 24px; }
+.sk-body svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .sk-body .sk-out-label { padding: 10px 14px; border-top: 1px solid var(--sk-line); background: var(--sk-bg); text-align: center; }
 .sk-proto-panel { display: grid; gap: 24px; align-content: start; min-width: 0; }
 .sk-proto-block { display: grid; gap: 10px; min-width: 0; }
@@ -132,35 +132,35 @@
 .sk-sentence { font-family: var(--sk-font-heading); font-size: 19.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--sk-heading); line-height: 1.4; margin: 0; }
 /* the drawing */
 .sk-b-room { fill: var(--sk-placeholder); }
-.sk-b-shape { fill: color-mix(in srgb, #e8a389 calc(var(--warm, 0) * 60%), #dcd7d1); transition: fill .3s; }
+.sk-b-skin { fill: color-mix(in srgb, #e9866f calc(var(--warm, 0) * 45%), #ecd8cb); transition: fill .3s; }
+.sk-b-crease { fill: none; stroke: #d2ad9a; stroke-width: 2; stroke-linecap: round; }
+.sk-b-hair { fill: #48423e; }
 .sk-b-dark { fill: #14161b; opacity: var(--dark, 0); pointer-events: none; transition: opacity .2s; }
-.sk-b-dot { cursor: pointer; }
-.sk-b-dot circle { fill: var(--sk-heading); }
-.sk-b-dot .sk-b-hit { fill: transparent; }
-.sk-b-dot .sk-b-ring { fill: none; stroke: var(--sk-heading); stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: sk-ring 2.4s ease-out infinite; }
-.sk-b-dot.is-here { display: none; }
+.sk-b-scene { transition: opacity .2s; }
+.sk-b-scene.is-peeled { opacity: 0; }
 .sk-b-device, .sk-b-fx { transition: opacity .2s, transform .2s; }
 .sk-b-device.is-peeled, .sk-b-fx.is-peeled { opacity: 0; transform: translateY(-8px); }
-.sk-b-wire { fill: #f7f4ef; stroke: #c4bcb1; stroke-width: .6; }
-.sk-b-board { stroke: rgba(0, 0, 0, .45); stroke-width: .6; }
+.sk-b-cloth { fill: #f8f6f2; stroke: #d8d1c6; stroke-width: 1; }
+.sk-b-line { fill: #b8b9ba; }
+.sk-b-shadow { fill: rgba(70, 40, 25, .3); }
 .sk-b-board.is-touch { cursor: pointer; }
-.sk-b-board.is-shaking { transform-box: fill-box; animation: sk-shake-s .09s linear infinite; }
+.sk-b-board.is-shaking .sk-b-shake { animation: sk-shake-s .09s linear infinite; }
 .sk-b-out { opacity: 0; pointer-events: none; }
 .sk-b-out.is-on { opacity: var(--lvl, 1); }
-.sk-b-ripple { fill: none; stroke: var(--sk-heading); stroke-width: .8; transform-box: fill-box; transform-origin: center; animation: sk-ripple .9s ease-out infinite; }
-.sk-b-wave { fill: none; stroke: var(--sk-heading); stroke-width: 1; stroke-linecap: round; animation: sk-wave .8s ease-in-out infinite; }
+.sk-b-ripple { fill: none; stroke: var(--sk-heading); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: sk-ripple .9s ease-out infinite; }
+.sk-b-wave { fill: none; stroke: var(--sk-heading); stroke-width: 2.4; stroke-linecap: round; animation: sk-wave .8s ease-in-out infinite; }
 .sk-b-finger { pointer-events: none; }
-.sk-b-finger circle { fill: rgba(34, 34, 34, .16); stroke: rgba(34, 34, 34, .55); stroke-width: .8; }
-.sk-b-press { fill: rgba(34, 34, 34, .18); stroke: rgba(34, 34, 34, .55); stroke-width: .8; opacity: 0; transition: opacity .1s; pointer-events: none; }
-.sk-b-press.is-on { opacity: 1; }
+.sk-b-fskin { fill: #e3c2ae; stroke: #b98f79; stroke-width: 1.2; }
+.sk-b-nail { fill: #f5e9e2; stroke: #c9a28d; stroke-width: 1; }
+.sk-b-finger.is-pressing .sk-b-fskin { fill: #dcb29b; }
+.sk-b-finger.is-pressing .sk-b-nail { fill: #fbf3ee; }
 .is-blink { animation: sk-blink .8s steps(1) infinite; }
 .is-fade { animation: sk-fade 2s ease-in-out infinite; }
 @keyframes sk-blink { 50% { opacity: .08; } }
 @keyframes sk-fade { 0%, 100% { opacity: .1; } 50% { opacity: 1; } }
-@keyframes sk-ring { 0% { transform: scale(.6); opacity: .7; } 100% { transform: scale(1.7); opacity: 0; } }
 @keyframes sk-ripple { 0% { transform: scale(.5); opacity: .9; } 100% { transform: scale(1.15); opacity: 0; } }
 @keyframes sk-wave { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
-@keyframes sk-shake-s { 0% { transform: translate(-.8px, .4px); } 50% { transform: translate(.8px, -.4px); } 100% { transform: translate(-.8px, .4px); } }
+@keyframes sk-shake-s { 0% { transform: translate(-1.2px, .6px); } 50% { transform: translate(1.2px, -.6px); } 100% { transform: translate(-1.2px, .6px); } }
 
 /* Media placeholders, like the lab site's #EEE image boxes */
 .sk-media { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--sk-placeholder); overflow: hidden; }
@@ -365,17 +365,16 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
   .sk-how, .sk-apps, .sk-paths, .sk-two-col, .sk-step-layout { grid-template-columns: minmax(0, 1fr); }
   .sk-proto { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 24px; }
   .sk-proto-panel { display: contents; }
-  .sk-body { order: 0; }
+  .sk-body { order: 0; position: static; }
   #sk-control { order: 1; }
   #sk-sentence { order: 2; font-size: 16px; }
   .sk-proto-block:not(#sk-control) { order: 3; }
-  .sk-body svg { height: 480px; }
   .sk-slot { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .sk-toc, .sk-hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sk-progress-bar { transition: none; }
-  .sk-b-board.is-shaking, .sk-b-dot .sk-b-ring { animation: none; }
+  .sk-b-board.is-shaking .sk-b-shake { animation: none; }
   .sk-b-ripple { animation: none; opacity: .6; }
   .is-blink, .is-fade { animation-duration: 3s; }
 }
