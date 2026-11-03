@@ -152,7 +152,8 @@ window.SKINKIT = {
           { t: 0, text: "Peel the backing off the adhesive sheet" },
           { t: 4.5, text: "Lay it on the shiny side of the tattoo paper" },
           { t: 10.5, text: "Scrape out the bubbles" },
-          { t: 14, text: "Repeat on the second sheet" }
+          { t: 14, text: "Flip the glued first layer over" },
+          { t: 18.5, text: "Repeat the same steps" }
         ] } },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", media: { video: "images/1-03.mp4", marks: [
           { t: 0, text: "Lay down the stabilizer and smooth it flat" },
