@@ -47,6 +47,15 @@
     if (e.target.checked) got.add(k); else got.delete(k);
     try { localStorage.setItem(GOT_KEY, JSON.stringify(Array.from(got))); } catch (err) { /* private mode: keep it in memory */ }
   });
+  // Which wire module type the visitor is making (picked on the "Choose the modules" step)
+  const TYPE_KEY = "skinkit-module-type";
+  const moduleTypes = [].concat(...K.steps.map((s) => s.choices || [])).filter((c) => c.go);
+  let moduleType = (() => { try { return localStorage.getItem(TYPE_KEY) || ""; } catch (e) { return ""; } })();
+  if (!moduleTypes.some((t) => t.id === moduleType)) moduleType = moduleTypes.length ? moduleTypes[0].id : "";
+  function setModuleType(id) {
+    moduleType = id;
+    try { localStorage.setItem(TYPE_KEY, id); } catch (e) { /* private mode: keep it in memory */ }
+  }
   function saveDone() {
     try { localStorage.setItem(DONE_KEY, JSON.stringify(Array.from(done))); } catch (e) { /* private mode: keep it in memory */ }
   }
@@ -464,6 +473,7 @@
     $("sk-step-meta").textContent = `Step ${i + 1} of ${steps.length} · ${ch.name}`;
     if (changed) {
       document.querySelectorAll("#sk-root .sk-step > .sk-pop").forEach((n) => n.remove());
+      $("sk-step-media").hidden = s.media === false;
       renderMedia($("sk-step-media"), s.media, "Clip " + s.shot, "Video goes here", s.title);
       if (s.media && s.media.image && s.media.hotspots) addHotspots($("sk-step-media"), s.media.hotspots, path);
       renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), s.media && s.media.marks);
@@ -484,10 +494,28 @@
         return `<li><label><input type="checkbox" data-key="${esc(key)}"${got.has(key) ? " checked" : ""}><span><strong>${esc(m.name)}</strong>${m.note ? ` ${esc(m.note)}` : ""}${m.link ? " " + matLink(m.link) : ""}</span></label></li>`;
       }).join("")}</ul>`;
 
-    // Options to pick from (e.g. the wire module types), as name + one line each
+    // Options to pick from (the wire module types): a card each, which opens the step that makes it
     const choices = $("sk-step-choices");
     choices.hidden = !(s.choices && s.choices.length);
-    choices.innerHTML = (s.choices || []).map((c) => `<div><dt>${esc(c.name)}</dt><dd>${esc(c.text)}</dd></div>`).join("");
+    choices.innerHTML = (s.choices || []).map((c) => {
+      const inner = (c.image ? `<img src="${esc(c.image)}" alt="" loading="lazy">` : "") +
+        `<span class="sk-choice-name">${esc(c.name)}</span><span class="sk-choice-text">${esc(c.text)}</span>` +
+        (c.go ? `<span class="sk-choice-go">How to make it →</span>` : "");
+      return `<li>${c.go
+        ? `<button type="button" class="sk-choice" data-type="${esc(c.id)}" data-go="${esc(c.go)}">${inner}</button>`
+        : `<div class="sk-choice">${inner}</div>`}</li>`;
+    }).join("");
+
+    // Steps that differ by wire module type: a type picker and the note for the picked type
+    const typeBox = $("sk-step-type");
+    const notes = s.forType;
+    const picked = moduleTypes.find((t) => t.id === moduleType);
+    typeBox.hidden = !notes;
+    typeBox.innerHTML = notes
+      ? `<div class="sk-type-chips" role="group" aria-label="Wire module type">${moduleTypes.map((t) =>
+          `<button type="button" class="sk-chip" data-type="${esc(t.id)}" aria-pressed="${t.id === moduleType}">${esc(t.name)}</button>`).join("")}</div>` +
+        (picked && notes[moduleType] ? `<p class="sk-type-note"><strong>${esc(picked.name)}:</strong> ${esc(notes[moduleType])}</p>` : "")
+      : "";
 
     // What this step uses, shown under its text. A name from the materials lists reuses that item's photo;
     // { name, note, image } adds a one-off (its note shows; listed items' notes stay on the "Gather" step).
@@ -610,6 +638,19 @@
     if (n >= steps.length) { go(cur.path === "make" ? "use-1" : "tutorial"); return; }
     go(cur.path + "-" + (n + 1));
   }
+  $("sk-step-choices").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-go]");
+    if (!b) return;
+    setModuleType(b.dataset.type);
+    const idx = stepsOf(cur.path).findIndex((x) => x.shot === b.dataset.go);
+    if (idx >= 0) go(cur.path + "-" + (idx + 1));
+  });
+  $("sk-step-type").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-type]");
+    if (!b) return;
+    setModuleType(b.dataset.type);
+    showStep(cur.path, cur.i + 1);
+  });
   $("sk-prev").addEventListener("click", () => stepBy(-1));
   $("sk-next").addEventListener("click", () => stepBy(1));
   document.addEventListener("keydown", (e) => {

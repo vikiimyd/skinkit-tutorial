@@ -148,7 +148,8 @@ window.SKINKIT = {
   // One step = one short looping clip. media: { video: "images/1-01.mp4" } or { image: "images/1-01.jpg" }.
   // marks (optional, video only): key actions in the clip, { t: seconds from the start, text }. Each gets a dot on the progress line, and its text shows under it while it plays.
   // materials: true shows that path's materials list in the step; a name ("modules") shows that list instead.
-  // choices (optional): a short list of options shown under the text, { name, text } each.
+  // choices (optional): cards shown under the text, { id, name, image, text, go }. go = shot of the step a card opens (it also picks that type).
+  // forType (optional): a note per wire module type, shown with a type picker. media: false hides the media box.
   // need (optional): what this step uses, shown as "You need" under the text. A name from the materials lists
   // reuses that item's photo; { name, note, image } adds a one-off. Leave it out on "Gather your materials" steps.
   steps: [
@@ -185,15 +186,21 @@ window.SKINKIT = {
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
     { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load the dry skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
-    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
-        { name: "Flat", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
-        { name: "Flap-in", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
-        { name: "Flap-out", text: "Like Flap-in, but the flap is on the side the arrow points to. Its magnets are flipped to match the signal direction, from input to output." },
-        { name: "Double flaps", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
-        { name: "Cross shape", text: "A four-way piece. Turns the circuit or splits it into two directions." },
-        { name: "Blank", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear." }
-      ], media: { image: "images/1-05t-types.jpg" } },
-    { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", tip: "", media: {
+    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each. Pick one to see how to make it.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
+        { id: "flat", name: "Flat", image: "images/wire-flat.jpg", go: "1-05m", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
+        { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05m", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
+        { id: "flap-out", name: "Flap-out", image: "images/wire-flap-out.jpg", go: "1-05m", text: "Like Flap-in, but the flap is on the side the arrow points to. Its magnets are flipped to match the signal direction, from input to output." },
+        { id: "double-flaps", name: "Double flaps", image: "images/wire-double-flaps.jpg", go: "1-05m", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
+        { id: "cross", name: "Cross shape", image: "images/wire-cross.jpg", go: "1-05m", text: "A four-way piece. Turns the circuit or splits it into two directions." },
+        { id: "blank", name: "Blank", image: "images/wire-blank.jpg", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear. Nothing to add: use a diamond from Step 5 as it is." }
+      ], media: false },
+    { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
+      "flat": "A Flat module needs only what is below.",
+      "flap-in": "Also cut a strip of skin cloth, 10 × 28 mm, for the flap.",
+      "flap-out": "Also cut a strip of skin cloth, 10 × 28 mm, for the flap.",
+      "double-flaps": "Also cut two strips of skin cloth, 10 × 28 mm each, one for each flap.",
+      "cross": "Start from a cross-shaped piece of skin cloth instead of a diamond. TODO: confirm how it is cut."
+    }, tip: "", media: {
         image: "images/materials-modules.jpg",
         hotspots: [
           { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
@@ -202,13 +209,25 @@ window.SKINKIT = {
           { item: "Skin cloth diamonds", x: 38, y: 38.3, w: 46, h: 50.6, dot: [49, 20] }
         ]
       } },
-    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05.mp4", marks: [
+    { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "TODO: how to lay the three strips of conductive fabric tape (power, ground, signal) on the skin cloth.", forType: {
+      "flat": "Keep the three lines short, inside the middle square of the diamond.",
+      "flap-in": "Lay the flap on the input side, behind the arrow. Run the three lines from the diamond onto the flap, so the lines also hold the flap on.",
+      "flap-out": "Same as Flap-in, but the flap goes on the output side, where the arrow points.",
+      "double-flaps": "Put a flap on both sides, and run each line from one flap across to the other.",
+      "cross": "Lay three lines across and three lines up and down, so they cross in the middle. TODO: confirm which go on first."
+    }, tip: "", need: ["Skin cloth diamonds", "Conductive fabric tape", "Scissors"], media: { video: "images/1-05.mp4", marks: [
           { t: 0, text: "Lay a strip of conductive tape across the diamond" },
           { t: 4, text: "Add the next line" },
           { t: 8, text: "Fold the ends over the edge" },
           { t: 12, text: "Three lines: power, ground, signal" }
         ] } },
-    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", tip: "", need: ["Mini magnets", "Clear tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
+    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "TODO: where the magnets go under the lines, and which way they face.", forType: {
+      "flat": "One strip of magnets at each end of the lines.",
+      "flap-in": "The magnets on the flap go under the ends of the lines, where a circuit module will sit.",
+      "flap-out": "As on Flap-in, but the magnets on the flap face the other way, to match the signal direction. TODO: confirm how to tell which way they face.",
+      "double-flaps": "Magnets under the line ends on both flaps.",
+      "cross": "Magnets at all four ends. Then add two arrow stickers, one pointing across and one pointing up."
+    }, tip: "", need: ["Mini magnets", "Clear tape", "Tweezers"], media: { video: "images/1-07.mp4", marks: [
           { t: 0, text: "Put magnets in the module's pin holes" },
           { t: 3.5, text: "Press clear tape over them" },
           { t: 7, text: "Line the magnets up with tweezers" },
