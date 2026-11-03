@@ -152,12 +152,12 @@ window.SKINKIT = {
           { label: "Scissors", text: "For cutting the stabilizer to the size of the paper.", x: 74, y: 16, w: 12, h: 51 }
         ]
       } },
-    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02.mp4", marks: [
+    { chapter: "m1", shot: "1-02", title: "Add adhesive to two tattoo papers", text: "Take two sheets of temporary tattoo paper. On the shiny silicone side of each, apply the double-sided adhesive sheet that comes in the package. You end up with two identical sheets, each with adhesive on its shiny side.", tip: "", need: ["Temporary tattoo paper", { name: "Adhesive sheets", note: "From the tattoo paper package", image: "images/mat-adhesive.jpg" }, "Plastic scraper"], media: { video: "images/1-02.mp4", marks: [
           { t: 0, text: "Peel the backing off the adhesive sheet" },
           { t: 4.5, text: "Lay it on the shiny side of the tattoo paper" },
           { t: 10.5, text: "Scrape out the bubbles" },
-          { t: 14, text: "Flip the glued first layer over" },
-          { t: 18.5, text: "Repeat the same steps" }
+          { t: 14, text: "Turn the second tattoo paper shiny side up" },
+          { t: 18.5, text: "Repeat on the second sheet" }
         ] } },
     { chapter: "m1", shot: "1-03", title: "Sandwich the stabilizer", text: "Cut a piece of water-soluble stabilizer the same size as the paper. Stick one tattoo paper on each side of it, adhesive facing in. Press out any bubbles.", tip: "Press from the center outward. Bubbles weaken the layers.", need: [{ name: "The two tattoo papers from the last step", image: "images/mat-tattoo-paper.jpg" }, "Water-soluble stabilizer", "Scissors", "Plastic scraper"], media: { video: "images/1-03.mp4", marks: [
           { t: 0, text: "Lay down the stabilizer and smooth it flat" },
