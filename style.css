@@ -192,6 +192,13 @@
 /* The step you are on: grey band, dark bar on the left, bold text */
 .sk-toc button[aria-current="step"] { color: var(--sk-heading); background: var(--sk-placeholder); border-left-color: var(--sk-btn); font-weight: 600; }
 .sk-toc button[aria-current="step"] .sk-check { color: var(--sk-heading); }
+#sk-root .sk-toc .sk-toc-type { font-family: var(--sk-font-heading); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; color: var(--sk-heading); padding-top: 8px; padding-bottom: 4px; }
+#sk-root .sk-toc .sk-toc-type::before { content: "+"; width: 14px; flex: none; color: var(--sk-muted); }
+#sk-root .sk-toc .sk-toc-type[aria-expanded="true"]::before { content: "\2212"; }
+#sk-root .sk-toc .sk-toc-type.is-blank { display: flex; align-items: baseline; gap: 8px; margin: 0; padding: 8px 8px 4px 0; color: var(--sk-muted); }
+#sk-root .sk-toc .sk-toc-type.is-blank::before { content: ""; }
+.sk-toc .sk-toc-type.is-blank small { text-transform: none; letter-spacing: 0; font-family: var(--sk-font-body); }
+#sk-root .sk-toc button.is-sub { padding-left: 31px; }
 .sk-check { width: 20px; color: var(--sk-meta); flex: none; font-variant-numeric: tabular-nums; }
 .sk-step { min-width: 0; display: grid; gap: 14px; align-content: start; }
 .sk-step-meta { font-size: 13.5px; color: var(--sk-meta); }
