@@ -291,7 +291,7 @@ window.SKINKIT = {
     "Wear SkinKit on clean, healthy skin only, using medical-grade tape.",
     "Take it off if your skin itches or turns red.",
     "Keep it away from water.",
-    "The shape-memory alloy and thermochromic modules heat up when active. TODO: wear-time guidance from the lab."
+    "Connect and test the circuit on a table before you put it on your body: a short circuit can make modules hot."
   ],
 
   // Questions people ask. confirm: true shows a "To confirm" tag until the lab checks the answer;
@@ -309,7 +309,7 @@ window.SKINKIT = {
     { q: "What battery does it use, and how long does it last?", a: "Pick the battery by its voltage. Different sensors need different voltages, but 2 to 4 V generally works. We use a 3.7 V battery, which goes in the main power module. How long it lasts depends on the battery and on which modules you run.", confirm: false },
     { q: "I connected everything but nothing lights up. What now?", a: "Check that every arrow points the same way, from the power module to the end, and that every magnet is snapped on firmly.", confirm: false },
     { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: true },
-    { q: "Do any modules get hot?", a: "The shape-memory alloy and thermochromic modules get warm while they are working.", confirm: true }
+    { q: "Do any modules get hot?", a: "Mainly when there is a short circuit. So always connect and test the circuit on a table first, then put it on your body. The shape-memory alloy and thermochromic modules also get warm while they are working.", confirm: false }
   ],
 
   citation: {
