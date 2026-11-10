@@ -5,7 +5,7 @@ Open index.html in any browser. No install or build step.
 Structure
   Part 1  Introduction: what the kit holds, the electronic modules it pairs with and what it is for,
           then the two parts (Make and Use). Below: what's in the kit, how it works,
-          overview video, examples and a guide to all modules. How the modules connect and the
+          overview video and examples. The guide to all modules, how the modules connect and the
           three ways to join pieces are steps in "Use the kit".
   Part 2  Make & use: the visitor picks a path, then goes step by step.
             "Make the kit"      for kit makers: make the skin cloth and the wire modules
