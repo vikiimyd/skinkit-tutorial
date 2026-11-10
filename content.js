@@ -125,7 +125,7 @@ window.SKINKIT = {
     modules: [
       { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
       { name: "Second skin cloth sheet", note: "The Letter-size sheet you kept whole. The magnets go on it, then you cut it apart with scissors.", image: "images/mat-skin-cloth.jpg" },
-      { name: "Magnet template", note: "US Letter paper (8.5 × 11 in). Print at 100% / actual size, not Fit to page. It shows where every magnet goes.", link: { text: "Download the PDF (US Letter)", href: "downloads/skinkit-magnet-sheet-v7.pdf" } },
+      { name: "Magnet template", note: "US Letter paper (8.5 × 11 in). Print at 100% / actual size, not Fit to page. It shows where every magnet goes.", link: { text: "Download the PDF (US Letter)", href: "downloads/skinkit-magnet-sheet-v8.pdf" } },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors", note: "For cutting the tape into strips and the magnet pieces apart." },
@@ -222,7 +222,7 @@ window.SKINKIT = {
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
-    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds the magnets for many wire modules of all five types, so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v7.jpg" } },
+    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds the magnets for many wire modules of all five types, so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v8.jpg" } },
     { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. The black and white ends of each module just need to be opposite.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
           { t: 0, text: "The two rows have opposite poles" },
           { t: 4.77, text: "Put a magnet on each dot with tweezers" },
