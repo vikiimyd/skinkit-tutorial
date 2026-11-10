@@ -92,11 +92,13 @@ window.SKINKIT = {
 
   // ---------- Part 2: Make & use ----------
   paths: {
+    // highlight (optional): a key point shown in bold on the path card.
     // audience: the small line above each path's name. Everyone learns Use; only kit makers need Make.
     make: {
       name: "Make the kit",
       audience: "For kit makers",
       pitch: "Make the skin cloth and the wire modules that hold everything together, from tattoo paper, magnets and conductive tape.",
+      highlight: "You make two sheets of skin cloth: one to cut with the machine, one to cut with scissors.",
       note: ""
     },
     use: {
@@ -140,7 +142,7 @@ window.SKINKIT = {
   },
 
   chapters: [
-    { id: "m1", path: "make", name: "Make the skin cloth" },
+    { id: "m1", path: "make", name: "Make two sheets of skin cloth" },
     // byType: after the step with choices, the chapter's steps are done once per wire module type,
     // and the step list shows one group per type.
     { id: "m2", path: "make", name: "Make the wire modules", byType: true },
@@ -153,6 +155,7 @@ window.SKINKIT = {
   // marks (optional, video only): key actions in the clip, { t: seconds from the start, text }. Each gets a dot on the progress line, and its text shows under it while it plays.
   // materials: true shows that path's materials list in the step; a name ("modules") shows that list instead.
   // choices (optional): cards shown under the text, { id, name, image, text, go }. go = shot of the step a card opens (it also picks that type).
+  // callout (optional): a key point shown in bold in a box before the step text.
   // forType (optional): a note per wire module type, shown with a type picker. media: false hides the media box.
   // wireBase: the wire module type the step videos show; it is picked by default. For other types, a step with forType
   // shows a blank video box and only their own note (none yet: left blank until they are filmed).
@@ -160,7 +163,7 @@ window.SKINKIT = {
   // reuses that item's photo; { name, note, image } adds a one-off. Leave it out on "Gather your materials" steps.
   wireBase: "double-flaps",
   steps: [
-    { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "You make two sheets of skin cloth: one goes in the cutting machine and becomes the diamonds, the other holds the magnets and you cut it apart with scissors later. Lay out everything below so it is within reach.", materials: true, tip: "", media: {
+    { chapter: "m1", shot: "1-01", title: "Gather your materials", callout: "You make two sheets of skin cloth: one for the cutting machine to cut into diamonds, and one for the magnets that you cut with scissors.", text: "Lay out everything below so it is within reach. The list is for both sheets.", materials: true, tip: "", media: {
         image: "images/materials-make.jpg",
         // Clickable things on the photo, in % of its width/height (a dot marks each one; dot: [x, y] in % of the area moves it). item = a name from materials (uses its note and image);
         // label/text/image override or describe things that are not on the list.
@@ -192,7 +195,7 @@ window.SKINKIT = {
           { t: 12, text: "Peel the backing papers off slowly" },
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
-    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load one dry sheet of skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others. Keep the second sheet whole: the magnets go on it, and you cut it with scissors in Step 11.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
+    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", callout: "One sheet is for cutting. Save the other sheet whole for the next stage.", text: "Load one dry sheet of skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others. The saved sheet holds the magnets in Make the wire modules.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
     { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each. Pick one to see how to make it.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
         { id: "flat", name: "Flat", image: "images/wire-flat.jpg", go: "1-05m", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
         { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05m", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },

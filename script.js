@@ -358,6 +358,7 @@
         <p class="sk-eyebrow">${esc(info.audience || eyebrow[p])}</p>
         <h2>${esc(info.name)}</h2>
         <p>${esc(info.pitch)}</p>
+        ${info.highlight ? `<p class="sk-callout">${esc(info.highlight)}</p>` : ""}
         <p class="sk-path-meta">${steps.length} steps: ${esc(chs.map((c) => c.name).join(", "))}${n ? ` · ${n} done` : ""}</p>
         ${info.note ? `<p class="sk-note">${esc(info.note)}</p>` : ""}
         <span class="sk-path-go">${go} →</span>
@@ -402,6 +403,7 @@
       renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), media && media.marks);
     }
     $("sk-step-title").textContent = s.title;
+    $("sk-step-callout").textContent = s.callout || "";
     $("sk-step-text").textContent = s.text;
     $("sk-step-tip").textContent = s.tip || "";
 
