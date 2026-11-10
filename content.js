@@ -5,17 +5,24 @@
 // shot: the clip ID from the shot list. Put the exported clip in images/ and set media.
 
 window.SKINKIT = {
-  // ---------- Part 1: What is SkinKit ----------
+  // ---------- Part 1: Introduction ----------
+  // The intro says, in order: what the kit holds, the electronic modules it works with, what it is for.
+  // Then "parts" introduces the two paths, Make and Use (their names and pitches are in paths below).
   headline: "Electronics you wear like a temporary tattoo.",
   intro:
     "SkinKit is a construction kit for building interactive devices that sit right on your skin. " +
-    "Small circuit modules click onto soft, tattoo-thin pieces called skin cloth, held by tiny magnets. " +
-    "Each module does one job, and the order you connect them decides what your device does. No coding, no soldering.",
+    "The kit has five kinds of wire module and a blank piece, all made of soft, tattoo-thin skin cloth. " +
+    "You pair it with 16 small electronic modules that click on with tiny magnets. " +
+    "Its purpose is to let anyone try out an idea for an on-skin device quickly, right on the body, with no coding and no soldering.",
   facts: [
-    { value: "16", label: "modules to combine" },
-    { value: "2 × 2 cm", label: "per module, paper-thin" },
+    { value: "5 + 1", label: "wire module shapes, plus a blank piece" },
+    { value: "16", label: "electronic modules to pair with it" },
     { value: "< 23 min", label: "average first build in the lab's study" }
   ],
+  parts: {
+    title: "Two parts: Make and Use",
+    lead: "Everyone can learn to use the modules. Only some people need to make the kit, for example to prepare kits for a workshop."
+  },
   overviewVideo: { youtube: "https://youtu.be/Er8yJwxMnp4", shot: "0-00" }, // the lab's SkinKit video, as on the SkinKit page of the lab site
 
   how: [
@@ -26,11 +33,11 @@ window.SKINKIT = {
 
   // "What's in the kit", right under the intro. From the paper (sections 3.2, 3.4, 5.1.1): the set the lab gave
   // each workshop participant. kitNote sits under the heading; kitExtras is the short list under the cards.
-  kitNote: "SkinKit isn't sold as a box. This is the set the lab gave each person in its workshops.",
+  kitNote: "The kit is made of skin cloth: five kinds of wire module and a blank piece. You use it with 16 electronic modules made by the lab. SkinKit isn't sold as a box. This is the set the lab gave each person in its workshops.",
   kit: [
-    { name: "16 circuit modules", image: "images/kit-circuit-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm and 0.1 mm thin, each with a small pre-programmed chip, six magnets and printed arrows. The color tells you the job: 5 sensors (yellow), 5 actuators (white), 4 modifiers (blue) and 2 power modules (red)." },
-    { name: "Wire modules", image: "images/wire-double-flaps.jpg", text: "Diamonds of skin cloth, a soft sheet made from temporary tattoo paper and stabilizer. Each has three lines of conductive fabric tape for power, ground and signal, with magnets under the line ends. Five shapes: flat, flap-in, flap-out, double flaps and cross." },
-    { name: "Blank and stretchable pieces", image: "images/wire-blank.jpg", text: "Blank skin cloth with no lines, to fill out the shape and decorate. A stretchable piece made with Kinesio tape carries the circuit over joints that bend a lot, like the elbow or knee." }
+    { name: "Five wire modules", image: "images/wire-double-flaps.jpg", text: "Diamonds of skin cloth, a soft sheet made from temporary tattoo paper and stabilizer. Each has three lines of conductive fabric tape for power, ground and signal, with magnets under the line ends. Five shapes: flat, flap-in, flap-out, double flaps and cross." },
+    { name: "Blank and stretchable pieces", image: "images/wire-blank.jpg", text: "Blank skin cloth with no lines, to fill out the shape and decorate. A stretchable piece made with Kinesio tape carries the circuit over joints that bend a lot, like the elbow or knee." },
+    { name: "Plus 16 electronic modules", image: "images/kit-circuit-modules.jpg", text: "You use the kit with these. Flexible circuit boards, 2 × 2 cm and 0.1 mm thin, each with a small pre-programmed chip, six magnets and printed arrows. The color tells you the job: 5 sensors (yellow), 5 actuators (white), 4 modifiers (blue) and 2 power modules (red)." }
   ],
   kitExtras: {
     title: "Plus tape and tools",
@@ -165,14 +172,17 @@ window.SKINKIT = {
 
   // ---------- Part 2: Make & use ----------
   paths: {
+    // audience: the small line above each path's name. Everyone learns Use; only kit makers need Make.
     make: {
-      name: "Make it yourself",
-      pitch: "Make the skin cloth and the wire modules that hold everything together, from tattoo paper and conductive tape.",
+      name: "Make the kit",
+      audience: "For kit makers",
+      pitch: "Make the skin cloth and the wire modules that hold everything together, from tattoo paper, magnets and conductive tape.",
       note: "The colored circuit modules are made by the lab. TODO: confirm whether their files will be shared."
     },
     use: {
-      name: "I have a SkinKit",
-      pitch: "Already have a kit? Build a circuit, shape it for your body and wear it.",
+      name: "Use the kit",
+      audience: "For everyone",
+      pitch: "Learn how the modules connect, build a circuit, shape it for your body and wear it.",
       note: ""
     },
     availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses. TODO: confirm wording with the lab."
@@ -286,7 +296,7 @@ window.SKINKIT = {
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "Make two strips of tape with three magnets each, spaced like the magnets on a circuit module. Our printable magnet template shows where each magnet goes. Stick one strip at each end of the diamond. The two strips must have opposite poles.", forType: {
       "double-flaps": "One strip of magnets at each end, on both flaps, where the line ends will go."
-    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers", { name: "Magnet template", note: "Print on Letter paper at 100% size.", link: { text: "Download the PDF", href: "" } }], media: { video: "images/1-07-v5.mp4", marks: [
+    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers", { name: "Magnet template", note: "Print on Letter paper at 100% size.", link: { text: "Download the PDF", href: "" } }], media: { video: "images/1-07-v6.mp4", marks: [
           { t: 0, text: "Use a module to mark the magnet spots on the tape" },
           { t: 5.1, text: "The two rows have opposite poles" },
           { t: 10.1, text: "Put a magnet on each mark with tweezers" },

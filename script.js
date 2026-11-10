@@ -4,7 +4,7 @@
 //   #connect      Part 1, scrolled to how the modules connect
 //   #try          Part 1, scrolled to the circuit playground
 //   #tutorial     Part 2, choose a path
-//   #make-3       Part 2, step 3 of "Make it yourself" (#use-3 for "I have a SkinKit")
+//   #make-3       Part 2, step 3 of "Make the kit" (#use-3 for "Use the kit")
 // If the host site already uses "#" for its own pages, set window.SKINKIT_USE_HASH = false
 // before this script; the page then switches parts without touching the address.
 (function () {
@@ -173,6 +173,10 @@
     $("sk-headline").textContent = K.headline;
     $("sk-intro").textContent = K.intro;
     $("sk-facts").innerHTML = K.facts.map((f) => `<div><dt>${esc(f.value)}</dt><dd>${esc(f.label)}</dd></div>`).join("");
+    if (K.parts) {
+      $("sk-parts-title").textContent = K.parts.title || "";
+      $("sk-parts-lead").textContent = K.parts.lead || "";
+    }
 
     const diamonds = (() => {
       // Four small skin cloth diamonds in a zigzag, with the three lines running through them
@@ -701,7 +705,8 @@
       use: $("sk-how").querySelector("li:nth-child(2) .sk-how-visual")
     };
     const eyebrow = { make: "Start from scratch", use: "Start with a kit" };
-    $("sk-paths").innerHTML = PATHS.map((p) => {
+    // The same two cards show in Part 2 and under the introduction in Part 1
+    const html = PATHS.map((p) => {
       const info = K.paths[p];
       const steps = stepsOf(p);
       const chs = chaptersOf(p);
@@ -711,7 +716,7 @@
       const go = n && firstOpen > 0 ? `Continue at step ${target}` : n === steps.length && n ? "Go through it again" : "Start";
       return `<a class="sk-path" href="#${p}-${target}">
         <div class="sk-how-visual" aria-hidden="true">${visuals[p] ? visuals[p].innerHTML : ""}</div>
-        <p class="sk-eyebrow">${eyebrow[p]}</p>
+        <p class="sk-eyebrow">${esc(info.audience || eyebrow[p])}</p>
         <h2>${esc(info.name)}</h2>
         <p>${esc(info.pitch)}</p>
         <p class="sk-path-meta">${steps.length} steps: ${esc(chs.map((c) => c.name).join(", "))}${n ? ` · ${n} done` : ""}</p>
@@ -719,6 +724,8 @@
         <span class="sk-path-go">${go} →</span>
       </a>`;
     }).join("");
+    $("sk-paths").innerHTML = html;
+    if ($("sk-intro-paths")) $("sk-intro-paths").innerHTML = html;
     $("sk-availability").textContent = K.paths.availability || "";
   }
 
@@ -981,6 +988,7 @@
       toTopOf(root);
     } else {
       showView("about");
+      renderChooser();
       if (r === "try" || r === "connect") $(r).scrollIntoView({ block: "start" });
       else if (r === "about" || prevView !== "about") toTopOf(root);
     }

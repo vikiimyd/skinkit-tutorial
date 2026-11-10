@@ -3,11 +3,12 @@ SkinKit tutorial page (Hybrid Body Lab)
 Open index.html in any browser. No install or build step.
 
 Structure
-  Part 1  What is SkinKit: headline, animated module strip, how it works, "Try a circuit"
-          playground, overview video, what people have made, guide to all modules.
+  Part 1  Introduction: what the kit holds, the electronic modules it pairs with and what it is for,
+          then the two parts (Make and Use). Below: what's in the kit, how the modules connect,
+          how it works, overview video, examples, guide to all modules, "Try it on the body".
   Part 2  Make & use: the visitor picks a path, then goes step by step.
-            "Make it yourself"  make the skin cloth and the wire modules
-            "I have a SkinKit"  build a circuit, shape it and wear it
+            "Make the kit"      for kit makers: make the skin cloth and the wire modules
+            "Use the kit"       for everyone: build a circuit, shape it and wear it
           Words to know, skin safety and FAQ sit at the bottom of Part 2.
 
 Files
@@ -37,8 +38,8 @@ Links into the page
   index.html#try        the "Try a circuit" playground
   index.html#tutorial   Part 2, choose a path
   index.html#faq        the FAQ
-  index.html#make-1     step 1 of "Make it yourself"
-  index.html#use-5      step 5 of "I have a SkinKit"
+  index.html#make-1     step 1 of "Make the kit"
+  index.html#use-5      step 5 of "Use the kit"
 
 Putting it on the lab site
   Option A: host this folder (e.g. GitHub Pages) and link to it from the lab site.
