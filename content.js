@@ -19,8 +19,8 @@ window.SKINKIT = {
     { value: "16", label: "electronic modules to pair with it" }
   ],
   parts: {
-    title: "Two parts: Make and Use",
-    lead: "Everyone can learn to use the modules. Making the kit is optional: it is meant for those who want to fabricate their own skin cloth and wire modules, such as workshop facilitators and researchers."
+    title: "This tutorial has two parts: Make and Use",
+    lead: "Make shows how to fabricate the skin cloth and the wire modules. Use shows how to build a circuit with the modules and wear it. Everyone can learn to use the modules. Making the kit is optional: it is meant for those who want to fabricate their own skin cloth and wire modules, such as workshop facilitators and researchers."
   },
   overviewVideo: { youtube: "https://youtu.be/Er8yJwxMnp4", shot: "0-00" }, // the lab's SkinKit video, as on the SkinKit page of the lab site
 
