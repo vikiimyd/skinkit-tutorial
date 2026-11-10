@@ -101,7 +101,10 @@
 .sk-how { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; counter-reset: sk-how; }
 .sk-how li { display: grid; gap: 12px; align-content: start; counter-increment: sk-how; }
 .sk-how h3::before { content: counter(sk-how) ". "; }
-.sk-how-visual { display: flex; align-items: center; gap: 6px; min-height: 44px; }
+.sk-how-visual { display: flex; align-items: center; gap: 6px; min-height: 48px; }
+/* Small real photos used as icons: circuit modules (square) and wire modules (diamond) */
+.sk-mod-photo { width: 48px; height: 48px; flex: none; display: block; object-fit: contain; }
+.sk-wire-photo { width: 52px; height: 52px; flex: none; display: block; object-fit: contain; margin: -2px -5px; mix-blend-mode: multiply; }
 
 /* Media placeholders, like the lab site's #EEE image boxes */
 .sk-media { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--sk-placeholder); overflow: hidden; }
@@ -132,6 +135,7 @@
 #sk-root .sk-kit-section .sk-subhead { padding-top: 20px; font-size: 16px; }
 #sk-root .sk-kit h3, #sk-root .sk-conn-types h3, #sk-root .sk-points h3 { font-size: 16px; padding-top: 4px; }
 .sk-kit p, .sk-conn-types p, .sk-points p { font-size: 14.5px; line-height: 1.7; }
+#sk-root .sk-kit .sk-kit-highlight { font-size: 15.5px; font-weight: 600; color: var(--sk-heading); padding-left: 12px; border-left: 3px solid var(--sk-btn); }
 .sk-connect { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 6px; }
 .sk-connect img { width: 100%; height: auto; display: block; }
 .sk-connect figcaption, .sk-credit { font-size: 12px; line-height: 1.5; color: var(--sk-muted); padding-top: 8px; }
@@ -146,13 +150,6 @@
   .sk-kit, .sk-conn-types, .sk-connect { grid-template-columns: minmax(0, 1fr); gap: 28px; }
 }
 
-.sk-apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 36px; }
-.sk-app { display: grid; gap: 8px; align-content: start; min-width: 0; text-align: center; }
-.sk-app h3 { font-size: 14px; font-weight: 300; color: #404040; letter-spacing: .06em; padding-top: 6px; }
-.sk-app p { font-size: 14px; line-height: 1.7; }
-.sk-app .sk-app-meta { font-family: var(--sk-font-heading); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--sk-muted); }
-.sk-app .sk-recipe { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 6px; font-size: 12.5px; line-height: 1.5; }
-.sk-chip-mini { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
 
 /* Module guide */
 .sk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -164,7 +161,11 @@
 .sk-module-img { width: 88px; height: 88px; flex: none; object-fit: contain; display: block; }
 .sk-module h3 { font-size: 14px !important; color: var(--sk-heading) !important; }
 .sk-module p { font-size: 14px; line-height: 1.6; }
-.sk-next { justify-items: start; }
+/* Closing banner of Part 1 */
+.sk-next { justify-items: center; text-align: center; gap: 18px; margin-top: 60px; padding: 64px 24px; background: var(--sk-placeholder); }
+#sk-root .sk-next h2 { font-size: 34px; letter-spacing: .04em; }
+.sk-next .sk-lead { margin: 0; }
+#sk-root .sk-next .sk-btn { padding: 14px 32px; }
 
 /* Part 2: chooser */
 .sk-chooser { display: grid; gap: 20px; padding-top: 60px; }
@@ -306,9 +307,9 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
 .sk-demo-controls { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .sk-demo-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .sk-demo-mod { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--sk-heading); }
-.sk-demo-mod .sk-mod { transition: background-color .2s, box-shadow .2s; }
-.sk-demo-mod.is-lit .sk-mod { --c: var(--sk-glow); box-shadow: 0 0 0 4px rgba(255, 210, 63, .35), 0 0 18px 6px rgba(255, 210, 63, .45); }
-.sk-demo-mod.is-sensing .sk-mod { box-shadow: 0 0 0 4px rgba(242, 194, 48, .3); }
+.sk-demo-mod .sk-mod-photo { transition: box-shadow .2s, filter .2s; }
+.sk-demo-mod.is-lit .sk-mod-photo { box-shadow: 0 0 0 4px rgba(255, 210, 63, .45), 0 0 20px 8px rgba(255, 210, 63, .55); filter: brightness(1.08); }
+.sk-demo-mod.is-sensing .sk-mod-photo { box-shadow: 0 0 0 4px rgba(242, 194, 48, .35); }
 .sk-demo-out { margin: 0; font-size: 14.5px; color: var(--sk-heading); }
 .sk-demo-svg { width: 100%; max-width: 480px; height: auto; display: block; }
 .sk-demo-board { fill: #e08a1e; fill-opacity: .16; stroke: #c47714; stroke-width: 1.5; }
@@ -321,7 +322,7 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
 .sk-demo-ok { fill: none; stroke: #2f8a4a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .sk-demo-bad { fill: none; stroke: var(--sk-red); stroke-width: 2.5; stroke-linecap: round; }
 .sk-demo-badlab { font: 600 10px var(--sk-font-body); fill: var(--sk-red); }
-@media (prefers-reduced-motion: reduce) { .sk-demo-mod .sk-mod { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .sk-demo-mod .sk-mod-photo { transition: none; } }
 .sk-confirm { display: inline-block; margin-left: 8px; padding: 0 6px; border: 1px dashed var(--sk-muted); font: 400 11px/18px var(--sk-font-heading); letter-spacing: .08em; text-transform: uppercase; color: var(--sk-muted); font-style: normal; vertical-align: 1px; }
 
 .sk-footer { margin-top: 70px; padding-top: 20px; border-top: 1px solid var(--sk-rule); font-size: 13px; display: grid; gap: 4px; }
@@ -331,7 +332,7 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
   .sk-scrub-label { min-height: 3em; } /* room for two lines, so the text below does not jump */
   #sk-root { padding-block: 24px 24px; }
   .sk-header { flex-direction: column; align-items: flex-start; }
-  .sk-how, .sk-apps, .sk-paths, .sk-two-col, .sk-step-layout { grid-template-columns: minmax(0, 1fr); }
+  .sk-how, .sk-paths, .sk-two-col, .sk-step-layout { grid-template-columns: minmax(0, 1fr); }
   .sk-toc, .sk-hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
