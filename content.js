@@ -49,9 +49,9 @@ window.SKINKIT = {
     ]
   },
 
-  // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7).
+  // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7). Shown in the "Use the kit" path:
+  // the diagram and points on the step with block: "connect", the three joins on the step with block: "joins".
   connect: {
-    lead: "A circuit module sits across two wire modules. Magnets do all the joining, so nothing is sewn or soldered, and every piece comes apart again.",
     diagram: { image: "images/connect-exploded.jpg", alt: "Exploded view of one joint: top magnets, the flexible circuit board with its colored chip, the flap of the wire module, and the bottom magnets under the metal lines.", caption: "One joint, pulled apart. Diagram from the SkinKit paper (Ku et al., IMWUT 2021, Fig. 1)." },
     points: [
       { title: "Magnets clamp the lines", text: "Six magnets on the circuit module line up with six magnets under the wire modules' metal lines. They pull together through the board and the lines, pressing them into a solid electric contact." },
@@ -274,13 +274,14 @@ window.SKINKIT = {
         ]
       } },
     { chapter: "u1", shot: "1-06", title: "Meet the modules", text: "Every circuit module has a color. Yellow senses, blue changes the signal, white acts, and red powers the circuit. Arrows printed on each module show which way the signal goes.", tip: "Part 1 has a guide to all 16 modules.", need: ["Circuit modules"], media: null },
+    { chapter: "u1", shot: "1-06c", title: "How the modules connect", text: "A circuit module sits across two wire modules. Magnets do all the joining, so nothing is sewn or soldered, and every piece comes apart again.", block: "connect", tip: "", media: false },
     { chapter: "u1", shot: "2-01", title: "Follow the arrows", text: "There is one rule: the signal always flows in the direction of the arrows, from power to the end. Line up the arrows on the circuit modules with the arrows on the wire modules. The magnets only snap together the right way round.", tip: "", need: ["Circuit modules", "Wire modules"], media: null },
     { chapter: "u2", shot: "2-02", title: "Start with power and an LED", text: "Connect Main power to an LED and switch it on. The LED lights up. Try this on the table first: it is the easiest way to test.", tip: "", need: [{ name: "Main power and LED modules", image: "images/mat-circuit-modules.jpg" }, "Wire modules"], media: null },
     { chapter: "u2", shot: "2-03", title: "Add a sensor", text: "Put a Proximity sensor between the power and the LED. Now the LED only lights up when something comes close to the sensor.", tip: "", need: [{ name: "A Proximity module", image: "images/mat-circuit-modules.jpg" }, "Wire modules"], media: null },
     { chapter: "u2", shot: "2-04", title: "Add a modifier", text: "Put a Blink module between the sensor and the LED. Now the LED blinks when something comes close. Swap modules or change their order to see what else you can make.", tip: "Nothing happens? Check every arrow points the same way and the magnets are snapped together.", need: [{ name: "A Blink module", image: "images/mat-circuit-modules.jpg" }, "Wire modules"], media: null },
     { chapter: "u3", shot: "3-01", title: "Decide where to wear it", text: "Where on your body will it go? Is that spot flat or curved? How many modules will you use? What shape fits that spot best?", tip: "Forearm and wrist are good first choices: easy to reach and easy to see.", media: null },
     { chapter: "u3", shot: "3-02", title: "Lay out the wire modules", text: "Fit the diamond wire modules together into the shape you want. Use the cross-shaped piece to turn a corner or split the circuit in two, and blank pieces for decoration.", tip: "", need: ["Wire modules"], media: null },
-    { chapter: "u3", shot: "3-03", title: "Pick a connection", text: "On curved spots, connect two pieces that have flaps and set the module on the flaps, so it stays connected when you bend. On flat spots, use flat pieces for a slimmer look. To extend the circuit without a module, fold a flap onto a flat piece.", tip: "", need: ["Wire modules"], media: null },
+    { chapter: "u3", shot: "3-03", title: "Pick a connection", text: "Choose how each pair of pieces joins, depending on the spot on your body and what the circuit needs there.", block: "joins", tip: "", need: ["Wire modules"], media: false },
     { chapter: "u3", shot: "3-04", title: "Preview it on your body", text: "Hold the device on your body and look in the mirror. Rearrange pieces or swap modules until you like it.", tip: "", media: null },
     { chapter: "u3", shot: "3-05", title: "Make it permanent and decorate", text: "When the layout is final, secure the joints between wire modules with double-sided tape. Then, if you like, decorate it with washi tape, stickers, gems or markers.", tip: "Keep decorations off the magnets and metal lines so the circuit still works.", need: ["Double-sided tape", { name: "Decorations (optional)", note: "Washi tape, stickers, gems or markers" }], media: null },
     { chapter: "u3", shot: "3-06", title: "Put it on", text: "Apply medical-grade double-sided tape to the back and press the device onto clean, dry skin. Switch on the power and try it out.", tip: "", need: [{ name: "Medical-grade double-sided tape", image: "images/mat-tape.jpg" }], media: null },

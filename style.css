@@ -142,6 +142,8 @@
 .sk-conn-types img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; display: block; background: #fff; border: 1px solid var(--sk-line); padding: 14px; box-sizing: border-box; }
 #sk-root .sk-conn-rule { font-family: var(--sk-font-heading); font-size: 15px; letter-spacing: .04em; color: var(--sk-heading); padding: 14px 18px; background: var(--sk-placeholder); margin-top: 10px; }
 #sk-root .sk-credit { padding-top: 0; }
+.sk-step-block { display: grid; gap: 14px; }
+.sk-step-block .sk-subhead { padding-top: 0; }
 @media (max-width: 760px) {
   .sk-kit, .sk-conn-types, .sk-connect { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .sk-kit-extras { grid-template-columns: minmax(0, 1fr); }

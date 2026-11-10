@@ -1,7 +1,6 @@
 // Builds the page from content.js (window.SKINKIT). Nothing here needs editing to change text.
 // Where you are is kept in the address after "#":
 //   #about        Part 1, what SkinKit is
-//   #connect      Part 1, scrolled to how the modules connect
 //   #tutorial     Part 2, choose a path
 //   #make-3       Part 2, step 3 of "Make the kit" (#use-3 for "Use the kit")
 // If the host site already uses "#" for its own pages, set window.SKINKIT_USE_HASH = false
@@ -197,7 +196,7 @@
       "Overview video", "Clip " + (ov.shot || "0-00") + ". Add the YouTube link in content.js.", "SkinKit overview video");
   }
 
-  // ---------- Part 1: what's in the kit, and how the modules connect ----------
+  // ---------- Part 1: what's in the kit ----------
   function renderKit() {
     const kit = $("sk-kit");
     if (kit) kit.innerHTML = (K.kit || []).map((k) =>
@@ -208,18 +207,26 @@
       $("sk-kit-extras-title").textContent = ex.title || "";
       $("sk-kit-extras").innerHTML = (ex.items || []).map((it) => `<li><strong>${esc(it.name)}</strong> ${esc(it.note || "")}</li>`).join("");
     }
+  }
+
+  // ---------- "Use the kit" steps with extra content: how the modules connect, and the three ways to join pieces ----------
+  // A step with block: "connect" shows the exploded joint and its three points; block: "joins" shows the three joins.
+  function stepBlock(kind) {
     const c = K.connect;
-    if (!c || !$("connect")) return;
-    $("sk-connect-lead").textContent = c.lead || "";
-    $("sk-connect-figure").innerHTML = c.diagram
-      ? `<img src="${esc(c.diagram.image)}" alt="${esc(c.diagram.alt || "")}" loading="lazy">${c.diagram.caption ? `<figcaption>${esc(c.diagram.caption)}</figcaption>` : ""}`
-      : "";
-    $("sk-connect-points").innerHTML = (c.points || []).map((pt) => `<li><h3>${esc(pt.title)}</h3><p>${esc(pt.text)}</p></li>`).join("");
-    $("sk-conn-title").textContent = c.typesTitle || "";
-    $("sk-conn-types").innerHTML = (c.types || []).map((t) =>
-      `<li><img src="${esc(t.image)}" alt="" loading="lazy"><h3>${esc(t.name)}</h3><p>${esc(t.text)}</p></li>`).join("");
-    $("sk-conn-rule").textContent = c.rule || "";
-    $("sk-conn-credit").textContent = c.credit || "";
+    if (!c) return "";
+    if (kind === "connect") {
+      const fig = c.diagram
+        ? `<figure><img src="${esc(c.diagram.image)}" alt="${esc(c.diagram.alt || "")}" loading="lazy">${c.diagram.caption ? `<figcaption>${esc(c.diagram.caption)}</figcaption>` : ""}</figure>`
+        : "";
+      return `<div class="sk-connect">${fig}<ul class="sk-points">${(c.points || []).map((pt) =>
+        `<li><h3>${esc(pt.title)}</h3><p>${esc(pt.text)}</p></li>`).join("")}</ul></div>`;
+    }
+    if (kind === "joins") {
+      return `<h3 class="sk-subhead">${esc(c.typesTitle || "")}</h3><ul class="sk-conn-types">${(c.types || []).map((t) =>
+        `<li><img src="${esc(t.image)}" alt="" loading="lazy"><h3>${esc(t.name)}</h3><p>${esc(t.text)}</p></li>`).join("")}</ul>` +
+        (c.rule ? `<p class="sk-conn-rule">${esc(c.rule)}</p>` : "") + (c.credit ? `<p class="sk-credit">${esc(c.credit)}</p>` : "");
+    }
+    return "";
   }
 
   // ---------- Part 1: the strip drawing, with a signal running from power to the LED ----------
@@ -400,6 +407,9 @@
       const typeName = otherType ? (moduleTypes.find((t) => t.id === moduleType) || {}).name : "";
       renderMedia($("sk-step-media"), media, otherType ? typeName : "Clip " + s.shot, otherType ? "Video coming soon" : "Video goes here", s.title);
       if (media && media.image && media.hotspots) addHotspots($("sk-step-media"), media.hotspots, path);
+      const block = $("sk-step-block");
+      block.hidden = !s.block;
+      block.innerHTML = s.block ? stepBlock(s.block) : "";
       renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), media && media.marks);
     }
     $("sk-step-title").textContent = s.title;
@@ -731,12 +741,11 @@
     } else {
       showView("about");
       renderChooser();
-      if (r === "connect") $(r).scrollIntoView({ block: "start" });
-      else if (r === "about" || prevView !== "about") toTopOf(root);
+      if (r === "about" || prevView !== "about") toTopOf(root);
     }
   }
 
-  const KNOWN = /^(about|connect|faq|tutorial|(make|use)-\d+)$/;
+  const KNOWN = /^(about|faq|tutorial|(make|use)-\d+)$/;
   function go(r) {
     if (useHash) {
       if (location.hash.slice(1) === r) render(r); else location.hash = r;
