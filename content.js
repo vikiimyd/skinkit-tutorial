@@ -6,37 +6,30 @@
 
 window.SKINKIT = {
   // ---------- Part 1: Introduction ----------
-  // The intro says, in order: what the kit holds, the electronic modules it works with, what it is for.
+  // Each part of the Introduction says its point in one sentence (viki 11/10); details live in the Make and Use steps.
+  // The intro says what SkinKit is and what it is for. The counts (5 + 1 wire modules, 16 electronic modules)
+  // come right after it, in "About the kit", so they are not repeated here.
   // Then "parts" introduces the two paths, Make and Use (their names and pitches are in paths below).
   headline: "Electronics you wear like a temporary tattoo.",
-  intro:
-    "SkinKit is a construction kit for building interactive devices that sit right on your skin. " +
-    "The kit has five kinds of wire module and a blank piece, all made of soft, tattoo-thin skin cloth. " +
-    "You pair it with 16 small electronic modules that click on with tiny magnets. You can use ready-made ones or make your own. " +
-    "Its purpose is to let anyone try out an idea for an on-skin device quickly, right on the body, with no coding and no soldering.",
-  facts: [
-    { value: "5 + 1", label: "wire module shapes, plus a blank piece" },
-    { value: "16", label: "electronic modules to pair with it" }
-  ],
+  intro: "SkinKit is a construction kit for building interactive devices that sit right on your skin, so anyone can try out an idea on the body quickly, with no coding and no soldering.",
   parts: {
     title: "The tutorial: Make and Use",
-    lead: "This tutorial has two parts. Make shows how to fabricate the skin cloth and the wire modules. Use shows how to build a circuit with the modules and wear it. Everyone can learn to use the modules. Making the kit is optional: it is meant for those who want to fabricate their own skin cloth and wire modules, such as workshop facilitators and researchers."
+    lead: "This tutorial has two parts: Make, for those who fabricate their own skin cloth and wire modules, and Use, for everyone."
   },
   overviewVideo: { youtube: "https://youtu.be/Er8yJwxMnp4", shot: "0-00" }, // the lab's SkinKit video, as on the SkinKit page of the lab site
 
   // The three steps of the prototyping workflow in the paper (section 3.5)
   how: [
-    { title: "Build the circuit", text: "Line up electronic modules in order, starting with a power module. Each module acts on the signal from the one before it: power → proximity sensor → LED lights the LED when something comes close. Test the order on a table first." },
-    { title: "Lay it out with wire modules", text: "Fit wire modules together into the shape you want. Each electronic module sits across two wire modules, held by magnets on their power, signal and ground lines. Keep every arrow pointing the same way." },
-    { title: "Wear and preview it", text: "Place the layout on your body and rearrange the modules until it fits and works. Then tape the pieces together for good and stick the device on with medical-grade tape." }
+    { title: "Build the circuit", text: "Line up electronic modules in order, starting with a power module." },
+    { title: "Lay it out with wire modules", text: "Fit wire modules into a shape and click the electronic modules on, with every arrow pointing the same way." },
+    { title: "Wear and preview it", text: "Try it on your body, move the modules until it fits, then fix it with medical-grade tape." }
   ],
 
   // "What's in the kit", right under the intro: an overview only (the details are in the Make and Use steps).
-  // Two cards, each with one overview image. kitNote sits under the heading. highlight (optional) is a line shown in bold under a card's text.
-  kitNote: "SkinKit has two sets of modules: wire modules made of skin cloth, and the electronic modules that click onto them.",
+  // Two cards, each with one overview image. count is the big number on the card; highlight (optional) is a line shown in bold under a card's text.
   kit: [
-    { name: "6 wire modules", image: "images/kit-wire-modules.jpg", text: "Diamonds of skin cloth that carry power, ground and signal from one electronic module to the next. Five shapes: flat, flap-in, flap-out, double flaps and cross shape. The sixth is a blank piece with no lines, to fill out the shape and decorate." },
-    { name: "16 electronic modules", image: "images/kit-electronic-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm, each with a small pre-programmed chip. The color tells you the job: 5 sensors (yellow), 4 modifiers (blue), 5 actuators (white) and 2 power modules (red).", highlight: "You can also make the ones you need yourself." }
+    { count: "5 + 1", name: "Wire modules", image: "images/kit-wire-modules.jpg", text: "Diamonds of skin cloth that carry power, signal and ground between electronic modules, in five shapes plus a blank piece to decorate." },
+    { count: "16", name: "Electronic modules", image: "images/kit-electronic-modules.jpg", text: "Small flexible circuit boards that click on with magnets: 5 sensors, 4 modifiers, 5 actuators and 2 power modules.", highlight: "You can also make the ones you need yourself." }
   ],
 
   // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7). Shown in the "Use the kit" path:
@@ -104,7 +97,7 @@ window.SKINKIT = {
       name: "Make the kit",
       audience: "For kit makers",
       pitch: "Make the skin cloth and the wire modules that hold everything together, from tattoo paper, magnets and conductive tape.",
-      note: "This path covers the skin cloth and the wire modules. You can make the electronic modules yourself too. TODO: link their circuit files."
+      note: ""
     },
     use: {
       name: "Use the kit",

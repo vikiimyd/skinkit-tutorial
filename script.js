@@ -180,11 +180,10 @@
     })();
   }
 
-  // ---------- Part 1: hero, facts, how it works ----------
+  // ---------- Part 1: hero, how it works ----------
   function renderIntro() {
     $("sk-headline").textContent = K.headline;
     $("sk-intro").textContent = K.intro;
-    $("sk-facts").innerHTML = K.facts.map((f) => `<div><dt>${esc(f.value)}</dt><dd>${esc(f.label)}</dd></div>`).join("");
     if (K.parts) {
       $("sk-parts-title").textContent = K.parts.title || "";
       $("sk-parts-lead").textContent = K.parts.lead || "";
@@ -208,8 +207,9 @@
   function renderKit() {
     const kit = $("sk-kit");
     if (kit) kit.innerHTML = (K.kit || []).map((k) =>
-      `<li><img src="${esc(k.image)}" alt="" loading="lazy"><h3>${esc(k.name)}</h3><p>${esc(k.text)}</p>${k.highlight ? `<p class="sk-kit-highlight">${esc(k.highlight)}</p>` : ""}</li>`).join("");
-    if ($("sk-kit-note")) $("sk-kit-note").textContent = K.kitNote || "";
+      `<li><img src="${esc(k.image)}" alt="" loading="lazy">` +
+      `<h3 class="sk-kit-head">${k.count ? `<span class="sk-kit-num">${esc(k.count)}</span>` : ""}<span>${esc(k.name)}</span></h3>` +
+      `<p>${esc(k.text)}</p>${k.highlight ? `<p class="sk-kit-highlight">${esc(k.highlight)}</p>` : ""}</li>`).join("");
   }
 
   // ---------- "Use the kit" steps with extra content: how the modules connect, the three ways to join pieces, all the modules ----------
