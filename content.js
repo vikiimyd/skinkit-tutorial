@@ -112,7 +112,7 @@ window.SKINKIT = {
   // link (optional): { text, href }. Leave href empty to show "link coming soon" until the file is online.
   materials: {
     make: [
-      { name: "Temporary tattoo paper", note: "Silhouette temporary tattoo paper, with the adhesive sheet from its package.", image: "images/mat-tattoo-paper.jpg" },
+      { name: "Temporary tattoo paper", note: "Silhouette temporary tattoo paper, with the adhesive sheet from its package. You need four: two for each skin cloth sheet.", image: "images/mat-tattoo-paper.jpg" },
       { name: "Water-soluble stabilizer", note: "Sulky water-soluble textile stabilizer, the middle layer.", image: "images/mat-stabilizer.jpg" },
       { name: "Plastic scraper", note: "Presses the layers flat and pushes out bubbles." },
       { name: "Scissors and water", note: "" },
@@ -122,7 +122,7 @@ window.SKINKIT = {
     // Second half of the make path: turning skin cloth into wire modules (step with materials: "modules")
     modules: [
       { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
-      { name: "Second skin cloth sheet", note: "Made like the first and kept whole. The magnets go on it.", image: "images/mat-skin-cloth.jpg" },
+      { name: "Second skin cloth sheet", note: "The sheet you kept whole. The magnets go on it, then you cut it apart with scissors.", image: "images/mat-skin-cloth.jpg" },
       { name: "Magnet template", note: "Print on Letter paper at 100% size. It shows where every magnet goes.", link: { text: "Download the PDF", href: "" } },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
@@ -160,7 +160,7 @@ window.SKINKIT = {
   // reuses that item's photo; { name, note, image } adds a one-off. Leave it out on "Gather your materials" steps.
   wireBase: "double-flaps",
   steps: [
-    { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "Lay out everything below so it is within reach.", materials: true, tip: "", media: {
+    { chapter: "m1", shot: "1-01", title: "Gather your materials", text: "You make two sheets of skin cloth: one goes in the cutting machine and becomes the diamonds, the other holds the magnets and you cut it apart with scissors later. Lay out everything below so it is within reach.", materials: true, tip: "", media: {
         image: "images/materials-make.jpg",
         // Clickable things on the photo, in % of its width/height (a dot marks each one; dot: [x, y] in % of the area moves it). item = a name from materials (uses its note and image);
         // label/text/image override or describe things that are not on the list.
@@ -185,14 +185,14 @@ window.SKINKIT = {
           { t: 10.9, text: "Add the second tattoo paper on the other side" },
           { t: 17.4, text: "Press out the bubbles again" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth. Make a second sheet the same way: you use it for the magnets in Step 9.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v5.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth. Repeat Steps 2 to 4 to make the second sheet.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v5.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
           { t: 5.5, text: "Flip it over" },
           { t: 7.6, text: "Wet the other side" },
           { t: 12, text: "Peel the backing papers off slowly" },
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
-    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load one dry sheet of skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others. Keep the second sheet whole for the magnets.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
+    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load one dry sheet of skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others. Keep the second sheet whole: the magnets go on it, and you cut it with scissors in Step 11.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
     { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each. Pick one to see how to make it.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
         { id: "flat", name: "Flat", image: "images/wire-flat.jpg", go: "1-05m", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
         { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05m", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
@@ -226,7 +226,7 @@ window.SKINKIT = {
           { t: 8.8, text: "Keep going until every dot has a magnet" },
           { t: 13.8, text: "Line the magnets up with tweezers" }
         ] } },
-    { chapter: "m2", shot: "1-07b", title: "Cut out the pieces", text: "Cut out the pieces along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each piece.", forType: {
+    { chapter: "m2", shot: "1-07b", title: "Cut out the pieces", text: "Cut out the pieces with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each piece.", forType: {
       "flat": "One square piece per module. It covers the inner square of the diamond.",
       "flap-in": "One piece per module: the inner square plus the flap on the input side. The dashed line shows where the flap folds.",
       "flap-out": "One piece per module: the inner square plus the flap on the output side. The dashed line shows where the flap folds.",
