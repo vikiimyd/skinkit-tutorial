@@ -352,6 +352,28 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
 .sk-faq details[open] summary::after { content: "\2212"; }
 .sk-faq-a { margin: 0; padding: 0 0 18px; max-width: 70ch; }
 .sk-faq-a.is-pending { color: var(--sk-muted); font-style: italic; }
+.sk-faq-src { margin: 0; padding: 0 0 18px; font-size: 13px; color: var(--sk-muted); }
+/* Small interactive demos inside FAQ answers */
+.sk-demo { display: grid; gap: 14px; max-width: 70ch; margin: 0 0 16px; padding: 18px; border: 1px solid var(--sk-line); background: #fff; }
+.sk-demo-controls { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.sk-demo-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.sk-demo-mod { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--sk-heading); }
+.sk-demo-mod .sk-mod { transition: background-color .2s, box-shadow .2s; }
+.sk-demo-mod.is-lit .sk-mod { --c: var(--sk-glow); box-shadow: 0 0 0 4px rgba(255, 210, 63, .35), 0 0 18px 6px rgba(255, 210, 63, .45); }
+.sk-demo-mod.is-sensing .sk-mod { box-shadow: 0 0 0 4px rgba(242, 194, 48, .3); }
+.sk-demo-out { margin: 0; font-size: 14.5px; color: var(--sk-heading); }
+.sk-demo-svg { width: 100%; max-width: 480px; height: auto; display: block; }
+.sk-demo-board { fill: #e08a1e; fill-opacity: .16; stroke: #c47714; stroke-width: 1.5; }
+.sk-demo-line { stroke: var(--sk-trace); stroke-width: 5; stroke-linecap: round; }
+.sk-demo-pad { fill: #d8d8d8; stroke: #8a8a8a; stroke-width: 1.2; }
+.sk-demo-lab { font: 700 14px var(--sk-font-body); fill: var(--sk-heading); }
+.sk-demo-name { font: 600 11px var(--sk-font-body); fill: var(--sk-text); }
+.sk-demo-join { stroke: #2f8a4a; stroke-width: 1.5; stroke-dasharray: 3 3; }
+.sk-demo-arrow { fill: none; stroke: var(--sk-red); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.sk-demo-ok { fill: none; stroke: #2f8a4a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.sk-demo-bad { fill: none; stroke: var(--sk-red); stroke-width: 2.5; stroke-linecap: round; }
+.sk-demo-badlab { font: 600 10px var(--sk-font-body); fill: var(--sk-red); }
+@media (prefers-reduced-motion: reduce) { .sk-demo-mod .sk-mod { transition: none; } }
 .sk-confirm { display: inline-block; margin-left: 8px; padding: 0 6px; border: 1px dashed var(--sk-muted); font: 400 11px/18px var(--sk-font-heading); letter-spacing: .08em; text-transform: uppercase; color: var(--sk-muted); font-style: normal; vertical-align: 1px; }
 
 .sk-footer { margin-top: 70px; padding-top: 20px; border-top: 1px solid var(--sk-rule); font-size: 13px; display: grid; gap: 4px; }
