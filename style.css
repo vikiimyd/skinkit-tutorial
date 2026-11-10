@@ -301,6 +301,9 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
 .sk-faq details[open] summary::after { content: "\2212"; }
 .sk-faq-a { margin: 0; padding: 0 0 18px; max-width: 70ch; }
 .sk-faq-a.is-pending { color: var(--sk-muted); font-style: italic; }
+.sk-faq-fig { margin: 0 0 16px; max-width: 280px; }
+.sk-faq-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--sk-line); }
+.sk-faq-fig figcaption { font-size: 13px; color: var(--sk-meta); padding-top: 6px; }
 .sk-faq-src { margin: 0; padding: 0 0 18px; font-size: 13px; color: var(--sk-muted); }
 /* Small interactive demos inside FAQ answers */
 .sk-demo { display: grid; gap: 14px; max-width: 70ch; margin: 0 0 16px; padding: 18px; border: 1px solid var(--sk-line); background: #fff; }
