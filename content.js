@@ -305,7 +305,7 @@ window.SKINKIT = {
     { q: "How do I take it off? Does it hurt?", a: "Don't stick it on hairy parts of the body, or taking it off will hurt. To take it off, peel it slowly from one corner while holding the skin flat, the way you take off a bandage.", confirm: false },
     { q: "Can it get wet? What about sweat?", a: "No. Keep it away from water: like any electronic circuit, the modules can't get wet. Sweat is fine, though. SkinKit is made to handle it.", confirm: false },
     { q: "Can I use it on sensitive skin?", a: "We don't recommend it. If you do, stick it on with medical-grade double-sided tape (Vapon), and take it off if your skin itches or turns red.", confirm: false },
-    { q: "Can I reuse the modules and wire modules?", a: "The circuit modules can be unsnapped and used again in your next project. Whether the wire modules can be reused is still being checked.", confirm: true },
+    { q: "Can I reuse the modules and wire modules?", a: "The electronic modules, yes: unsnap them and use them again in your next project. The wire modules depend on how you used them. While you are only laying them out and trying them on, you can rearrange and reuse them. Once you have peeled off the tape backing and stuck them on your skin, they can't be reused.", confirm: false },
     { q: "What battery does it use, and how long does it last?", a: "", confirm: true },
     { q: "I connected everything but nothing lights up. What now?", a: "Check that every arrow points the same way, from the power module to the end, and that every magnet is snapped on firmly.", confirm: false },
     { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: true },
