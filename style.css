@@ -126,11 +126,9 @@
 /* Applications: the lab's 3-column square grid with captions under each image */
 /* What's in the kit, and how the modules connect */
 .sk-kit, .sk-conn-types { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; }
+.sk-kit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .sk-kit li, .sk-conn-types li { display: grid; gap: 10px; align-content: start; min-width: 0; }
 .sk-kit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--sk-placeholder); }
-.sk-kit-extras { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 36px; }
-.sk-kit-extras li { padding: 10px 0; border-top: 1px solid var(--sk-line); font-size: 14.5px; line-height: 1.6; }
-#sk-root .sk-kit-extras strong { font-weight: 600; margin-right: 4px; }
 #sk-root .sk-kit-section .sk-subhead { padding-top: 20px; font-size: 16px; }
 #sk-root .sk-kit h3, #sk-root .sk-conn-types h3, #sk-root .sk-points h3 { font-size: 16px; padding-top: 4px; }
 .sk-kit p, .sk-conn-types p, .sk-points p { font-size: 14.5px; line-height: 1.7; }
@@ -146,7 +144,6 @@
 .sk-step-block .sk-subhead { padding-top: 0; }
 @media (max-width: 760px) {
   .sk-kit, .sk-conn-types, .sk-connect { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .sk-kit-extras { grid-template-columns: minmax(0, 1fr); }
 }
 
 .sk-apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 36px; }

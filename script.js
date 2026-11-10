@@ -213,11 +213,6 @@
     if (kit) kit.innerHTML = (K.kit || []).map((k) =>
       `<li><img src="${esc(k.image)}" alt="" loading="lazy"><h3>${esc(k.name)}</h3><p>${esc(k.text)}</p></li>`).join("");
     if ($("sk-kit-note")) $("sk-kit-note").textContent = K.kitNote || "";
-    const ex = K.kitExtras;
-    if (ex && $("sk-kit-extras")) {
-      $("sk-kit-extras-title").textContent = ex.title || "";
-      $("sk-kit-extras").innerHTML = (ex.items || []).map((it) => `<li><strong>${esc(it.name)}</strong> ${esc(it.note || "")}</li>`).join("");
-    }
   }
 
   // ---------- "Use the kit" steps with extra content: how the modules connect, the three ways to join pieces, all the modules ----------
