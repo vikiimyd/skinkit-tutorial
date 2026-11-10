@@ -286,7 +286,7 @@ window.SKINKIT = {
         ] } },
     { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "Make two strips of tape with three magnets each, spaced like the magnets on a circuit module. Our printable magnet template shows where each magnet goes. Stick one strip at each end of the diamond. The two strips must have opposite poles.", forType: {
       "double-flaps": "One strip of magnets at each end, on both flaps, where the line ends will go."
-    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers", { name: "Magnet template", note: "Print on Letter paper at 100% size.", image: "images/mat-magnet-template.jpg", link: { text: "Download the PDF", href: "downloads/skinkit-magnet-template-v1.pdf" } }], media: { video: "images/1-07-v5.mp4", marks: [
+    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers", { name: "Magnet template", note: "Print on Letter paper at 100% size.", link: { text: "Download the PDF", href: "" } }], media: { video: "images/1-07-v5.mp4", marks: [
           { t: 0, text: "Use a module to mark the magnet spots on the tape" },
           { t: 5.1, text: "The two rows have opposite poles" },
           { t: 10.1, text: "Put a magnet on each mark with tweezers" },
