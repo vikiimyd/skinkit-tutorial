@@ -21,6 +21,7 @@ Files
                "TODO" marks facts still to confirm with the lab. In the FAQ, an answer
                with confirm: true shows a "To confirm" tag; set it to false once checked.
   images/      step clips (.mp4, short, muted, looping) and photos
+  downloads/   printable files linked from the steps (magnet template PDF)
 
 Adding media
   Each step in content.js has a shot ID (e.g. "1-03") matching the shot list.
