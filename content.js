@@ -155,7 +155,8 @@ window.SKINKIT = {
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors", note: "For cutting the tape into strips and the magnet pieces apart." },
       { name: "Double-sided tape", note: "Covers the second skin cloth sheet, and cut into small triangles for the corners of each diamond.", image: "images/mat-tape-roll-2.jpg" },
-      { name: "Tweezers", note: "For placing and lining up the tiny magnets.", image: "images/mat-tweezers-3.jpg" }
+      { name: "Tweezers", note: "For placing and lining up the tiny magnets.", image: "images/mat-tweezers-3.jpg" },
+      { name: "Masking or washi tape", note: "Holds the skin cloth sheet still on the template." }
     ],
     use: [
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
@@ -245,14 +246,14 @@ window.SKINKIT = {
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
-    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template, lay the skin cloth over it with the tape side up, and tape the edges down so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds the magnets for many wire modules of all five types, so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template"], media: false },
+    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template, lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds the magnets for many wire modules of all five types, so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: false },
     { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. The black and white ends of each module just need to be opposite.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
           { t: 0, text: "The two rows have opposite poles" },
           { t: 4.77, text: "Put a magnet on each dot with tweezers" },
           { t: 8.8, text: "Keep going until every dot has a magnet" },
           { t: 13.8, text: "Line the magnets up with tweezers" }
         ] } },
-    { chapter: "m2", shot: "1-07b", title: "Cut out the pieces", text: "Take the skin cloth off the template and cut out the pieces along the solid lines.", forType: {
+    { chapter: "m2", shot: "1-07b", title: "Cut out the pieces", text: "Cut out the pieces along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each piece.", forType: {
       "flat": "One square piece per module. It covers the inner square of the diamond.",
       "flap-in": "One piece per module: the inner square plus the flap on the input side. The dashed line shows where the flap folds.",
       "flap-out": "One piece per module: the inner square plus the flap on the output side. The dashed line shows where the flap folds.",
