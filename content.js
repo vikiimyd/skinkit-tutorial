@@ -149,11 +149,13 @@ window.SKINKIT = {
     // Second half of the make path: turning skin cloth into wire modules (step with materials: "modules")
     modules: [
       { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
+      { name: "Second skin cloth sheet", note: "Made like the first and kept whole. The magnets go on it.", image: "images/mat-skin-cloth.jpg" },
+      { name: "Magnet template", note: "Print on Letter paper at 100% size. It shows where every magnet goes.", link: { text: "Download the PDF", href: "" } },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
-      { name: "Scissors", note: "For cutting the tape into strips." },
-      { name: "Double-sided tape", note: "Cut into small triangles for the corners of each diamond.", image: "images/mat-tape-roll-2.jpg" },
-      { name: "Tweezers", note: "For lining up the tiny magnets.", image: "images/mat-tweezers-3.jpg" }
+      { name: "Scissors", note: "For cutting the tape into strips and the magnet pieces apart." },
+      { name: "Double-sided tape", note: "Covers the second skin cloth sheet, and cut into small triangles for the corners of each diamond.", image: "images/mat-tape-roll-2.jpg" },
+      { name: "Tweezers", note: "For placing and lining up the tiny magnets.", image: "images/mat-tweezers-3.jpg" }
     ],
     use: [
       { name: "Circuit modules", note: "The colored blocks, 2 × 2 cm each.", image: "images/mat-circuit-modules.jpg" },
@@ -209,14 +211,14 @@ window.SKINKIT = {
           { t: 10.9, text: "Add the second tattoo paper on the other side" },
           { t: 17.4, text: "Press out the bubbles again" }
         ] } },
-    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v5.mp4", marks: [
+    { chapter: "m1", shot: "1-04", title: "Peel and dry", text: "Wet both sides with water. The paper backings will lift off easily. Let it dry for a few days. This is your skin cloth. Make a second sheet the same way: you use it for the magnets in Step 9.", tip: "", need: ["Water", "Foam brush"], media: { video: "images/1-04-v5.mp4", marks: [
           { t: 0, text: "Wet the paper backing" },
           { t: 5.5, text: "Flip it over" },
           { t: 7.6, text: "Wet the other side" },
           { t: 12, text: "Peel the backing papers off slowly" },
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
-    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load the dry skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
+    { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", text: "Load one dry sheet of skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others. Keep the second sheet whole for the magnets.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
     { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each. Pick one to see how to make it.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
         { id: "flat", name: "Flat", image: "images/wire-flat.jpg", go: "1-05m", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
         { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05m", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
@@ -243,15 +245,28 @@ window.SKINKIT = {
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
-    { chapter: "m2", shot: "1-07", title: "Add the magnets", text: "Make two strips of tape with three magnets each, spaced like the magnets on a circuit module. Our printable magnet template shows where each magnet goes. Stick one strip at each end of the diamond. The two strips must have opposite poles.", forType: {
-      "double-flaps": "One strip of magnets at each end, on both flaps, where the line ends will go."
-    }, tip: "", need: ["Mini magnets", "Double-sided tape", "Tweezers", { name: "Magnet template", note: "Print on Letter paper at 100% size.", link: { text: "Download the PDF", href: "" } }], media: { video: "images/1-07-v6.mp4", marks: [
-          { t: 0, text: "Use a module to mark the magnet spots on the tape" },
-          { t: 5.1, text: "The two rows have opposite poles" },
-          { t: 10.1, text: "Put a magnet on each mark with tweezers" },
-          { t: 14.13, text: "Make a second strip the same way" },
-          { t: 19.13, text: "Line the magnets up with tweezers" },
-          { t: 25.83, text: "Stick one strip at each end of the diamond" }
+    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template, lay the skin cloth over it with the tape side up, and tape the edges down so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds the magnets for many wire modules of all five types, so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template"], media: false },
+    { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. The black and white ends of each module just need to be opposite.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
+          { t: 0, text: "The two rows have opposite poles" },
+          { t: 4.77, text: "Put a magnet on each dot with tweezers" },
+          { t: 8.8, text: "Keep going until every dot has a magnet" },
+          { t: 13.8, text: "Line the magnets up with tweezers" }
+        ] } },
+    { chapter: "m2", shot: "1-07b", title: "Cut out the pieces", text: "Take the skin cloth off the template and cut out the pieces along the solid lines.", forType: {
+      "flat": "One square piece per module. It covers the inner square of the diamond.",
+      "flap-in": "One piece per module: the inner square plus the flap on the input side. The dashed line shows where the flap folds.",
+      "flap-out": "One piece per module: the inner square plus the flap on the output side. The dashed line shows where the flap folds.",
+      "double-flaps": "Cut the pieces apart into single strips: one with black dots and one with white dots per module, one for each flap.",
+      "cross": "Cut the pieces apart into single strips: two with black dots and two with white dots per module, one for each flap."
+    }, tip: "", need: ["Scissors"], media: false },
+    { chapter: "m2", shot: "1-07c", title: "Stick the pieces on", text: "Stick each piece on its diamond: a square part on the inner square, and a flap part on the flap. The red arrows on the template point the way the signal flows.", forType: {
+      "flat": "The square piece goes on the inner square.",
+      "flap-in": "The square part goes on the inner square and the flap part on the flap, on the input side.",
+      "flap-out": "The square part goes on the inner square and the flap part on the flap, on the output side.",
+      "double-flaps": "One strip on each flap, with its red edge at the flap's tip: the black-dot strip on the input side and the white-dot strip on the output side.",
+      "cross": "One strip on each of the four flaps, with its red edge at the flap's tip."
+    }, tip: "", need: ["Skin cloth diamonds"], media: { video: "images/1-07c-v1.mp4", marks: [
+          { t: 0, text: "Stick a piece at each end of the diamond" }
         ] } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "Peel the backing off a strip of conductive fabric tape. Stick it across the diamond so it covers one magnet at each end, and fold each end around the edge of the flap. Repeat twice more for three lines: power, ground and signal.", forType: {
       "double-flaps": "Run each line from one flap across to the other."
