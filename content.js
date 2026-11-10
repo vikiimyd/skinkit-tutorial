@@ -30,24 +30,13 @@ window.SKINKIT = {
     { title: "Wear it", text: "Arrange the skin cloth into any shape, preview it on your body, then stick it on with skin-safe tape." }
   ],
 
-  // "What's in the kit", right under the intro. From the paper (sections 3.2, 3.4, 5.1.1): the set the lab gave
-  // each workshop participant. kitNote sits under the heading; kitExtras is the short list under the cards.
-  kitNote: "The kit is made of skin cloth: five kinds of wire module and a blank piece. You use it with 16 electronic modules, which you can also make yourself. SkinKit isn't sold as a box. This is the set the lab gave each person in its workshops.",
+  // "What's in the kit", right under the intro: an overview only (the details are in the Make and Use steps).
+  // Two cards, each with one overview image. kitNote sits under the heading.
+  kitNote: "SkinKit has two sets of modules: wire modules made of skin cloth, and the electronic modules that click onto them.",
   kit: [
-    { name: "Five wire modules", image: "images/wire-double-flaps.jpg", text: "Diamonds of skin cloth, a soft sheet made from temporary tattoo paper and stabilizer. Each has three lines of conductive fabric tape for power, ground and signal, with magnets under the line ends. Five shapes: flat, flap-in, flap-out, double flaps and cross." },
-    { name: "Blank and stretchable pieces", image: "images/wire-blank.jpg", text: "Blank skin cloth with no lines, to fill out the shape and decorate. A stretchable piece made with Kinesio tape carries the circuit over joints that bend a lot, like the elbow or knee." },
-    { name: "Plus 16 electronic modules", image: "images/kit-circuit-modules.jpg", text: "You use the kit with these, and you can make them yourself too. Flexible circuit boards, 2 × 2 cm and 0.1 mm thin, each with a small pre-programmed chip, six magnets and printed arrows. The color tells you the job: 5 sensors (yellow), 5 actuators (white), 4 modifiers (blue) and 2 power modules (red)." }
+    { name: "6 wire modules", image: "images/kit-wire-modules.jpg", text: "Diamonds of skin cloth that carry power, ground and signal from one electronic module to the next. Five shapes: flat, flap-in, flap-out, double flaps and cross shape. The sixth is a blank piece with no lines, to fill out the shape and decorate." },
+    { name: "16 electronic modules", image: "images/kit-electronic-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm, each with a small pre-programmed chip. The color tells you the job: 5 sensors (yellow), 4 modifiers (blue), 5 actuators (white) and 2 power modules (red). You can also make the ones you need yourself." }
   ],
-  kitExtras: {
-    title: "Plus tape and tools",
-    items: [
-      { name: "Double-sided tape", note: "Joins pieces for good once the layout is final." },
-      { name: "Medical-grade double-sided tape", note: "Sticks the device to your skin (the lab used Vapon)." },
-      { name: "Arrow stickers", note: "On the wire modules, to show which way the signal goes." },
-      { name: "Scissors and tweezers", note: "For trimming and for handling the tiny parts." },
-      { name: "Decorations", note: "Optional: washi tape, stickers, gems, color pencils." }
-    ]
-  },
 
   // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7). Shown in the "Use the kit" path:
   // the diagram and points on the step with block: "connect", the three joins on the step with block: "joins".
