@@ -20,7 +20,7 @@ window.SKINKIT = {
   ],
   parts: {
     title: "Two parts: Make and Use",
-    lead: "Everyone can learn to use the modules. Only some people need to make the kit, for example to prepare kits for a workshop."
+    lead: "Everyone can learn to use the modules. Making the kit is optional: it is meant for those who want to fabricate their own skin cloth and wire modules, such as workshop facilitators and researchers."
   },
   overviewVideo: { youtube: "https://youtu.be/Er8yJwxMnp4", shot: "0-00" }, // the lab's SkinKit video, as on the SkinKit page of the lab site
 
