@@ -97,7 +97,7 @@ window.SKINKIT = {
       name: "Make the kit",
       audience: "For kit makers",
       pitch: "Make the skin cloth and the wire modules that hold everything together, from tattoo paper, magnets and conductive tape.",
-      note: "" // TODO: once the circuit files for the electronic modules are online, link them here
+      note: ""
     },
     use: {
       name: "Use the kit",

@@ -179,12 +179,18 @@
 
 /* Part 2: chooser */
 .sk-chooser { display: grid; gap: 20px; padding-top: 60px; }
-.sk-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
-#sk-root .sk-path { display: grid; gap: 12px; align-content: start; padding: 0 0 24px; border: 0; border-bottom: 1px solid var(--sk-rule); color: var(--sk-text); }
-#sk-root .sk-path:hover { border-bottom-color: var(--sk-heading); }
-.sk-path h2 { padding-top: 8px; }
-.sk-path-meta { font-size: 13px; color: var(--sk-muted); }
-.sk-path-go { font: 600 14px/1 var(--sk-font-body); letter-spacing: 1px; text-transform: uppercase; color: var(--sk-heading); padding-top: 6px; }
+.sk-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: stretch; }
+/* Each path is a boxed card: icons, who it is for, name, one line, steps, then the button at the bottom */
+#sk-root .sk-path { display: flex; flex-direction: column; gap: 10px; padding: 28px 28px 26px; border: 1px solid var(--sk-line); background: #ffffff; color: var(--sk-text); transition: border-color .15s; }
+#sk-root .sk-path:hover { border-color: var(--sk-heading); }
+.sk-path .sk-how-visual { padding-bottom: 10px; }
+#sk-root .sk-path .sk-eyebrow { margin: 0; }
+.sk-path h2 { padding-top: 0; }
+.sk-path-meta { font-size: 13px; color: var(--sk-muted); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--sk-line); }
+.sk-path-go { align-self: flex-start; font: 600 13px/1 var(--sk-font-body); letter-spacing: 1px; text-transform: uppercase; color: var(--sk-on-btn); background: var(--sk-btn); padding: 12px 18px; margin-top: 6px; }
+#sk-root .sk-path:hover .sk-path-go { background: #444444; }
+@media (max-width: 760px) { #sk-root .sk-path { padding: 22px 20px 20px; } }
+.sk-parts-intro .sk-paths { margin-top: 20px; }
 .sk-note { font-size: 13px; color: var(--sk-muted); max-width: 80ch; }
 
 /* Part 2: step viewer */
