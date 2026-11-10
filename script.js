@@ -649,44 +649,64 @@
   // ---------- FAQ demos ----------
   // Module order: the LED before or after the proximity sensor (paper, section 3.5)
   function orderDemo(box) {
-    const st = { ledFirst: false, near: false };
+    // Where the LED sits in a chain with two sensors, and what each sensor is sensing (paper, sections 3.1 and 3.5)
+    const st = { led: 2, near: true, touch: false };
     const mods = {
-      power: { name: "Power", color: colorOfFamily("power") },
-      sensor: { name: "Proximity sensor", color: colorOfFamily("sensor") },
-      led: { name: "LED", color: colorOfFamily("actuator") }
+      power: { name: "Power", say: "power", color: colorOfFamily("power") },
+      prox: { name: "Proximity sensor", say: "proximity sensor", color: colorOfFamily("sensor") },
+      touch: { name: "Touch sensor", say: "touch sensor", color: colorOfFamily("sensor") },
+      led: { name: "LED", say: "LED", color: colorOfFamily("actuator") }
     };
+    const SPOTS = ["LED first", "LED between the sensors", "LED last"];
     function draw() {
-      const chain = st.ledFirst ? ["power", "led", "sensor"] : ["power", "sensor", "led"];
-      const lit = st.ledFirst || st.near;
-      const say = st.ledFirst
-        ? "Power → LED → proximity sensor: the LED gets the full signal straight from the power module, so it is always on, whether something is close or not."
-        : st.near
-          ? "Power → proximity sensor → LED: something is close, so the sensor sends the signal on and the LED lights up."
-          : "Power → proximity sensor → LED: nothing is close, so the sensor sends no signal on and the LED stays off.";
+      const chain = ["prox", "touch"];
+      chain.splice(st.led, 0, "led");
+      chain.unshift("power");
+      // A module only gets a signal if every sensor before it is sensing something
+      let signal = true, lit = false;
+      chain.forEach((id) => {
+        if (id === "led") lit = signal;
+        if (id === "prox") signal = signal && st.near;
+        if (id === "touch") signal = signal && st.touch;
+      });
+      const seq = "P" + chain.map((id) => mods[id].say).join(" → ").slice(1);
+      const say = st.led === 0
+        ? "The LED gets the full signal straight from the power module, so it is always on. The sensors after it don't change it."
+        : st.led === 1
+          ? (st.near
+            ? "Something is close, so the proximity sensor passes the signal on and the LED lights up. The touch sensor comes after the LED, so touching it changes nothing."
+            : "Nothing is close, so the proximity sensor passes no signal on and the LED stays off. The touch sensor comes after the LED, so touching it changes nothing.")
+          : st.near && st.touch
+            ? "Something is close and the touch sensor is touched, so both sensors pass the signal on and the LED lights up."
+            : st.near
+              ? "Something is close, so the proximity sensor passes the signal on. But nothing touches the touch sensor, so the signal stops there and the LED stays off. Both conditions have to be met."
+              : st.touch
+                ? "Nothing is close, so the proximity sensor sends no signal on. The touch sensor has nothing to pass on, so the LED stays off even though it is touched."
+                : "Nothing is close and nothing touches the touch sensor, so the LED stays off.";
       box.innerHTML =
         `<div class="sk-demo-controls">
-          <div class="sk-type-chips" role="group" aria-label="Order of the modules">
-            <button type="button" class="sk-chip" data-order="after" aria-pressed="${!st.ledFirst}">LED after the sensor</button>
-            <button type="button" class="sk-chip" data-order="before" aria-pressed="${st.ledFirst}">LED before the sensor</button>
+          <div class="sk-type-chips" role="group" aria-label="Where the LED goes">${SPOTS.map((t, k) =>
+            `<button type="button" class="sk-chip" data-led="${k}" aria-pressed="${st.led === k}">${t}</button>`).join("")}
           </div>
-          <div class="sk-type-chips">
-            <button type="button" class="sk-chip" data-near aria-pressed="${st.near}">Something is close to the sensor</button>
+          <div class="sk-type-chips" role="group" aria-label="What the sensors sense">
+            <button type="button" class="sk-chip" data-sense="near" aria-pressed="${st.near}">Something is close</button>
+            <button type="button" class="sk-chip" data-sense="touch" aria-pressed="${st.touch}">Touch the touch sensor</button>
           </div>
         </div>
         <div class="sk-demo-chain">${chain.map((id) => {
           const m = mods[id];
-          const cls = (id === "led" && lit ? " is-lit" : "") + (id === "sensor" && st.near ? " is-sensing" : "");
+          const cls = (id === "led" && lit ? " is-lit" : "") + ((id === "prox" && st.near) || (id === "touch" && st.touch) ? " is-sensing" : "");
           return `<span class="sk-demo-mod${cls}">${tile(m.color)}<span>${esc(m.name)}${id === "led" ? (lit ? " (on)" : " (off)") : ""}</span></span>`;
         }).join(arrow)}</div>
-        <p class="sk-demo-out" aria-live="polite">${esc(say)}</p>`;
+        <p class="sk-demo-out" aria-live="polite"><strong>${esc(seq)}:</strong> ${esc(say)}</p>`;
     }
     box.addEventListener("click", (e) => {
       const b = e.target.closest("button");
       if (!b) return;
-      if (b.dataset.order) st.ledFirst = b.dataset.order === "before";
-      else if ("near" in b.dataset) st.near = !st.near;
+      if (b.dataset.led) st.led = +b.dataset.led;
+      else if (b.dataset.sense) st[b.dataset.sense] = !st[b.dataset.sense];
       draw();
-      const again = box.querySelector(b.dataset.order ? `[data-order="${b.dataset.order}"]` : "[data-near]");
+      const again = box.querySelector(b.dataset.led ? `[data-led="${b.dataset.led}"]` : `[data-sense="${b.dataset.sense}"]`);
       if (again) again.focus();
     });
     draw();
