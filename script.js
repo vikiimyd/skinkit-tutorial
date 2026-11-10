@@ -51,6 +51,17 @@
   const moduleTypes = [].concat(...K.steps.map((s) => s.choices || [])).filter((c) => c.go);
   let moduleType = (() => { try { return localStorage.getItem(TYPE_KEY) || ""; } catch (e) { return ""; } })();
   if (!moduleTypes.some((t) => t.id === moduleType)) moduleType = K.wireBase || (moduleTypes.length ? moduleTypes[0].id : "");
+  // Steps that are done once per wire module type: in a byType chapter, the steps after the one with choices
+  const typedStep = (s) => {
+    const ch = chapterById[s.chapter];
+    if (!ch || !ch.byType) return false;
+    const inCh = K.steps.filter((x) => x.chapter === s.chapter);
+    const k = inCh.findIndex((x) => x.choices);
+    return k >= 0 && inCh.indexOf(s) > k;
+  };
+  // "Done" is kept per type on those steps, so ticking Flat's magnets doesn't tick Cross's
+  const doneKey = (s) => (typedStep(s) ? s.shot + "@" + moduleType : s.shot);
+  const isDone = (s) => done.has(doneKey(s));
   function setModuleType(id) {
     moduleType = id;
     try { localStorage.setItem(TYPE_KEY, id); } catch (e) { /* private mode: keep it in memory */ }
@@ -362,8 +373,8 @@
       const info = K.paths[p];
       const steps = stepsOf(p);
       const chs = chaptersOf(p);
-      const n = steps.filter((s) => done.has(s.shot)).length;
-      const firstOpen = steps.findIndex((s) => !done.has(s.shot));
+      const n = steps.filter(isDone).length;
+      const firstOpen = steps.findIndex((s) => !isDone(s));
       const target = n && firstOpen > 0 ? firstOpen + 1 : 1;
       const go = n && firstOpen > 0 ? `Continue at step ${target}` : n === steps.length && n ? "Go through it again" : "Start";
       return `<a class="sk-path" href="#${p}-${target}">
@@ -399,7 +410,8 @@
 
     $("sk-toc-path").textContent = K.paths[path].name;
     renderToc();
-    $("sk-step-meta").textContent = `Step ${i + 1} of ${steps.length} · ${ch.name}`;
+    const typeLabel = typedStep(s) ? (moduleTypes.find((t) => t.id === moduleType) || {}).name : "";
+    $("sk-step-meta").textContent = `Step ${i + 1} of ${steps.length} · ${ch.name}${typeLabel ? " · " + typeLabel : ""}`;
     if (changed) {
       document.querySelectorAll("#sk-root .sk-step > .sk-pop").forEach((n) => n.remove());
       $("sk-step-media").hidden = s.media === false;
@@ -467,7 +479,7 @@
           `<span>${esc(m.name)}${m.note ? `<small>${esc(m.note)}</small>` : ""}${m.link ? `<small>${matLink(m.link)}</small>` : ""}</span></li>`).join("")}</ul>`
       : "";
 
-    $("sk-step-done").checked = done.has(s.shot);
+    $("sk-step-done").checked = isDone(s);
     $("sk-prev").disabled = i === 0;
     const last = i === steps.length - 1;
     const nextBtn = $("sk-next");
@@ -547,21 +559,40 @@
 
   function renderToc() {
     const steps = stepsOf(cur.path);
+    const stepBtn = ({ s, i }, sub) =>
+      `<button type="button" data-n="${i + 1}"${sub ? ' class="is-sub"' : ""}${i === cur.i ? ' aria-current="step"' : ""}><span class="sk-check">${isDone(s) ? "✓" : i + 1}</span><span>${esc(s.title)}</span></button>`;
     $("sk-toc").innerHTML = chaptersOf(cur.path).map((c) => {
       const items = steps.map((s, i) => ({ s, i })).filter((x) => x.s.chapter === c.id);
-      return `<h4>${esc(c.name)}</h4>` + items.map(({ s, i }) =>
-        `<button type="button" data-n="${i + 1}"${i === cur.i ? ' aria-current="step"' : ""}><span class="sk-check">${done.has(s.shot) ? "✓" : i + 1}</span><span>${esc(s.title)}</span></button>`).join("");
+      const typed = items.filter((x) => typedStep(x.s));
+      if (!c.byType || !typed.length) return `<h4>${esc(c.name)}</h4>` + items.map((x) => stepBtn(x)).join("");
+      // One group per wire module type; the picked type is open and lists its steps. Blank has nothing to make.
+      const choices = (items.find((x) => x.s.choices) || {}).s.choices || [];
+      const groups = choices.map((t) => {
+        if (!t.go) return `<p class="sk-toc-type is-blank">${esc(t.name)} <small>nothing to make</small></p>`;
+        const open = t.id === moduleType;
+        return `<button type="button" class="sk-toc-type" data-toc-type="${esc(t.id)}" aria-expanded="${open}">${esc(t.name)}</button>` +
+          (open ? typed.map((x) => stepBtn(x, true)).join("") : "");
+      }).join("");
+      return `<h4>${esc(c.name)}</h4>` + items.filter((x) => !typedStep(x.s)).map((x) => stepBtn(x)).join("") + groups;
     }).join("");
   }
 
   $("sk-toc").addEventListener("click", (e) => {
+    const t = e.target.closest("button[data-toc-type]");
+    if (t) {
+      // Open that type and start its steps
+      setModuleType(t.dataset.tocType);
+      const first = stepsOf(cur.path).findIndex(typedStep);
+      if (first >= 0) go(cur.path + "-" + (first + 1));
+      return;
+    }
     const b = e.target.closest("button[data-n]");
     if (b) go(cur.path + "-" + b.dataset.n);
   });
   $("sk-step-done").addEventListener("change", (e) => {
     const s = stepsOf(cur.path)[cur.i];
     if (!s) return;
-    if (e.target.checked) done.add(s.shot); else done.delete(s.shot);
+    if (e.target.checked) done.add(doneKey(s)); else done.delete(doneKey(s));
     saveDone();
     renderToc();
   });

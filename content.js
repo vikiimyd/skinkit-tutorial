@@ -165,7 +165,9 @@ window.SKINKIT = {
 
   chapters: [
     { id: "m1", path: "make", name: "Make the skin cloth" },
-    { id: "m2", path: "make", name: "Make the wire modules" },
+    // byType: after the step with choices, the chapter's steps are done once per wire module type,
+    // and the step list shows one group per type.
+    { id: "m2", path: "make", name: "Make the wire modules", byType: true },
     { id: "u1", path: "use", name: "Get to know the kit" },
     { id: "u2", path: "use", name: "Build a circuit" },
     { id: "u3", path: "use", name: "Shape it and wear it" }
