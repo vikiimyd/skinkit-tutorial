@@ -98,10 +98,6 @@
 .sk-hero { display: grid; gap: 18px; padding-top: 60px; }
 #sk-root .sk-headline { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.35; max-width: 26ch; }
 .sk-intro { max-width: 68ch; font-size: 16px; }
-.sk-facts { display: flex; flex-wrap: wrap; gap: 12px 48px; padding-top: 6px; }
-.sk-facts div { display: grid; gap: 2px; }
-.sk-facts dt { font-family: var(--sk-font-heading); font-size: 26px; font-weight: 400; color: var(--sk-heading); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
-.sk-facts dd { font-size: 13px; color: var(--sk-muted); text-transform: uppercase; letter-spacing: .06em; font-family: var(--sk-font-heading); }
 .sk-actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 10px; }
 
 .sk-strip { margin-top: 40px !important; max-width: 100%; }
@@ -147,6 +143,8 @@
 #sk-root .sk-kit-section .sk-subhead { padding-top: 20px; font-size: 16px; }
 #sk-root .sk-kit h3, #sk-root .sk-conn-types h3, #sk-root .sk-points h3 { font-size: 16px; padding-top: 4px; }
 .sk-kit p, .sk-conn-types p, .sk-points p { font-size: 14.5px; line-height: 1.7; }
+#sk-root .sk-kit .sk-kit-head { display: flex; align-items: baseline; gap: 12px; padding-top: 8px; }
+#sk-root .sk-kit .sk-kit-num { font-size: 34px; line-height: 1; font-weight: 400; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
 #sk-root .sk-kit .sk-kit-highlight { font-size: 15.5px; font-weight: 600; color: var(--sk-heading); padding-left: 12px; border-left: 3px solid var(--sk-btn); }
 .sk-connect { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 6px; }
 .sk-connect img { width: 100%; height: auto; display: block; }
