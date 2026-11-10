@@ -358,7 +358,11 @@ window.SKINKIT = {
 
   // Questions people ask. confirm: true shows a "To confirm" tag until the lab checks the answer;
   // an empty a shows "We are checking this with the lab."
+  // demo (optional): a small interactive under the answer ("order" or "arrows", drawn in script.js).
+  // source (optional): where the answer comes from, shown under it.
   faq: [
+    { q: "Does the order of the modules matter?", a: "Yes. Every circuit starts with a power module, which always sends out a full signal. Each module after it reacts to the signal it gets from the module before it, then passes a signal on to the next one. So an output, like an LED, placed right after the power module and before any sensor gets the full signal and is always on. Placed after a sensor, it only turns on when the sensor's condition is met: in power → proximity sensor → LED, the LED lights up only when something comes close. Try both orders below.", demo: "order", source: "SkinKit paper, sections 3.1 and 3.5", confirm: false },
+    { q: "Why do the arrows matter?", a: "Every circuit module has its three lines in the same place: power (+) along the top, the signal through the middle and ground (−) along the bottom. The signal comes in on one side and goes out on the other, the way the arrows point. When every arrow points the same way, power meets power and ground meets ground at each joint, and each output meets the next module's input. Turn a module around and its + lands on the ground line and its output faces backwards, so the circuit stops working. The magnets help: the two rows have opposite poles, so a module only snaps on the right way round.", demo: "arrows", source: "SkinKit paper, Fig. 3 and sections 3.3.2 and 3.4", confirm: false },
     { q: "How long can I wear it?", a: "", confirm: true },
     { q: "How do I take it off? Does it hurt?", a: "Peel it off slowly from one corner while holding the skin flat, the way you take off a bandage. The video shows how.", confirm: true },
     { q: "Can it get wet? What about sweat?", a: "Keep it away from water.", confirm: true },

@@ -948,10 +948,107 @@
     $("sk-faq").innerHTML = (K.faq || []).map((f) => {
       const tag = f.confirm ? ' <span class="sk-confirm">To confirm</span>' : "";
       const a = f.a ? `<p class="sk-faq-a">${esc(f.a)}${tag}</p>` : `<p class="sk-faq-a is-pending">We are checking this with the lab.${tag}</p>`;
-      return `<details><summary>${esc(f.q)}</summary>${a}</details>`;
+      const demo = f.demo ? `<div class="sk-demo" data-demo="${esc(f.demo)}"></div>` : "";
+      const src = f.source ? `<p class="sk-faq-src">From the ${esc(f.source)}.</p>` : "";
+      return `<details><summary>${esc(f.q)}</summary>${a}${demo}${src}</details>`;
     }).join("");
+    $("sk-faq").querySelectorAll(".sk-demo").forEach((box) => {
+      if (box.dataset.demo === "order") orderDemo(box);
+      if (box.dataset.demo === "arrows") arrowsDemo(box);
+    });
     const c = K.citation;
     $("sk-citation").innerHTML = `${esc(c.text)} <a href="${esc(c.doi)}" target="_blank" rel="noopener">${esc(c.doi.replace(/^https?:\/\//, ""))}</a>. ${esc(c.funding)}`;
+  }
+
+  // ---------- FAQ demos ----------
+  // Module order: the LED before or after the proximity sensor (paper, section 3.5)
+  function orderDemo(box) {
+    const st = { ledFirst: false, near: false };
+    const mods = {
+      power: { name: "Power", color: colorOfFamily("power") },
+      sensor: { name: "Proximity sensor", color: colorOfFamily("sensor") },
+      led: { name: "LED", color: colorOfFamily("actuator") }
+    };
+    function draw() {
+      const chain = st.ledFirst ? ["power", "led", "sensor"] : ["power", "sensor", "led"];
+      const lit = st.ledFirst || st.near;
+      const say = st.ledFirst
+        ? "Power → LED → proximity sensor: the LED gets the full signal straight from the power module, so it is always on, whether something is close or not."
+        : st.near
+          ? "Power → proximity sensor → LED: something is close, so the sensor sends the signal on and the LED lights up."
+          : "Power → proximity sensor → LED: nothing is close, so the sensor sends no signal on and the LED stays off.";
+      box.innerHTML =
+        `<div class="sk-demo-controls">
+          <div class="sk-type-chips" role="group" aria-label="Order of the modules">
+            <button type="button" class="sk-chip" data-order="after" aria-pressed="${!st.ledFirst}">LED after the sensor</button>
+            <button type="button" class="sk-chip" data-order="before" aria-pressed="${st.ledFirst}">LED before the sensor</button>
+          </div>
+          <div class="sk-type-chips">
+            <button type="button" class="sk-chip" data-near aria-pressed="${st.near}">Something is close to the sensor</button>
+          </div>
+        </div>
+        <div class="sk-demo-chain">${chain.map((id) => {
+          const m = mods[id];
+          const cls = (id === "led" && lit ? " is-lit" : "") + (id === "sensor" && st.near ? " is-sensing" : "");
+          return `<span class="sk-demo-mod${cls}">${tile(m.color)}<span>${esc(m.name)}${id === "led" ? (lit ? " (on)" : " (off)") : ""}</span></span>`;
+        }).join(arrow)}</div>
+        <p class="sk-demo-out" aria-live="polite">${esc(say)}</p>`;
+    }
+    box.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      if (b.dataset.order) st.ledFirst = b.dataset.order === "before";
+      else if ("near" in b.dataset) st.near = !st.near;
+      draw();
+      const again = box.querySelector(b.dataset.order ? `[data-order="${b.dataset.order}"]` : "[data-near]");
+      if (again) again.focus();
+    });
+    draw();
+  }
+
+  // Arrows: two circuit modules side by side; turning the second one around swaps its + and − (paper, Fig. 3)
+  function arrowsDemo(box) {
+    let flipped = false;
+    const ROWS = [34, 74, 114], NAMES = ["Power +", "Signal", "Ground –"];
+    const AX = 76, BX = 286, W = 124, JX = (AX + W + BX) / 2;
+    function module(x, labels, dir) {
+      const pads = labels.map((t, i) => {
+        const y = ROWS[i];
+        return `<line x1="${x + 12}" y1="${y}" x2="${x + W - 12}" y2="${y}" class="sk-demo-line"/>` +
+          `<circle cx="${x + 14}" cy="${y}" r="6" class="sk-demo-pad"/><circle cx="${x + W - 14}" cy="${y}" r="6" class="sk-demo-pad"/>` +
+          `<text x="${x + 10}" y="${y - 10}" class="sk-demo-lab">${t[0]}</text><text x="${x + W - 10}" y="${y - 10}" text-anchor="end" class="sk-demo-lab">${t[1]}</text>`;
+      }).join("");
+      const ax = x + W / 2, ay = 96;
+      const arr = dir > 0 ? `M${ax - 14},${ay} L${ax + 10},${ay} M${ax + 3},${ay - 7} L${ax + 10},${ay} L${ax + 3},${ay + 7}`
+        : `M${ax + 14},${ay} L${ax - 10},${ay} M${ax - 3},${ay - 7} L${ax - 10},${ay} L${ax - 3},${ay + 7}`;
+      return `<rect x="${x}" y="12" width="${W}" height="122" class="sk-demo-board"/>${pads}<path d="${arr}" class="sk-demo-arrow"/>`;
+    }
+    function draw() {
+      const left = [["+", "+"], ["in", "out"], ["–", "–"]];
+      const right = flipped ? [["–", "–"], ["out", "in"], ["+", "+"]] : left;
+      const meets = ["+ meets –", "out meets out", "– meets +"];
+      const names = NAMES.map((n, i) => `<text x="0" y="${ROWS[i] + 4}" class="sk-demo-name">${n}</text>`).join("");
+      const joints = ROWS.map((y, i) => flipped
+        ? `<path d="M${JX - 6},${y - 6} l12,12 M${JX + 6},${y - 6} l-12,12" class="sk-demo-bad"/><text x="${JX}" y="${y + 21}" text-anchor="middle" class="sk-demo-badlab">${meets[i]}</text>`
+        : `<line x1="${AX + W - 14}" y1="${y}" x2="${BX + 14}" y2="${y}" class="sk-demo-join"/><path d="M${JX - 6},${y - 12} l4,5 l8,-9" class="sk-demo-ok"/>`).join("");
+      const say = flipped
+        ? "The second module is turned around: its + sits on the ground line, its − on the power line, and two outputs face each other. The circuit won't work, and the magnets won't snap on this way."
+        : "Both arrows point the same way: + meets +, the output meets the next input and − meets −. The signal flows from left to right.";
+      box.innerHTML =
+        `<div class="sk-demo-controls"><div class="sk-type-chips">
+          <button type="button" class="sk-chip" data-flip aria-pressed="${flipped}">Turn the second module around</button>
+        </div></div>
+        <svg class="sk-demo-svg" viewBox="0 0 ${BX + W + 2} 146" role="img" aria-label="${esc(say)}">${names}${module(AX, left, 1)}${module(BX, right, flipped ? -1 : 1)}${joints}</svg>
+        <p class="sk-demo-out" aria-live="polite">${esc(say)}</p>`;
+    }
+    box.addEventListener("click", (e) => {
+      if (!e.target.closest("[data-flip]")) return;
+      flipped = !flipped;
+      draw();
+      const again = box.querySelector("[data-flip]");
+      if (again) again.focus();
+    });
+    draw();
   }
 
   // ---------- Switching between parts ----------
