@@ -30,6 +30,9 @@
   const colorOfModule = (name) => (moduleByName[name] ? colorOfFamily(moduleByName[name].family) : "#ffffff");
   const tile = (color, extra) => `<span class="sk-mod${extra ? " " + extra : ""}" style="--c:${color}" aria-hidden="true"></span>`;
   const arrow = '<span class="sk-arrow" aria-hidden="true">→</span>';
+  // Small photos of a circuit module (images/fpcb-<name>.jpg) or a wire module (images/wire-<name>.jpg)
+  const modPhoto = (name) => `<img class="sk-mod-photo" src="images/fpcb-${name}.jpg" alt="" loading="lazy">`;
+  const wirePhoto = (name) => `<img class="sk-wire-photo" src="images/wire-${name}.jpg" alt="" loading="lazy">`;
 
   // ---------- "I did this step" (kept in this browser only) ----------
   const DONE_KEY = "skinkit-done";
@@ -187,17 +190,11 @@
       $("sk-parts-lead").textContent = K.parts.lead || "";
     }
 
-    const diamonds = (() => {
-      // Four small skin cloth diamonds in a zigzag, with the three lines running through them
-      const h = 22, xs = [22, 44, 66, 88], ys = [22, 44, 22, 44];
-      const shapes = xs.map((x, k) => `<polygon points="${x},${ys[k] - h} ${x + h},${ys[k]} ${x},${ys[k] + h} ${x - h},${ys[k]}" fill="#fff" stroke="#bbb"/>`).join("");
-      const line = (o) => `<polyline points="${xs.map((x, k) => x + "," + (ys[k] + o)).join(" ")}" fill="none" stroke="#b9b4ac" stroke-width="1.5"/>`;
-      return `<svg width="75" height="44" viewBox="0 0 110 66" aria-hidden="true">${shapes}${line(-4)}${line(0)}${line(4)}</svg>`;
-    })();
+    // Icons are small photos of the real modules
     const visuals = [
-      ["sensor", "modifier", "actuator", "power"].map((f) => tile(colorOfFamily(f))).join(""),
-      tile(colorOfFamily("power")) + arrow + tile(colorOfFamily("sensor")) + arrow + tile(colorOfFamily("actuator")),
-      diamonds
+      ["proximity", "blink", "led", "main-power"].map(modPhoto).join(""),
+      ["main-power", "proximity", "led"].map(modPhoto).join(arrow),
+      ["flat", "double-flaps", "cross-v2"].map(wirePhoto).join("")
     ];
     $("sk-how").innerHTML = K.how.map((item, i) =>
       `<li><div class="sk-how-visual">${visuals[i] || ""}</div><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p></li>`).join("");
@@ -211,7 +208,7 @@
   function renderKit() {
     const kit = $("sk-kit");
     if (kit) kit.innerHTML = (K.kit || []).map((k) =>
-      `<li><img src="${esc(k.image)}" alt="" loading="lazy"><h3>${esc(k.name)}</h3><p>${esc(k.text)}</p></li>`).join("");
+      `<li><img src="${esc(k.image)}" alt="" loading="lazy"><h3>${esc(k.name)}</h3><p>${esc(k.text)}</p>${k.highlight ? `<p class="sk-kit-highlight">${esc(k.highlight)}</p>` : ""}</li>`).join("");
     if ($("sk-kit-note")) $("sk-kit-note").textContent = K.kitNote || "";
   }
 
@@ -314,25 +311,6 @@
     box.innerHTML = (K.examples || []).map((e) =>
       `<figure><img src="${esc(e.image)}" alt="SkinKit worn on the ${esc(e.label.toLowerCase())}" loading="lazy"${e.pos ? ` style="object-position:${esc(e.pos)}"` : ""}>` +
       `<figcaption>${esc(e.label)}</figcaption></figure>`).join("");
-  }
-
-  // ---------- Part 1: applications ----------
-  function renderApps() {
-    const box = $("sk-apps");
-    box.innerHTML = K.applications.map((a) => {
-      const recipe = a.chain.map((n) => `<span class="sk-chip-mini">${tile(colorOfModule(n), "sk-mod--sm")}${esc(n)}</span>`).join('<span class="sk-arrow" aria-hidden="true">›</span>');
-      return `<article class="sk-app">
-        <div class="sk-media sk-media--square"></div>
-        <h3>${esc(a.name)}</h3>
-        <p>${esc(a.text)}</p>
-        <p class="sk-app-meta">Worn on: ${esc(a.where)}</p>
-        <p class="sk-recipe" aria-label="Circuit: ${esc(a.chain.join(", then "))}">${recipe}</p>
-      </article>`;
-    }).join("");
-    box.querySelectorAll(".sk-media").forEach((m, i) => {
-      const a = K.applications[i];
-      renderMedia(m, a.image ? { image: a.image } : null, "Photo", "Paper Fig. " + a.fig, a.name);
-    });
   }
 
   // ---------- Module guide (in the "Meet the modules" step) ----------
@@ -651,10 +629,10 @@
     // Where the LED sits in a chain with two sensors, and what each sensor is sensing (paper, sections 3.1 and 3.5)
     const st = { led: 2, near: true, touch: false };
     const mods = {
-      power: { name: "Power", say: "power", color: colorOfFamily("power") },
-      prox: { name: "Proximity sensor", say: "proximity sensor", color: colorOfFamily("sensor") },
-      touch: { name: "Touch sensor", say: "touch sensor", color: colorOfFamily("sensor") },
-      led: { name: "LED", say: "LED", color: colorOfFamily("actuator") }
+      power: { name: "Power", say: "power", photo: "main-power" },
+      prox: { name: "Proximity sensor", say: "proximity sensor", photo: "proximity" },
+      touch: { name: "Touch sensor", say: "touch sensor", photo: "capacitive-touch" },
+      led: { name: "LED", say: "LED", photo: "led" }
     };
     const SPOTS = ["LED first", "LED between the sensors", "LED last"];
     function draw() {
@@ -695,7 +673,7 @@
         <div class="sk-demo-chain">${chain.map((id) => {
           const m = mods[id];
           const cls = (id === "led" && lit ? " is-lit" : "") + ((id === "prox" && st.near) || (id === "touch" && st.touch) ? " is-sensing" : "");
-          return `<span class="sk-demo-mod${cls}">${tile(m.color)}<span>${esc(m.name)}${id === "led" ? (lit ? " (on)" : " (off)") : ""}</span></span>`;
+          return `<span class="sk-demo-mod${cls}">${modPhoto(m.photo)}<span>${esc(m.name)}${id === "led" ? (lit ? " (on)" : " (off)") : ""}</span></span>`;
         }).join(arrow)}</div>
         <p class="sk-demo-out" aria-live="polite"><strong>${esc(seq)}:</strong> ${esc(say)}</p>`;
     }
@@ -824,7 +802,6 @@
   renderKit();
   renderStrip();
   renderGallery();
-  renderApps();
   renderModules();
   renderReference();
   const first = useHash ? location.hash.slice(1) : "";

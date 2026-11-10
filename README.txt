@@ -31,7 +31,6 @@ Adding media
   Key actions in a clip: add  marks: [{ t: 0, text: "Peel the backing off" }, ...]  to media.
   t is seconds from the start. Each mark is a dot on the progress line under the clip; click it to jump there.
   Photos work the same way:                     media: { image: "images/1-03.jpg" }
-  Workshop projects: add  image: "images/fig10c.jpg"  to an entry in applications.
   Overview video: paste the YouTube link into overviewVideo.youtube.
 
 Links into the page

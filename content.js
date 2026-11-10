@@ -31,11 +31,11 @@ window.SKINKIT = {
   ],
 
   // "What's in the kit", right under the intro: an overview only (the details are in the Make and Use steps).
-  // Two cards, each with one overview image. kitNote sits under the heading.
+  // Two cards, each with one overview image. kitNote sits under the heading. highlight (optional) is a line shown in bold under a card's text.
   kitNote: "SkinKit has two sets of modules: wire modules made of skin cloth, and the electronic modules that click onto them.",
   kit: [
     { name: "6 wire modules", image: "images/kit-wire-modules.jpg", text: "Diamonds of skin cloth that carry power, ground and signal from one electronic module to the next. Five shapes: flat, flap-in, flap-out, double flaps and cross shape. The sixth is a blank piece with no lines, to fill out the shape and decorate." },
-    { name: "16 electronic modules", image: "images/kit-electronic-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm, each with a small pre-programmed chip. The color tells you the job: 5 sensors (yellow), 4 modifiers (blue), 5 actuators (white) and 2 power modules (red). You can also make the ones you need yourself." }
+    { name: "16 electronic modules", image: "images/kit-electronic-modules.jpg", text: "Flexible circuit boards, 2 × 2 cm, each with a small pre-programmed chip. The color tells you the job: 5 sensors (yellow), 4 modifiers (blue), 5 actuators (white) and 2 power modules (red).", highlight: "You can also make the ones you need yourself." }
   ],
 
   // "How the modules connect" (paper section 3.3 and Fig. 1, Fig. 7). Shown in the "Use the kit" path:
@@ -56,16 +56,6 @@ window.SKINKIT = {
     rule: "The one rule: keep the signal going one way. Line up the arrows on every piece.",
     credit: "Drawings from the SkinKit paper (Ku et al., IMWUT 2021, Fig. 7)."
   },
-
-  // Final projects from the paper's workshop (Fig. 10). chain = modules in order, by name.
-  applications: [
-    { name: "Night-walk light", where: "Calves", fig: "10C", text: "Two blinking LEDs make the wearer easy to see on a dark street.", chain: ["Main power", "Blink", "LED"] },
-    { name: "Personal space alert", where: "Back of the neck", fig: "10D", text: "Vibrates when someone comes too close behind you.", chain: ["Main power", "Proximity", "Vibration"] },
-    { name: "Deep-breath reminder", where: "Cheek", fig: "10B", text: "Senses breathing and vibrates to remind you to breathe deeply.", chain: ["Main power", "Pressure", "Vibration"] },
-    { name: "Exercise temperature", where: "Chest", fig: "10A", text: "Vibrates when your body gets unusually warm during exercise.", chain: ["Main power", "Temperature", "Vibration"] },
-    { name: "Heart transfer", where: "Hand", fig: "10F", text: "Lights up and vibrates when someone holds your hand.", chain: ["Main power", "Light", "LED"] },
-    { name: "Ballet pointe trainer", where: "Foot", fig: "10H", text: "Lights up or buzzes when the heel drops too close to the floor.", chain: ["Main power", "Proximity", "Buzzer"] }
-  ],
 
   // Lab photos of SkinKit on the body (press images "7_SkinKit_*_example"). pos = CSS object-position, keeps the device in frame.
   examples: [
