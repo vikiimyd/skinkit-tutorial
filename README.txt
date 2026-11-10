@@ -5,7 +5,7 @@ Open index.html in any browser. No install or build step.
 Structure
   Part 1  Introduction: what the kit holds, the electronic modules it pairs with and what it is for,
           then the two parts (Make and Use). Below: what's in the kit, how the modules connect,
-          how it works, overview video, examples, guide to all modules, "Try it on the body".
+          how it works, overview video, examples and a guide to all modules.
   Part 2  Make & use: the visitor picks a path, then goes step by step.
             "Make the kit"      for kit makers: make the skin cloth and the wire modules
             "Use the kit"       for everyone: build a circuit, shape it and wear it
@@ -35,7 +35,6 @@ Adding media
 
 Links into the page
   index.html#about      Part 1
-  index.html#try        the "Try a circuit" playground
   index.html#tutorial   Part 2, choose a path
   index.html#faq        the FAQ
   index.html#make-1     step 1 of "Make the kit"

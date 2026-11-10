@@ -68,58 +68,6 @@ window.SKINKIT = {
     credit: "Drawings from the SkinKit paper (Ku et al., IMWUT 2021, Fig. 7)."
   },
 
-  // The "Try it on the body" playground. Wording and spots only; the behavior is in script.js.
-  // Each spot has a close-up drawing in script.js (SCENES), with the same id.
-  sim: {
-    lead: "SkinKit is made for trying ideas right on the body. Pick a spot, stick on a circuit and test it. Not right? Peel it off and try another spot or another module. This is a simulation of how the real modules behave.",
-    spots: [
-      { id: "forearm", name: "Forearm", curved: true },
-      { id: "hand", name: "Back of the hand" },
-      { id: "neck", name: "Back of the neck", curved: true },
-      { id: "chest", name: "Chest" },
-      { id: "cheek", name: "Cheek", curved: true },
-      { id: "calf", name: "Calf", curved: true }
-    ],
-    // How the skin cloth wire modules join (see "How the modules connect" in Part 1). {spot} becomes the spot's name.
-    cloth: {
-      joints: [
-        { id: "flat", name: "Without flaps", hint: "Flat wire modules, with each circuit module laid across two of them. The slimmest choice for a flat, smooth spot.",
-          onCurved: "Flat wire modules are the slimmest, but on a curved spot like the {spot} a circuit module can lift off when you move. Try With flaps." },
-        { id: "flaps", name: "With flaps", hint: "The flaps of two wire modules fold up under each circuit module and bend like a hinge, so it stays connected on curved spots." }
-      ],
-      shapes: [
-        { id: "straight", name: "Straight" },
-        { id: "turn", name: "Turn a corner", hint: "A Cross shape piece turns the circuit." },
-        { id: "reach", name: "Reach further", hint: "Wire to wire: a flap folds onto a flat wire module and their magnets meet, so the circuit reaches further without another circuit module." }
-      ]
-    },
-    presets: [
-      { name: "Night-walk light", spot: "calf", sensor: "none", modifier: "blink", actuator: "led", joint: "flaps", shape: "straight" },
-      { name: "Personal space alert", spot: "neck", sensor: "proximity", modifier: "none", actuator: "vibration", joint: "flaps", shape: "turn" },
-      { name: "Deep-breath reminder", spot: "cheek", sensor: "pressure", modifier: "none", actuator: "vibration", joint: "flaps", shape: "straight" },
-      { name: "Exercise temperature", spot: "chest", sensor: "temperature", modifier: "none", actuator: "vibration", joint: "flat", shape: "turn" }
-    ],
-    sensors: [
-      { id: "none", name: "No sensor", when: "all the time", whenInverted: "never", control: "No sensor, so the signal is always on." },
-      { id: "proximity", name: "Proximity", when: "when something comes close", whenInverted: "when nothing is close", control: "Move your hand closer", low: "Far", high: "Close" },
-      { id: "light", name: "Light", when: "when the room is bright", whenInverted: "when it gets dark", control: "Room light", low: "Dark", high: "Bright" },
-      { id: "touch", name: "Capacitive touch", when: "while you touch it", whenInverted: "until you touch it", control: "Hold to touch" },
-      { id: "pressure", name: "Pressure", when: "when it is pressed", whenInverted: "until it is pressed", control: "Press on it", low: "Light", high: "Hard" },
-      { id: "temperature", name: "Temperature", when: "when your skin gets warm", whenInverted: "until your skin gets warm", control: "Skin temperature", low: "Cool", high: "Warm" }
-    ],
-    modifiers: [
-      { id: "none", name: "No modifier" },
-      { id: "blink", name: "Blink" },
-      { id: "fade", name: "Fade" },
-      { id: "inverter", name: "Inverter" }
-    ],
-    actuators: [
-      { id: "led", name: "LED", noun: "LED", verb: "lights up", blink: "blinks", fade: "fades in and out" },
-      { id: "vibration", name: "Vibration", noun: "vibration motor", verb: "vibrates", blink: "buzzes in short bursts", fade: "swells and fades" },
-      { id: "buzzer", name: "Buzzer", noun: "buzzer", verb: "beeps", blink: "beeps on and off", fade: "rises and falls" }
-    ]
-  },
-
   // Final projects from the paper's workshop (Fig. 10). chain = modules in order, by name.
   applications: [
     { name: "Night-walk light", where: "Calves", fig: "10C", text: "Two blinking LEDs make the wearer easy to see on a dark street.", chain: ["Main power", "Blink", "LED"] },
