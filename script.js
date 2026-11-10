@@ -220,9 +220,11 @@
     }
   }
 
-  // ---------- "Use the kit" steps with extra content: how the modules connect, and the three ways to join pieces ----------
-  // A step with block: "connect" shows the exploded joint and its three points; block: "joins" shows the three joins.
+  // ---------- "Use the kit" steps with extra content: how the modules connect, the three ways to join pieces, all the modules ----------
+  // A step with block: "connect" shows the exploded joint and its three points; block: "joins" shows the three joins;
+  // block: "modules" shows every circuit module with color filters (filled in by renderModules).
   function stepBlock(kind) {
+    if (kind === "modules") return `<div class="sk-chips" id="sk-filters"></div><div class="sk-modules" id="sk-modules"></div>`;
     const c = K.connect;
     if (!c) return "";
     if (kind === "connect") {
@@ -338,9 +340,10 @@
     });
   }
 
-  // ---------- Part 1: module guide ----------
+  // ---------- Module guide (in the "Meet the modules" step) ----------
   let moduleFilter = "all";
   function renderModules() {
+    if (!$("sk-filters")) return;
     const filters = [{ id: "all", name: "All" }].concat(K.families);
     $("sk-filters").innerHTML = filters.map((f) =>
       `<button type="button" class="sk-chip" data-f="${f.id}" aria-pressed="${f.id === moduleFilter}">${f.color ? `<span class="sk-swatch" style="background:${f.color}"></span>` : ""}${esc(f.name)}</button>`).join("");
@@ -348,8 +351,8 @@
     $("sk-modules").innerHTML = list.map((m) =>
       `<div class="sk-module">${m.image ? `<img class="sk-module-img" src="${esc(m.image)}" alt="" loading="lazy">` : tile(colorOfModule(m.name))}<div><h3>${esc(m.name)}</h3><p>${esc(m.does)}</p></div></div>`).join("");
   }
-  $("sk-filters").addEventListener("click", (e) => {
-    const b = e.target.closest(".sk-chip");
+  $("sk-step-block").addEventListener("click", (e) => {
+    const b = e.target.closest("#sk-filters .sk-chip");
     if (!b) return;
     moduleFilter = b.dataset.f;
     renderModules();
@@ -422,6 +425,7 @@
       const block = $("sk-step-block");
       block.hidden = !s.block;
       block.innerHTML = s.block ? stepBlock(s.block) : "";
+      if (s.block === "modules") renderModules();
       renderScrub($("sk-step-scrub"), $("sk-step-media").querySelector("video"), media && media.marks);
     }
     $("sk-step-title").textContent = s.title;
