@@ -64,6 +64,17 @@
 /* Shared */
 .sk-eyebrow { font-family: var(--sk-font-heading); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--sk-muted); }
 .sk-section { padding-top: 50px; display: grid; gap: 15px; }
+/* Part 1 groups: a dark rule, a number and a big title; the sections inside get smaller titles */
+.sk-group { margin-top: 80px; padding-top: 22px; border-top: 2px solid var(--sk-heading); display: grid; }
+.sk-group-head { display: flex; align-items: baseline; gap: 16px; }
+.sk-group-num { font-family: var(--sk-font-heading); font-size: 15px; letter-spacing: .1em; color: var(--sk-meta); }
+#sk-root .sk-group-head h2 { font-size: 32px; font-weight: 600; letter-spacing: .05em; }
+.sk-group > .sk-section:first-of-type { padding-top: 32px; }
+.sk-group .sk-section { padding-top: 44px; }
+#sk-root .sk-sec-title { font-size: 22px; font-weight: 400; color: var(--sk-heading); letter-spacing: .07em; }
+#sk-root .sk-how h3 { font-size: 16px; }
+#sk-root .sk-group .sk-path h2 { font-size: 21px; }
+@media (max-width: 760px) { .sk-group { margin-top: 56px; } #sk-root .sk-group-head h2 { font-size: 25px; } }
 .sk-section > hr, .sk-rule { border: 0; border-top: 1px solid var(--sk-rule); margin: 0; }
 .sk-lead { max-width: 70ch; }
 #sk-root .sk-btn { display: inline-flex; align-items: center; justify-content: center; font: 600 15px/1 var(--sk-font-body); letter-spacing: 1px; text-transform: uppercase; padding: 16px 26px; border: 1px solid var(--sk-btn); background: var(--sk-btn); color: var(--sk-on-btn); border-radius: 0; }
@@ -104,6 +115,7 @@
 .sk-how-visual { display: flex; align-items: center; gap: 6px; min-height: 48px; }
 /* Small real photos used as icons: circuit modules (square) and wire modules (diamond) */
 .sk-mod-photo { width: 48px; height: 48px; flex: none; display: block; object-fit: contain; }
+.sk-worn-photo { width: 84px; height: 48px; flex: none; display: block; object-fit: cover; object-position: 55% 55%; }
 .sk-wire-photo { width: 52px; height: 52px; flex: none; display: block; object-fit: contain; margin: -2px -5px; mix-blend-mode: multiply; }
 
 /* Media placeholders, like the lab site's #EEE image boxes */

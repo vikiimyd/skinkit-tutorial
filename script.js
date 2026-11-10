@@ -192,9 +192,9 @@
 
     // Icons are small photos of the real modules
     const visuals = [
-      ["proximity", "blink", "led", "main-power"].map(modPhoto).join(""),
       ["main-power", "proximity", "led"].map(modPhoto).join(arrow),
-      ["flat", "double-flaps", "cross-v2"].map(wirePhoto).join("")
+      ["flat", "double-flaps", "cross-v2"].map(wirePhoto).join(""),
+      `<img class="sk-worn-photo" src="images/ex-hand.jpg" alt="" loading="lazy">`
     ];
     $("sk-how").innerHTML = K.how.map((item, i) =>
       `<li><div class="sk-how-visual">${visuals[i] || ""}</div><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p></li>`).join("");
@@ -340,8 +340,8 @@
 
   function renderChooser() {
     const visuals = {
-      make: $("sk-how").querySelector("li:nth-child(3) .sk-how-visual"),
-      use: $("sk-how").querySelector("li:nth-child(2) .sk-how-visual")
+      make: $("sk-how").querySelector("li:nth-child(2) .sk-how-visual"),
+      use: $("sk-how").querySelector("li:nth-child(1) .sk-how-visual")
     };
     const eyebrow = { make: "Start from scratch", use: "Start with a kit" };
     // The same two cards show in Part 2 and under the introduction in Part 1
