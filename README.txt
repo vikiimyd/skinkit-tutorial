@@ -3,10 +3,12 @@ SkinKit tutorial page (Hybrid Body Lab)
 Open index.html in any browser. No install or build step.
 
 Structure
-  Part 1  Introduction: what the kit holds, the electronic modules it pairs with and what it is for,
-          then the two parts (Make and Use). Below: what's in the kit, how it works,
-          overview video and examples. The guide to all modules, how the modules connect and the
-          three ways to join pieces are steps in "Use the kit".
+  Part 1  Introduction, in three numbered groups:
+          01 About the kit: what's in the kit, how SkinKit works (the paper's three steps)
+          02 The tutorial: Make and Use (the two path cards)
+          03 See it on the body: overview video and examples
+          The guide to all modules, how the modules connect and the three ways to join pieces
+          are steps in "Use the kit".
   Part 2  Make & use: the visitor picks a path, then goes step by step.
             "Make the kit"      for kit makers: make the skin cloth and the wire modules
             "Use the kit"       for everyone: build a circuit, shape it and wear it

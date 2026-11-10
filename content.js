@@ -19,15 +19,16 @@ window.SKINKIT = {
     { value: "16", label: "electronic modules to pair with it" }
   ],
   parts: {
-    title: "This tutorial has two parts: Make and Use",
-    lead: "Make shows how to fabricate the skin cloth and the wire modules. Use shows how to build a circuit with the modules and wear it. Everyone can learn to use the modules. Making the kit is optional: it is meant for those who want to fabricate their own skin cloth and wire modules, such as workshop facilitators and researchers."
+    title: "The tutorial: Make and Use",
+    lead: "This tutorial has two parts. Make shows how to fabricate the skin cloth and the wire modules. Use shows how to build a circuit with the modules and wear it. Everyone can learn to use the modules. Making the kit is optional: it is meant for those who want to fabricate their own skin cloth and wire modules, such as workshop facilitators and researchers."
   },
   overviewVideo: { youtube: "https://youtu.be/Er8yJwxMnp4", shot: "0-00" }, // the lab's SkinKit video, as on the SkinKit page of the lab site
 
+  // The three steps of the prototyping workflow in the paper (section 3.5)
   how: [
-    { title: "Pick your modules", text: "Yellow modules sense, blue ones change the signal, white ones do something you can see or feel. Red gives power." },
-    { title: "Snap them in order", text: "Follow the arrows from power to the end. Magnets hold each module in place and only fit the right way round." },
-    { title: "Wear it", text: "Arrange the skin cloth into any shape, preview it on your body, then stick it on with skin-safe tape." }
+    { title: "Build the circuit", text: "Line up electronic modules in order, starting with a power module. Each module acts on the signal from the one before it: power → proximity sensor → LED lights the LED when something comes close. Test the order on a table first." },
+    { title: "Lay it out with wire modules", text: "Fit wire modules together into the shape you want. Each electronic module sits across two wire modules, held by magnets on their power, signal and ground lines. Keep every arrow pointing the same way." },
+    { title: "Wear and preview it", text: "Place the layout on your body and rearrange the modules until it fits and works. Then tape the pieces together for good and stick the device on with medical-grade tape." }
   ],
 
   // "What's in the kit", right under the intro: an overview only (the details are in the Make and Use steps).
