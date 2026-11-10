@@ -125,10 +125,10 @@ window.SKINKIT = {
     modules: [
       { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
       { name: "Second skin cloth sheet", note: "The Letter-size sheet you kept whole. The magnets go on it, then you cut it apart with scissors.", image: "images/mat-skin-cloth.jpg" },
-      { name: "Magnet template", note: "US Letter paper (8.5 × 11 in). Print at 100% / actual size, not Fit to page. It shows where every magnet goes.", link: { text: "Download the PDF (US Letter)", href: "downloads/skinkit-magnet-sheet-v8.pdf" } },
+      { name: "Magnet template", note: "US Letter paper (8.5 × 11 in). Print at 100% / actual size, not Fit to page. It shows where every magnet goes.", link: { text: "Download the PDF (US Letter)", href: "downloads/skinkit-magnet-sheet-v9.pdf" } },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
-      { name: "Scissors", note: "For cutting the tape into strips and the magnet pieces apart." },
+      { name: "Scissors", note: "For cutting the tape and the magnet sheet into strips." },
       { name: "Double-sided tape", note: "Covers the second skin cloth sheet, and cut into small triangles for the corners of each diamond.", image: "images/mat-tape-roll-2.jpg" },
       { name: "Tweezers", note: "For placing and lining up the tiny magnets.", image: "images/mat-tweezers-3.jpg" },
       { name: "Masking or washi tape", note: "Holds the skin cloth sheet still on the template." }
@@ -222,28 +222,24 @@ window.SKINKIT = {
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
-    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds the magnets for many wire modules of all five types, so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v8.jpg" } },
+    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds 64 pairs of short strips, the magnets for up to 64 wire modules (a Cross uses two pairs), so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v9.jpg" } },
     { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. The black and white ends of each module just need to be opposite.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
           { t: 0, text: "The two rows have opposite poles" },
           { t: 4.77, text: "Put a magnet on each dot with tweezers" },
           { t: 8.8, text: "Keep going until every dot has a magnet" },
           { t: 13.8, text: "Line the magnets up with tweezers" }
         ] } },
-    { chapter: "m2", shot: "1-07b", title: "Cut out the pieces", text: "Cut out the pieces with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each piece.", forType: {
-      "flat": "One square piece per module. It covers the inner square of the diamond.",
-      "flap-in": "One piece per module: the inner square plus the flap on the input side. The dashed line shows where the flap folds.",
-      "flap-out": "One piece per module: the inner square plus the flap on the output side. The dashed line shows where the flap folds.",
-      "double-flaps": "Cut the pieces apart into single strips: one with black dots and one with white dots per module, one for each flap.",
-      "cross": "Cut the pieces apart into single strips: two with black dots and two with white dots per module, one for each flap."
+    { chapter: "m2", shot: "1-07b", title: "Cut the sheet into strips", text: "Cut the sheet into short strips with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each strip. Each wire module needs one black strip and one white strip.", forType: {
+      "cross": "A Cross needs four strips, one per arm: two black and two white."
     }, tip: "", need: ["Scissors"], media: false },
-    { chapter: "m2", shot: "1-07c", title: "Stick the pieces on", text: "Stick each piece on its diamond: a square part on the inner square, and a flap part on the flap. The red arrows on the template point the way the signal flows.", forType: {
-      "flat": "The square piece goes on the inner square.",
-      "flap-in": "The square part goes on the inner square and the flap part on the flap, on the input side.",
-      "flap-out": "The square part goes on the inner square and the flap part on the flap, on the output side.",
-      "double-flaps": "One strip on each flap, with its red edge at the flap's tip: the black-dot strip on the input side and the white-dot strip on the output side.",
-      "cross": "One strip on each of the four flaps, with its red edge at the flap's tip."
+    { chapter: "m2", shot: "1-07c", title: "Stick the strips on", text: "Stick the black strip at the input end of the diamond and the white strip at the output end. Line up the plain edge of each strip (the one without red marks) with the edge of the inner square: on a flap end the strip covers the flap, on a flat end it sits just inside the square. The red arrows on the template point the way the signal flows.", forType: {
+      "flat": "Both ends are flat, so both strips sit just inside the inner square: black at the input end, white at the output end.",
+      "flap-in": "The black strip covers the flap on the input side. The white strip sits just inside the square at the output end.",
+      "flap-out": "The black strip sits just inside the square at the input end. The white strip covers the flap on the output side.",
+      "double-flaps": "One strip covers each flap: black on the input flap, white on the output flap.",
+      "cross": "One strip on each of the four arms: black on the input arms, white on the output arms."
     }, tip: "", need: ["Skin cloth diamonds"], media: { video: "images/1-07c-v1.mp4", marks: [
-          { t: 0, text: "Stick a piece at each end of the diamond" }
+          { t: 0, text: "Stick a strip at each end of the diamond" }
         ] } },
     { chapter: "m2", shot: "1-05", title: "Add the three lines", text: "Peel the backing off a strip of conductive fabric tape. Stick it across the diamond so it covers one magnet at each end, and fold each end around the edge of the flap. Repeat twice more for three lines: power, ground and signal.", forType: {
       "double-flaps": "Run each line from one flap across to the other."
@@ -304,9 +300,8 @@ window.SKINKIT = {
   // source (optional): where the answer comes from, shown under it. image (optional): { src, alt, caption }, a photo under the answer.
   faq: [
     { q: "Does the order of the modules matter?", a: "Yes. Every circuit starts with a power module, which always sends out a full signal. Each module after it reacts to the signal it gets from the module before it, then passes a signal on to the next one. So an output, like an LED, placed right after the power module and before any sensor gets the full signal and is always on. Placed after a sensor, it only turns on when the sensor's condition is met: in power → proximity sensor → LED, the LED lights up only when something comes close. With two sensors in a row, the LED needs both: in power → proximity sensor → touch sensor → LED, it lights up only when something is close and the touch sensor is touched at the same time. Move the LED and try the sensors below.", demo: "order", source: "SkinKit paper, sections 3.1 and 3.5", confirm: false },
+    { q: "What does the arrow sticker on a wire module mean?", image: { src: "images/faq-arrows-wire.jpg", alt: "A Flat wire module with its red arrow sticker circled, in the middle of the three lines.", caption: "The arrow sticker on a wire module, circled." }, a: "Each wire module has a red arrow sticker that shows which way the signal runs through that piece. Besides the magnets, it reminds you of the order of the circuit: the signal starts at the power module and flows along the arrows, so place each electronic module after the one that feeds it. The magnets at the two ends of a wire module have opposite poles, set to match the signal direction from input to output. This is also the main difference between Flap-in and Flap-out. Keep every sticker pointing the same way and line it up with the arrows on the electronic modules: the magnets then attract, and each electronic module only clicks on the right way round. The Cross shape has two stickers, because it turns the circuit or splits it into two directions.", source: "SkinKit paper, section 3.4 and Fig. 7", confirm: false },
     { q: "What do the arrows on the electronic modules mean?", image: { src: "images/faq-arrows-module.jpg", alt: "An LED module with its two printed white arrows circled, one on the left edge and one on the right.", caption: "The two printed arrows on an electronic module, circled." }, a: "Each electronic module has two arrows printed on its front, one on each side. They show which way the signal goes: in on the side the arrows come from, out on the side they point to. Every module also has its three lines in the same place: power (+) along the top, the signal through the middle and ground (−) along the bottom. When every arrow points the same way, power meets power and ground meets ground at each joint, and each output meets the next module's input. Turn a module around and its + lands on the ground line and its output faces backwards, so the circuit stops working. The magnets help: the two rows have opposite poles, so a module only clicks on the right way round.", demo: "arrows", source: "SkinKit paper, section 3.2, Fig. 3 and section 3.3.2", confirm: false },
-    { q: "What does the arrow sticker on a wire module mean?", image: { src: "images/faq-arrows-wire.jpg", alt: "A Flat wire module with its red arrow sticker circled, in the middle of the three lines.", caption: "The arrow sticker on a wire module, circled." }, a: "Each wire module has a red arrow sticker that shows which way the signal runs through that piece. The magnets at its two ends have opposite poles, set to match the signal direction from input to output. This is also the main difference between Flap-in and Flap-out. Line the sticker up with the arrows on the electronic modules and keep every sticker pointing the same way: the magnets then attract, and each electronic module only clicks on the right way round. The Cross shape has two stickers, because it turns the circuit or splits it into two directions.", source: "SkinKit paper, section 3.4 and Fig. 7", confirm: false },
-    { q: "How long can I wear it?", a: "", confirm: true },
     { q: "How do I take it off? Does it hurt?", a: "Peel it off slowly from one corner while holding the skin flat, the way you take off a bandage. The video shows how.", confirm: true },
     { q: "Can it get wet? What about sweat?", a: "Keep it away from water.", confirm: true },
     { q: "Can I use it on sensitive skin?", a: "SkinKit sticks on with medical-grade double-sided tape (Vapon). If your skin itches or turns red, take it off.", confirm: true },
