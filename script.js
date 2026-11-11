@@ -404,6 +404,11 @@
     }
     $("sk-step-title").textContent = s.title;
     $("sk-step-callout").textContent = s.callout || "";
+    // An optional drawing that backs up the callout: figure: { image, alt }
+    const fig = $("sk-step-fig");
+    fig.hidden = !s.figure;
+    fig.innerHTML = s.figure ? `<a href="${esc(s.figure.image)}" target="_blank" rel="noopener"><img src="${esc(s.figure.image)}" alt="${esc(s.figure.alt || "")}" loading="lazy"></a>` +
+      `<figcaption>${canHover ? "Click" : "Tap"} to open it full size.</figcaption>` : "";
     $("sk-step-text").textContent = s.text;
     $("sk-step-tip").textContent = s.tip || "";
 
