@@ -617,7 +617,13 @@
       const fig = f.image ? `<figure class="sk-faq-fig"><img src="${esc(f.image.src)}" alt="${esc(f.image.alt || "")}" loading="lazy">${f.image.caption ? `<figcaption>${esc(f.image.caption)}</figcaption>` : ""}</figure>` : "";
       const demo = f.demo ? `<div class="sk-demo" data-demo="${esc(f.demo)}"></div>` : "";
       const src = f.source ? `<p class="sk-faq-src">From the ${esc(f.source)}.</p>` : "";
-      return `<details><summary>${esc(f.q)}</summary>${a}${steps}${fig}${demo}${src}</details>`;
+      // With a demo or a photo, the text sits on the left and the demo (or else the photo) on the right; stacked on small screens.
+      // When there is both, the photo stays under the text.
+      const side = demo || fig;
+      const under = demo ? fig : "";
+      return `<details><summary>${esc(f.q)}</summary>` +
+        (side ? `<div class="sk-faq-body"><div class="sk-faq-text">${a}${steps}${under}${src}</div><div class="sk-faq-side">${side}</div></div>` : `${a}${steps}${src}`) +
+        `</details>`;
     }).join("");
     $("sk-faq").querySelectorAll(".sk-demo").forEach((box) => {
       if (box.dataset.demo === "order") orderDemo(box);
@@ -633,10 +639,10 @@
     // Where the LED sits in a chain with two sensors, and what each sensor is sensing (paper, sections 3.1 and 3.5)
     const st = { led: 2, near: true, touch: false };
     const mods = {
-      power: { name: "Power", say: "power", photo: "main-power" },
-      prox: { name: "Proximity sensor", say: "proximity sensor", photo: "proximity" },
-      touch: { name: "Touch sensor", say: "touch sensor", photo: "capacitive-touch" },
-      led: { name: "LED", say: "LED", photo: "led" }
+      power: { name: "Power", photo: "main-power" },
+      prox: { name: "Proximity", photo: "proximity" },
+      touch: { name: "Touch", photo: "capacitive-touch" },
+      led: { name: "LED", photo: "led" }
     };
     const SPOTS = ["LED first", "LED between the sensors", "LED last"];
     function draw() {
@@ -650,20 +656,19 @@
         if (id === "prox") signal = signal && st.near;
         if (id === "touch") signal = signal && st.touch;
       });
-      const seq = "P" + chain.map((id) => mods[id].say).join(" → ").slice(1);
       const say = st.led === 0
-        ? "The LED gets the full signal straight from the power module, so it is always on. The sensors after it don't change it."
+        ? "The LED gets the signal straight from power, so it is always on."
         : st.led === 1
           ? (st.near
-            ? "Something is close, so the proximity sensor passes the signal on and the LED lights up. The touch sensor comes after the LED, so touching it changes nothing."
-            : "Nothing is close, so the proximity sensor passes no signal on and the LED stays off. The touch sensor comes after the LED, so touching it changes nothing.")
+            ? "Something is close, so the LED lights up. The touch sensor comes after it and changes nothing."
+            : "Nothing is close, so the LED stays off. The touch sensor comes after it and changes nothing.")
           : st.near && st.touch
-            ? "Something is close and the touch sensor is touched, so both sensors pass the signal on and the LED lights up."
+            ? "Both sensors are triggered, so the LED lights up."
             : st.near
-              ? "Something is close, so the proximity sensor passes the signal on. But nothing touches the touch sensor, so the signal stops there and the LED stays off. Both conditions have to be met."
+              ? "Only the proximity sensor is triggered, so the LED stays off. It needs both."
               : st.touch
-                ? "Nothing is close, so the proximity sensor sends no signal on. The touch sensor has nothing to pass on, so the LED stays off even though it is touched."
-                : "Nothing is close and nothing touches the touch sensor, so the LED stays off.";
+                ? "Only the touch sensor is triggered, so the LED stays off. It needs both."
+                : "Neither sensor is triggered, so the LED stays off.";
       box.innerHTML =
         `<div class="sk-demo-controls">
           <div class="sk-type-chips" role="group" aria-label="Where the LED goes">${SPOTS.map((t, k) =>
@@ -679,7 +684,7 @@
           const cls = (id === "led" && lit ? " is-lit" : "") + ((id === "prox" && st.near) || (id === "touch" && st.touch) ? " is-sensing" : "");
           return `<span class="sk-demo-mod${cls}">${modPhoto(m.photo)}<span>${esc(m.name)}${id === "led" ? (lit ? " (on)" : " (off)") : ""}</span></span>`;
         }).join(arrow)}</div>
-        <p class="sk-demo-out" aria-live="polite"><strong>${esc(seq)}:</strong> ${esc(say)}</p>`;
+        <p class="sk-demo-out" aria-live="polite">${esc(say)}</p>`;
     }
     box.addEventListener("click", (e) => {
       const b = e.target.closest("button");

@@ -320,6 +320,12 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
 .sk-faq summary::after { content: "+"; flex: none; font: 300 22px/1 var(--sk-font-heading); color: var(--sk-muted); }
 .sk-faq details[open] summary::after { content: "\2212"; }
 .sk-faq-a { margin: 0; padding: 0 0 18px; max-width: 70ch; }
+/* FAQ entries with a photo or demo: text left, photo or demo right */
+.sk-faq-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 40px; align-items: start; }
+.sk-faq-side .sk-demo { max-width: none; }
+.sk-faq-side { padding-bottom: 18px; }
+.sk-faq-side .sk-faq-fig, .sk-faq-side .sk-demo { margin-bottom: 0; }
+@media (max-width: 900px) { .sk-faq-body { grid-template-columns: minmax(0, 1fr); gap: 0; } }
 .sk-faq-steps { margin: -6px 0 18px; padding-left: 22px; max-width: 68ch; }
 .sk-faq-steps li { margin-bottom: 8px; }
 .sk-faq-a.is-pending { color: var(--sk-muted); font-style: italic; }
