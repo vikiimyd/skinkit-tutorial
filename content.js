@@ -107,7 +107,7 @@ window.SKINKIT = {
       pitch: "Learn how the modules connect, build a circuit, shape it for your body and wear it.",
       note: ""
     },
-    availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses. TODO: confirm wording with the lab."
+    availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses."
   },
 
   // image (optional): a close-up shown when someone clicks that item in the step photo.
@@ -275,7 +275,7 @@ window.SKINKIT = {
     { chapter: "u3", shot: "3-04", title: "Preview it on your body", text: "Hold the device on your body and look in the mirror. Rearrange pieces or swap modules until you like it.", tip: "", media: null },
     { chapter: "u3", shot: "3-05", title: "Make it permanent and decorate", text: "When the layout is final, secure the joints between wire modules with double-sided tape. Then, if you like, decorate it with washi tape, stickers, gems or markers.", tip: "Keep decorations off the magnets and metal lines so the circuit still works.", need: ["Double-sided tape", { name: "Decorations (optional)", note: "Washi tape, stickers, gems or markers" }], media: null },
     { chapter: "u3", shot: "3-06", title: "Put it on", text: "Apply medical-grade double-sided tape to the back and press the device onto clean, dry skin. Switch on the power and try it out.", tip: "", need: [{ name: "Medical-grade double-sided tape", image: "images/mat-tape.jpg" }], media: null },
-    { chapter: "u3", shot: "3-07", title: "Take it off", text: "TODO: how to remove it gently and store the modules for reuse.", tip: "The circuit modules are reusable: unsnap them for your next project.", media: null }
+    { chapter: "u3", shot: "3-07", title: "Take it off", text: "Peel it off slowly from one corner while holding the skin flat, the way you take off a bandage. Unsnap the electronic modules and keep them for your next project. The wire modules can't be reused once they have been stuck on skin.", tip: "Avoid hairy parts of the body when you put it on: taking it off there hurts.", media: null }
   ],
 
   glossary: [
@@ -313,7 +313,7 @@ window.SKINKIT = {
       "Check that each electronic module is connected the right way: its arrows point the same way as the rest, and its magnets are clicked on firmly.",
       "If everything is connected right, the electronic module itself may be broken. Try another one of the same kind."
     ], confirm: false },
-    { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: true }
+    { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: false }
   ],
 
   citation: {
