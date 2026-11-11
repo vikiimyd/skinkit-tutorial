@@ -125,7 +125,7 @@ window.SKINKIT = {
     modules: [
       { name: "Skin cloth diamonds", note: "The pieces you cut in the last step.", image: "images/mat-skin-cloth.jpg" },
       { name: "Second skin cloth sheet", note: "The Letter-size sheet you kept whole. The magnets go on it, then you cut it apart with scissors.", image: "images/mat-skin-cloth.jpg" },
-      { name: "Magnet template", note: "US Letter paper (8.5 × 11 in). Print at 100% / actual size, not Fit to page. It shows where every magnet goes.", link: { text: "Download the PDF (US Letter)", href: "downloads/skinkit-magnet-sheet-v9.pdf" } },
+      { name: "Magnet template", note: "US Letter paper (8.5 × 11 in). Print at 100% / actual size, not Fit to page. It shows where every magnet goes.", link: { text: "Download the PDF (US Letter)", href: "downloads/skinkit-magnet-sheet-v10.pdf" } },
       { name: "Conductive fabric tape", note: "Becomes the three lines on each wire module.", image: "images/mat-conductive-tape.jpg" },
       { name: "Mini magnets", note: "2 mm wide, 1 mm thick.", image: "images/mat-magnets.jpg" },
       { name: "Scissors", note: "For cutting the tape and the magnet sheet into strips." },
@@ -222,22 +222,26 @@ window.SKINKIT = {
           { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
           { t: 19.3, text: "Leave the backing on for now" }
         ] } },
-    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds 64 pairs of short strips, the magnets for up to 64 wire modules (a Cross uses two pairs), so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v9.jpg" } },
-    { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. The black and white ends of each module just need to be opposite.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
+    { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds 64 black and 64 white short strips, the magnets for up to 64 wire modules (fewer if you make Cross), so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v10.jpg" } },
+    { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. Just keep every black dot the same face up and every white dot flipped.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
           { t: 0, text: "The two rows have opposite poles" },
           { t: 4.77, text: "Put a magnet on each dot with tweezers" },
           { t: 8.8, text: "Keep going until every dot has a magnet" },
           { t: 13.8, text: "Line the magnets up with tweezers" }
         ] } },
-    { chapter: "m2", shot: "1-07b", title: "Cut the sheet into strips", text: "Cut the sheet into short strips with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each strip. Each wire module needs one black strip and one white strip.", forType: {
-      "cross": "A Cross needs four strips, one per arm: two black and two white."
+    { chapter: "m2", shot: "1-07b", title: "Cut the sheet into strips", text: "Cut the sheet into short strips with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each strip. Each wire module needs two strips, one for each end. Which colours depends on the type: see the next step.", forType: {
+      "flat": "1 black strip and 1 white strip.",
+      "flap-in": "2 white strips. Make Flap-in and Flap-out in equal numbers to use both colours evenly.",
+      "flap-out": "2 black strips. Make Flap-in and Flap-out in equal numbers to use both colours evenly.",
+      "double-flaps": "1 white strip and 1 black strip.",
+      "cross": "4 strips, one per arm: 2 white and 2 black."
     }, tip: "", need: ["Scissors"], media: false },
-    { chapter: "m2", shot: "1-07c", title: "Stick the strips on", text: "Stick the black strip at the input end of the diamond and the white strip at the output end. Line up the plain edge of each strip (the one without red marks) with the edge of the inner square: on a flap end the strip covers the flap, on a flat end it sits just inside the square. The red arrows on the template point the way the signal flows.", forType: {
-      "flat": "Both ends are flat, so both strips sit just inside the inner square: black at the input end, white at the output end.",
-      "flap-in": "The black strip covers the flap on the input side. The white strip sits just inside the square at the output end.",
-      "flap-out": "The black strip sits just inside the square at the input end. The white strip covers the flap on the output side.",
-      "double-flaps": "One strip covers each flap: black on the input flap, white on the output flap.",
-      "cross": "One strip on each of the four arms: black on the input arms, white on the output arms."
+    { chapter: "m2", shot: "1-07c", title: "Stick the strips on", callout: "A flat end takes black at the input and white at the output. A flap flips over when it folds, so it takes the opposite colour: white on an input flap, black on an output flap.", text: "Stick one strip at each end of the diamond, with its plain edge (no red marks) along the edge of the inner square: on a flap the strip covers the flap, on a flat end it sits just inside the square. The red arrows on the template show the way the signal flows.", forType: {
+      "flat": "Both ends are flat: black just inside the square at the input end, white just inside the square at the output end.",
+      "flap-in": "White on the input flap (it flips when the flap folds), white just inside the square at the output end.",
+      "flap-out": "Black just inside the square at the input end, black on the output flap (it flips when the flap folds).",
+      "double-flaps": "White on the input flap, black on the output flap. Both flip when the flaps fold.",
+      "cross": "One strip per arm: white on the input arms, black on the output arms. The arms fold, which flips them."
     }, tip: "", need: ["Skin cloth diamonds"], media: { video: "images/1-07c-v1.mp4", marks: [
           { t: 0, text: "Stick a strip at each end of the diamond" }
         ] } },
