@@ -107,7 +107,7 @@ window.SKINKIT = {
       pitch: "Learn how the modules connect, build a circuit, shape it for your body and wear it.",
       note: ""
     },
-    availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses. TODO: confirm wording with the lab."
+    availability: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses."
   },
 
   // image (optional): a close-up shown when someone clicks that item in the step photo.
@@ -313,7 +313,7 @@ window.SKINKIT = {
       "Check that each electronic module is connected the right way: its arrows point the same way as the rest, and its magnets are clicked on firmly.",
       "If everything is connected right, the electronic module itself may be broken. Try another one of the same kind."
     ], confirm: false },
-    { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: true }
+    { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: false }
   ],
 
   citation: {
