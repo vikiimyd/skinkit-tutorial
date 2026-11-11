@@ -320,6 +320,8 @@ button.sk-choice:hover, button.sk-choice:focus-visible { border-color: var(--sk-
 .sk-faq summary::after { content: "+"; flex: none; font: 300 22px/1 var(--sk-font-heading); color: var(--sk-muted); }
 .sk-faq details[open] summary::after { content: "\2212"; }
 .sk-faq-a { margin: 0; padding: 0 0 18px; max-width: 70ch; }
+.sk-faq-steps { margin: -6px 0 18px; padding-left: 22px; max-width: 68ch; }
+.sk-faq-steps li { margin-bottom: 8px; }
 .sk-faq-a.is-pending { color: var(--sk-muted); font-style: italic; }
 .sk-faq-fig { margin: 0 0 16px; max-width: 280px; }
 .sk-faq-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--sk-line); }
