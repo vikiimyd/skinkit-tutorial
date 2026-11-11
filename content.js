@@ -196,17 +196,7 @@ window.SKINKIT = {
           { t: 21.2, text: "Let it dry for a few days" }
         ] } },
     { chapter: "m1", shot: "1-04c", title: "Cut it into diamonds", callout: "One sheet is for cutting. Save the other sheet whole for the next stage.", text: "Load one dry sheet of skin cloth into an electronic cutting machine and cut it with our cut file, the template for the diamond shape. Every piece then fits the others. The saved sheet holds the magnets in Make the wire modules.", tip: "The diamonds have 4 cm sides and edges that fit into each other like a puzzle.", need: ["Electronic cutting machine"], media: null },
-    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Every wire module starts as a skin cloth diamond. SkinKit has five types of wire module plus a blank one. Pick the ones your design needs, and make several of each. Pick one to see how to make it.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
-        { id: "flat", name: "Flat", image: "images/wire-flat.jpg", go: "1-05m", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
-        { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05m", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
-        { id: "flap-out", name: "Flap-out", image: "images/wire-flap-out.jpg", go: "1-05m", text: "Like Flap-in, but the flap is on the side the arrow points to. Its magnets are flipped to match the signal direction, from input to output." },
-        { id: "double-flaps", name: "Double flaps", tag: "Shown in the videos", image: "images/wire-double-flaps.jpg", go: "1-05m", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
-        { id: "cross", name: "Cross shape", image: "images/wire-cross-v2.jpg", go: "1-05m", text: "A four-way piece. Turns the circuit or splits it into two directions." },
-        { id: "blank", name: "Blank", image: "images/wire-blank.jpg", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear. Nothing to add: use a diamond from Step 5 as it is." }
-      ], media: false },
-    { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Now turn the skin cloth into wire modules. Lay out everything below.", materials: "modules", forType: {
-      "double-flaps": "The videos in the next steps show how to make this one."
-    }, tip: "", media: {
+    { chapter: "m2", shot: "1-05m", title: "Gather your materials", text: "Lay out everything below. First you make the magnet strips, which every type of wire module uses.", materials: "modules", tip: "", media: {
         image: "images/materials-modules-6.jpg",
         hotspots: [
           { item: "Mini magnets", x: 12.5, y: 22.8, w: 19, h: 26.7 },
@@ -217,11 +207,6 @@ window.SKINKIT = {
           { item: "Tweezers", x: 8.3, y: 8.5, w: 28.4, h: 8 }
         ]
       } },
-    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v4.mp4", marks: [
-          { t: 0, text: "Cut the double-sided tape into small triangles" },
-          { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
-          { t: 19.3, text: "Leave the backing on for now" }
-        ] } },
     { chapter: "m2", shot: "1-07a", title: "Lay the skin cloth over the template", text: "Cover one side of your second skin cloth sheet with double-sided tape. Print the magnet template on US Letter paper at 100% (actual size, not Fit to page), lay the skin cloth over it with the tape side up, and tape all four edges down with masking or washi tape so it cannot move. Skin cloth is see-through, so the pattern shows.", tip: "One sheet holds 64 black and 64 white short strips, the magnets for up to 64 wire modules (fewer if you make Cross), so you place them all in one go.", need: ["Second skin cloth sheet", "Double-sided tape", "Magnet template", "Masking or washi tape"], media: { image: "images/magnet-sheet-v10.jpg" } },
     { chapter: "m2", shot: "1-07", title: "Place the magnets", text: "Put a magnet on every dot with tweezers. Black dots are one face up. White dots are flipped, so their pole is opposite. You don't need to mark anything: the template shows where each magnet goes.", tip: "Which face is N does not matter. Just keep every black dot the same face up and every white dot flipped.", need: ["Mini magnets", "Tweezers"], media: { video: "images/1-07-v7.mp4", marks: [
           { t: 0, text: "The two rows have opposite poles" },
@@ -229,19 +214,26 @@ window.SKINKIT = {
           { t: 8.8, text: "Keep going until every dot has a magnet" },
           { t: 13.8, text: "Line the magnets up with tweezers" }
         ] } },
-    { chapter: "m2", shot: "1-07b", title: "Cut the sheet into strips", text: "Cut the sheet into short strips with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each strip. Each wire module needs two strips, one for each end. Which colours depends on the type: see the next step.", forType: {
-      "flat": "1 black strip and 1 white strip.",
-      "flap-in": "2 white strips. Make Flap-in and Flap-out in equal numbers to use both colours evenly.",
-      "flap-out": "2 black strips. Make Flap-in and Flap-out in equal numbers to use both colours evenly.",
-      "double-flaps": "1 white strip and 1 black strip.",
-      "cross": "4 strips, one per arm: 2 white and 2 black."
-    }, tip: "", need: ["Scissors"], media: false },
+    { chapter: "m2", shot: "1-07b", title: "Cut the sheet into strips", text: "Cut the sheet into short strips with scissors along the solid lines, through the skin cloth and the paper together. Then peel the paper off the back of each strip. Each wire module uses two strips, one for each end (a Cross uses four).", tip: "", need: ["Scissors"], media: false },
+    { chapter: "m2", shot: "1-05t", title: "Choose the modules you are going to make", text: "Your magnet strips are ready. Now turn the skin cloth diamonds into wire modules. SkinKit has five types plus a blank one. Choose the ones your design needs; you can also make several at a time. Pick a type to see its steps.", tip: "The arrow sticker shows which way the signal flows. When you lay the pieces out, keep every arrow following the same direction, from input to output.", choices: [
+        { id: "flat", name: "Flat", image: "images/wire-flat.jpg", go: "1-05c", text: "No flap. The slimmest connection, for flat, smooth spots on the body." },
+        { id: "flap-in", name: "Flap-in", image: "images/wire-flap-in.jpg", go: "1-05c", text: "Has a flap on the side the arrow comes from. A flap is an extra strip of skin cloth that bends like a hinge, so a circuit module sitting on it stays connected on curvy spots." },
+        { id: "flap-out", name: "Flap-out", image: "images/wire-flap-out.jpg", go: "1-05c", text: "Like Flap-in, but the flap is on the side the arrow points to. Its magnets are flipped to match the signal direction, from input to output." },
+        { id: "double-flaps", name: "Double flaps", tag: "Shown in the videos", image: "images/wire-double-flaps.jpg", go: "1-05c", text: "A flap on both sides: Flap-in and Flap-out in one piece." },
+        { id: "cross", name: "Cross shape", image: "images/wire-cross-v2.jpg", go: "1-05c", text: "A four-way piece. Turns the circuit or splits it into two directions." },
+        { id: "blank", name: "Blank", image: "images/wire-blank.jpg", text: "Plain skin cloth with no lines or magnets. For decoration, and to fill out the shape you wear. Nothing to add: use a diamond from Step 5 as it is." }
+      ], media: false },
+    { chapter: "m2", shot: "1-05c", title: "Tape the corners", text: "Start with a skin cloth diamond you cut in Step 5. Cut small triangles from the double-sided tape and stick one on each corner of the diamond. Leave the backing on: you peel it off later, when you want to stick pieces together for good.", tip: "", need: ["Skin cloth diamonds", "Double-sided tape", "Scissors"], media: { video: "images/1-05c-v4.mp4", marks: [
+          { t: 0, text: "Cut the double-sided tape into small triangles" },
+          { t: 8.2, text: "Stick a triangle on each corner of the diamond" },
+          { t: 19.3, text: "Leave the backing on for now" }
+        ] } },
     { chapter: "m2", shot: "1-07c", title: "Stick the strips on", callout: "A flat end takes black at the input and white at the output. A flap flips over when it folds, so it takes the opposite colour: white on an input flap, black on an output flap.", text: "Stick one strip at each end of the diamond, with its plain edge (no red marks) along the edge of the inner square: on a flap the strip covers the flap, on a flat end it sits just inside the square. The red arrows on the template show the way the signal flows.", forType: {
-      "flat": "Both ends are flat: black just inside the square at the input end, white just inside the square at the output end.",
-      "flap-in": "White on the input flap (it flips when the flap folds), white just inside the square at the output end.",
-      "flap-out": "Black just inside the square at the input end, black on the output flap (it flips when the flap folds).",
-      "double-flaps": "White on the input flap, black on the output flap. Both flip when the flaps fold.",
-      "cross": "One strip per arm: white on the input arms, black on the output arms. The arms fold, which flips them."
+      "flat": "1 black + 1 white. Both ends are flat: black just inside the square at the input end, white just inside the square at the output end.",
+      "flap-in": "2 white. White on the input flap (it flips when the flap folds), white just inside the square at the output end.",
+      "flap-out": "2 black. Black just inside the square at the input end, black on the output flap (it flips when the flap folds).",
+      "double-flaps": "1 white + 1 black. White on the input flap, black on the output flap. Both flip when the flaps fold.",
+      "cross": "2 white + 2 black, one per arm: white on the input arms, black on the output arms. The arms fold, which flips them."
     }, tip: "", need: ["Skin cloth diamonds"], media: { video: "images/1-07c-v1.mp4", marks: [
           { t: 0, text: "Stick a strip at each end of the diamond" }
         ] } },
