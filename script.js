@@ -613,10 +613,11 @@
     $("sk-faq").innerHTML = (K.faq || []).map((f) => {
       const tag = f.confirm ? ' <span class="sk-confirm">To confirm</span>' : "";
       const a = f.a ? `<p class="sk-faq-a">${esc(f.a)}${tag}</p>` : `<p class="sk-faq-a is-pending">We are checking this with the lab.${tag}</p>`;
+      const steps = f.steps ? `<ol class="sk-faq-steps">${f.steps.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>` : "";
       const fig = f.image ? `<figure class="sk-faq-fig"><img src="${esc(f.image.src)}" alt="${esc(f.image.alt || "")}" loading="lazy">${f.image.caption ? `<figcaption>${esc(f.image.caption)}</figcaption>` : ""}</figure>` : "";
       const demo = f.demo ? `<div class="sk-demo" data-demo="${esc(f.demo)}"></div>` : "";
       const src = f.source ? `<p class="sk-faq-src">From the ${esc(f.source)}.</p>` : "";
-      return `<details><summary>${esc(f.q)}</summary>${a}${fig}${demo}${src}</details>`;
+      return `<details><summary>${esc(f.q)}</summary>${a}${steps}${fig}${demo}${src}</details>`;
     }).join("");
     $("sk-faq").querySelectorAll(".sk-demo").forEach((box) => {
       if (box.dataset.demo === "order") orderDemo(box);

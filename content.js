@@ -297,6 +297,7 @@ window.SKINKIT = {
   // Questions people ask. confirm: true shows a "To confirm" tag until the lab checks the answer;
   // an empty a shows "We are checking this with the lab."
   // demo (optional): a small interactive under the answer ("order" or "arrows", drawn in script.js).
+  // steps (optional): a numbered list shown under the answer.
   // source (optional): where the answer comes from, shown under it. image (optional): { src, alt, caption }, a photo under the answer.
   faq: [
     { q: "Does the order of the modules matter?", a: "Yes. Every circuit starts with a power module, which always sends out a full signal. Each module after it reacts to the signal it gets from the module before it, then passes a signal on to the next one. So an output, like an LED, placed right after the power module and before any sensor gets the full signal and is always on. Placed after a sensor, it only turns on when the sensor's condition is met: in power → proximity sensor → LED, the LED lights up only when something comes close. With two sensors in a row, the LED needs both: in power → proximity sensor → touch sensor → LED, it lights up only when something is close and the touch sensor is touched at the same time. Move the LED and try the sensors below.", demo: "order", source: "SkinKit paper, sections 3.1 and 3.5", confirm: false },
@@ -307,7 +308,11 @@ window.SKINKIT = {
     { q: "Can I use it on sensitive skin?", a: "We don't recommend it. If you do, stick it on with medical-grade double-sided tape (Vapon), and take it off if your skin itches or turns red.", confirm: false },
     { q: "Can I reuse the modules and wire modules?", a: "The electronic modules, yes: unsnap them and use them again in your next project. The wire modules depend on how you used them. While you are only laying them out and trying them on, you can rearrange and reuse them. Once you have peeled off the tape backing and stuck them on your skin, they can't be reused.", confirm: false },
     { q: "What battery does it use, and how long does it last?", a: "Pick the battery by its voltage. Different sensors need different voltages, but 2 to 4 V generally works. We use a 3.7 V battery, which goes in the main power module. How long it lasts depends on the battery and on which modules you run.", confirm: false },
-    { q: "I connected everything but nothing lights up. What now?", a: "Check that every arrow points the same way, from the power module to the end, and that every magnet is snapped on firmly.", confirm: false },
+    { q: "I connected everything but nothing lights up. What now?", a: "Work through these three checks, in order.", steps: [
+      "Check the wire modules. If a magnet is on the wrong way, the current can't get through. Strip the circuit down to the simplest one, a power module and one output such as an LED. If that works, add the other electronic modules back one at a time until you find the problem.",
+      "Check that each electronic module is connected the right way: its arrows point the same way as the rest, and its magnets are clicked on firmly.",
+      "If everything is connected right, the electronic module itself may be broken. Try another one of the same kind."
+    ], confirm: false },
     { q: "Where can I get a SkinKit?", a: "SkinKit is not for sale right now. Kits are used in Hybrid Body Lab workshops and courses.", confirm: true }
   ],
 
